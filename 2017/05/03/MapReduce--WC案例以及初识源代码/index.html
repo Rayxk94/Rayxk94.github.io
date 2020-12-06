@@ -17,15 +17,14 @@
 <meta property="og:site_name" content="xkBigData">
 <meta property="og:description" content="MapReduce–WC案例以及初识源代码1 MapReduce 介绍Hadoop 官网  MapReduce 是一个基于Google的同名论文开发出来的。 MapReduce 是一个分布式计算框架，每个组件之间分而治之。 MapReduce 是一个高性能的分布式计算框架，用于对海量数据进行并行分析和处理。  1.1 MapReduce 优点 MapReduce适合于离线计算&#x2F;批计算 MapRed">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/Rayxk94/note_file/blob/master/photo/hadoop/mapreduce/mapreduce%E6%B5%81%E7%A8%8B.jpg?raw=true">
-<meta property="og:image" content="https://github.com/Hackeruncle/BigData/blob/master/blog/pic/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.png?raw=true">
+<meta property="og:image" content="http://example.com/img/hadoop/mapreduce%E6%B5%81%E7%A8%8B.jpg">
 <meta property="article:published_time" content="2017-05-03T07:47:27.000Z">
-<meta property="article:modified_time" content="2020-12-06T07:38:11.249Z">
+<meta property="article:modified_time" content="2020-12-06T08:05:32.804Z">
 <meta property="article:author" content="Ray">
 <meta property="article:tag" content="hadoop">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/Rayxk94/note_file/blob/master/photo/hadoop/mapreduce/mapreduce%E6%B5%81%E7%A8%8B.jpg?raw=true">
+<meta name="twitter:image" content="http://example.com/img/hadoop/mapreduce%E6%B5%81%E7%A8%8B.jpg">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
   
@@ -267,8 +266,7 @@
 </ul>
 <h4 id="2-4-结果"><a href="#2-4-结果" class="headerlink" title="2.4 结果"></a>2.4 结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flink	2</span><br><span class="line">hadoop	2</span><br><span class="line">hbase	1</span><br><span class="line">spark	3</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-5-解析WC过程"><a href="#2-5-解析WC过程" class="headerlink" title="2.5 解析WC过程"></a>2.5 解析WC过程</h4><p><img src="https://github.com/Rayxk94/note_file/blob/master/photo/hadoop/mapreduce/mapreduce%E6%B5%81%E7%A8%8B.jpg?raw=true" alt="image"></p>
-<p><img src="https://github.com/Hackeruncle/BigData/blob/master/blog/pic/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.png?raw=true" alt="image"></p>
+<h4 id="2-5-解析WC过程"><a href="#2-5-解析WC过程" class="headerlink" title="2.5 解析WC过程"></a>2.5 解析WC过程</h4><p><img src="/img/hadoop/mapreduce%E6%B5%81%E7%A8%8B.jpg" alt="image"></p>
 <h3 id="3-提交到Yarn上面运行"><a href="#3-提交到Yarn上面运行" class="headerlink" title="3 提交到Yarn上面运行"></a>3 提交到Yarn上面运行</h3><h4 id="3-1-修改代码：把输入数据路径和输出路径改成通过外部传参"><a href="#3-1-修改代码：把输入数据路径和输出路径改成通过外部传参" class="headerlink" title="3.1 修改代码：把输入数据路径和输出路径改成通过外部传参"></a>3.1 修改代码：把输入数据路径和输出路径改成通过外部传参</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String input &#x3D; &quot;&quot;;</span><br><span class="line">String output &#x3D; &quot;&quot;;</span><br><span class="line">if (args.length &#x3D;&#x3D; 2) &#123;</span><br><span class="line">    input &#x3D; args[0];</span><br><span class="line">    output &#x3D; args[1];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    throw new Exception(&quot;parameter error&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-2-package"><a href="#3-2-package" class="headerlink" title="3.2 package"></a>3.2 package</h4><h4 id="3-3-Linux运行命令"><a href="#3-3-Linux运行命令" class="headerlink" title="3.3 Linux运行命令"></a>3.3 Linux运行命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar &#x2F;home&#x2F;work&#x2F;lib&#x2F;hdfs-basic-1.0.jar com.xk.bigdata.hadoop.mapreduce.wc.WcDriver &#x2F;data&#x2F;wc&#x2F;demo.txt &#x2F;data&#x2F;wc&#x2F;out</span><br></pre></td></tr></table></figure>
