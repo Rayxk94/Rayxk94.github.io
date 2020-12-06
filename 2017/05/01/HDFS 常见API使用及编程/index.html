@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>xkBigData</title>
+  <title>HDFS API编程 | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content="xkBigData"> -->
-  
-  <meta name="description" content="xkBigData">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xkBigData">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="HDFS API编程1 pom 文件增加依赖12345678910111213&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.apache.hadoop&lt;&#x2F;groupId&gt;        &lt;artifactId&gt;hadoop-client&lt;&#x2F;artifactI">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDFS API编程">
+<meta property="og:url" content="http://example.com/2017/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="xkBigData">
+<meta property="og:description" content="HDFS API编程1 pom 文件增加依赖12345678910111213&lt;dependencies&gt;    &lt;dependency&gt;        &lt;groupId&gt;org.apache.hadoop&lt;&#x2F;groupId&gt;        &lt;artifactId&gt;hadoop-client&lt;&#x2F;artifactI">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-05-01T05:54:57.000Z">
+<meta property="article:modified_time" content="2020-12-06T07:37:53.608Z">
 <meta property="article:author" content="Ray">
+<meta property="article:tag" content="hadoop">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
@@ -177,482 +177,25 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-
-  
-    <article id="post-MapReduce--InputFormat 源码解析以及常用的类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-HDFS 常见API使用及编程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2017/05/07/MapReduce--InputFormat%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B/" target="_blank">MapReduce--InputFormat 源码解析以及常用的类型</a>
-  
+    <h1 class="article-title" itemprop="name">
+      HDFS API编程
     </h1>
   
 
 
   
   
-<a href="/2017/05/07/MapReduce--InputFormat%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2017-05-07T14:35:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="MapReduce–InputFormat-源码解析以及常用的类型"><a href="#MapReduce–InputFormat-源码解析以及常用的类型" class="headerlink" title="MapReduce–InputFormat 源码解析以及常用的类型"></a>MapReduce–InputFormat 源码解析以及常用的类型</h2><h3 id="1-MapReduce-源代码读取数据如何分片"><a href="#1-MapReduce-源代码读取数据如何分片" class="headerlink" title="1 MapReduce 源代码读取数据如何分片"></a>1 MapReduce 源代码读取数据如何分片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">waitForCompletion&#123;</span><br><span class="line">    submit&#123;</span><br><span class="line">        submitter.submitJobInternal(Job.this, cluster)&#123;</span><br><span class="line">            &#x2F;&#x2F; 来判断读取目标文件需要设置多少分片 </span><br><span class="line">            int maps &#x3D; writeSplits(job, submitJobDir)&#123;</span><br><span class="line">                maps &#x3D; writeNewSplits(job, jobSubmitDir)&#123;</span><br><span class="line">                    InputFormat&lt;?, ?&gt; input &#x3D; ReflectionUtils.newInstance(job.getInputFormatClass(), conf);</span><br><span class="line">                    List&lt;InputSplit&gt; splits &#x3D; input.getSplits(job)&#123;</span><br><span class="line">                        &#x2F;&#x2F; 因为读取文件我们底层使用的抽象类都是FileInputFormat</span><br><span class="line">                        public abstract class FileInputFormat&lt;K, V&gt; extends InputFormat&lt;K, V&gt;</span><br><span class="line">                        FileInputFormat.getSplits&#123;</span><br><span class="line">                            List&lt;InputSplit&gt; splits &#x3D; new ArrayList&lt;InputSplit&gt;();</span><br><span class="line">                            &#x2F;&#x2F; 如何得到BlockSize</span><br><span class="line">                            List&lt;FileStatus&gt; files &#x3D; listStatus(job)&#123;</span><br><span class="line">                                 result &#x3D; singleThreadedListStatus(job, dirs, inputFilter, recursive)&#123;</span><br><span class="line">                                     RemoteIterator&lt;LocatedFileStatus&gt; iter &#x3D; fs.listLocatedStatus(globStat.getPath())&#123;</span><br><span class="line">                                         listLocatedStatus(f, DEFAULT_FILTER)&#123;</span><br><span class="line">                                              &#x2F;**</span><br><span class="line">                                               * Return the number of bytes that large input files should be optimally</span><br><span class="line">                                               * be split into to minimize i&#x2F;o time.</span><br><span class="line">                                               * @deprecated use &#123;@link #getDefaultBlockSize(Path)&#125; instead</span><br><span class="line">                                               *&#x2F;</span><br><span class="line">                                              @Deprecated</span><br><span class="line">                                              public long getDefaultBlockSize() &#123;</span><br><span class="line">                                                &#x2F;&#x2F; default to 32MB: large enough to minimize the impact of seeks</span><br><span class="line">                                                return getConf().getLong(&quot;fs.local.block.size&quot;, 32 * 1024 * 1024);</span><br><span class="line">                                              &#125;</span><br><span class="line">                                         &#125;</span><br><span class="line">                                     &#125;</span><br><span class="line">                                 &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                            long minSize &#x3D; Math.max(getFormatMinSplitSize(), getMinSplitSize(job))&#123;</span><br><span class="line">                                protected long getFormatMinSplitSize() &#123;</span><br><span class="line">                                    return 1;</span><br><span class="line">                                &#125;</span><br><span class="line">                                  public static long getMinSplitSize(JobContext job) &#123;</span><br><span class="line">                                    return job.getConfiguration().getLong(SPLIT_MINSIZE, 1L);</span><br><span class="line">                                &#125;</span><br><span class="line">                                &#x2F;&#x2F; 因为我们没有设置SplitSize整个参数</span><br><span class="line">                                getFormatMinSplitSize() &#x3D; 1</span><br><span class="line">                                getMinSplitSize(job) &#x3D; 1</span><br><span class="line">                                long minSize &#x3D; Math.max(1,1) &#x3D; 1</span><br><span class="line">                            &#125;</span><br><span class="line">                            long maxSize &#x3D; getMaxSplitSize(job)&#123;</span><br><span class="line">                                  public static long getMaxSplitSize(JobContext context) &#123;</span><br><span class="line">                                    return context.getConfiguration().getLong(SPLIT_MAXSIZE, Long.MAX_VALUE);</span><br><span class="line">                                    @Native public static final long MAX_VALUE &#x3D; 0x7fffffffffffffffL;</span><br><span class="line">                                    &#x2F;&#x2F; 因为参数没有设置</span><br><span class="line">                                     long maxSize &#x3D; 0x7fffffffffffffffL;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                            for (FileStatus file: files) &#123;</span><br><span class="line">                                long blockSize &#x3D; file.getBlockSize()&#123;</span><br><span class="line">                                    &#x2F;&#x2F; 上文已经得到了fs.local.block.size 的大小是32M</span><br><span class="line">                                    long blockSize &#x3D;  getConf().getLong(&quot;fs.local.block.size&quot;, 32 * 1024 * 1024)</span><br><span class="line">                                    </span><br><span class="line">                                &#125;</span><br><span class="line">                                long splitSize &#x3D; computeSplitSize(blockSize, minSize, maxSize)&#123;</span><br><span class="line">                                    Math.max(minSize, Math.min(maxSize, blockSize)) &#x3D; Math.max(1, Math.min(0x7fffffffffffffffL, 32 * 1024 * 1024))&#123;</span><br><span class="line">                                        long splitSize &#x3D; 32 * 1024 * 1024</span><br><span class="line">                                    &#125;</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                            &#x2F;&#x2F; 所以这里又会出现一个经典的面试题，如果一个文件是129M，BlockSize是128M，读取文件的时候会切成多少片</span><br><span class="line">                            &#x2F;&#x2F; 答案是1，因为这里设置了一个1.1的阈值</span><br><span class="line">                            while (((double) bytesRemaining)&#x2F;splitSize &gt; SPLIT_SLOP) &#123;</span><br><span class="line">                                private static final double SPLIT_SLOP &#x3D; 1.1;   &#x2F;&#x2F; 10% slop</span><br><span class="line">                                int blkIndex &#x3D; getBlockIndex(blkLocations, length-bytesRemaining);</span><br><span class="line">                                splits.add(makeSplit(path, length-bytesRemaining, splitSize,</span><br><span class="line">                                            blkLocations[blkIndex].getHosts(),</span><br><span class="line">                                            blkLocations[blkIndex].getCachedHosts()));</span><br><span class="line">                                bytesRemaining -&#x3D; splitSize;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    T[] array &#x3D; (T[]) splits.toArray(new InputSplit[splits.size()]);</span><br><span class="line">                    return array.length;</span><br><span class="line">                &#125;</span><br><span class="line">                &#x2F;&#x2F; 所以Map的数量是是 文件的大小&#x2F;BlockSize</span><br><span class="line">                &#x2F;&#x2F; 本地默认的BlockSize是32M，提交到集群上面，默认的BlockSize是128M</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-MapReduce-源代码分片读取数据"><a href="#2-MapReduce-源代码分片读取数据" class="headerlink" title="2 MapReduce 源代码分片读取数据"></a>2 MapReduce 源代码分片读取数据</h3><h4 id="2-1-InputFormat-是所有读取文件的基类"><a href="#2-1-InputFormat-是所有读取文件的基类" class="headerlink" title="2.1 InputFormat 是所有读取文件的基类"></a>2.1 InputFormat 是所有读取文件的基类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;** </span><br><span class="line"> * &lt;code&gt;InputFormat&lt;&#x2F;code&gt; describes the input-specification for a </span><br><span class="line"> * Map-Reduce job. </span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;The Map-Reduce framework relies on the &lt;code&gt;InputFormat&lt;&#x2F;code&gt; of the</span><br><span class="line"> * job to:&lt;p&gt;</span><br><span class="line"> * &lt;ol&gt;</span><br><span class="line"> *   &lt;li&gt;</span><br><span class="line"> *   Validate the input-specification of the job. </span><br><span class="line"> *   &lt;li&gt;</span><br><span class="line"> *   Split-up the input file(s) into logical &#123;@link InputSplit&#125;s, each of </span><br><span class="line"> *   which is then assigned to an individual &#123;@link Mapper&#125;.</span><br><span class="line"> *   &lt;&#x2F;li&gt;</span><br><span class="line"> *   &lt;li&gt;</span><br><span class="line"> *   Provide the &#123;@link RecordReader&#125; implementation to be used to glean</span><br><span class="line"> *   input records from the logical &lt;code&gt;InputSplit&lt;&#x2F;code&gt; for processing by </span><br><span class="line"> *   the &#123;@link Mapper&#125;.</span><br><span class="line"> *   &lt;&#x2F;li&gt;</span><br><span class="line"> * &lt;&#x2F;ol&gt;</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;The default behavior of file-based &#123;@link InputFormat&#125;s, typically </span><br><span class="line"> * sub-classes of &#123;@link FileInputFormat&#125;, is to split the </span><br><span class="line"> * input into &lt;i&gt;logical&lt;&#x2F;i&gt; &#123;@link InputSplit&#125;s based on the total size, in </span><br><span class="line"> * bytes, of the input files. However, the &#123;@link FileSystem&#125; blocksize of  </span><br><span class="line"> * the input files is treated as an upper bound for input splits. A lower bound </span><br><span class="line"> * on the split size can be set via </span><br><span class="line"> * &lt;a href&#x3D;&quot;&#123;@docRoot&#125;&#x2F;..&#x2F;hadoop-mapreduce-client&#x2F;hadoop-mapreduce-client-core&#x2F;mapred-default.xml#mapreduce.input.fileinputformat.split.minsize&quot;&gt;</span><br><span class="line"> * mapreduce.input.fileinputformat.split.minsize&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;Clearly, logical splits based on input-size is insufficient for many </span><br><span class="line"> * applications since record boundaries are to respected. In such cases, the</span><br><span class="line"> * application has to also implement a &#123;@link RecordReader&#125; on whom lies the</span><br><span class="line"> * responsibility to respect record-boundaries and present a record-oriented</span><br><span class="line"> * view of the logical &lt;code&gt;InputSplit&lt;&#x2F;code&gt; to the individual task.</span><br><span class="line"> *</span><br><span class="line"> * @see InputSplit</span><br><span class="line"> * @see RecordReader</span><br><span class="line"> * @see FileInputFormat</span><br><span class="line"> *&#x2F;</span><br><span class="line">@InterfaceAudience.Public</span><br><span class="line">@InterfaceStability.Stable</span><br><span class="line">public abstract class InputFormat&lt;K, V&gt; &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;** </span><br><span class="line">   * Logically split the set of input files for the job.  </span><br><span class="line">   * </span><br><span class="line">   * &lt;p&gt;Each &#123;@link InputSplit&#125; is then assigned to an individual &#123;@link Mapper&#125;</span><br><span class="line">   * for processing.&lt;&#x2F;p&gt;</span><br><span class="line">   *</span><br><span class="line">   * &lt;p&gt;&lt;i&gt;Note&lt;&#x2F;i&gt;: The split is a &lt;i&gt;logical&lt;&#x2F;i&gt; split of the inputs and the</span><br><span class="line">   * input files are not physically split into chunks. For e.g. a split could</span><br><span class="line">   * be &lt;i&gt;&lt;input-file-path, start, offset&gt;&lt;&#x2F;i&gt; tuple. The InputFormat</span><br><span class="line">   * also creates the &#123;@link RecordReader&#125; to read the &#123;@link InputSplit&#125;.</span><br><span class="line">   * </span><br><span class="line">   * @param context job configuration.</span><br><span class="line">   * @return an array of &#123;@link InputSplit&#125;s for the job.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public abstract </span><br><span class="line">    List&lt;InputSplit&gt; getSplits(JobContext context</span><br><span class="line">                               ) throws IOException, InterruptedException;</span><br><span class="line">  </span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Create a record reader for a given split. The framework will call</span><br><span class="line">   * &#123;@link RecordReader#initialize(InputSplit, TaskAttemptContext)&#125; before</span><br><span class="line">   * the split is used.</span><br><span class="line">   * @param split the split to be read</span><br><span class="line">   * @param context the information about the task</span><br><span class="line">   * @return a new record reader</span><br><span class="line">   * @throws IOException</span><br><span class="line">   * @throws InterruptedException</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public abstract </span><br><span class="line">    RecordReader&lt;K,V&gt; createRecordReader(InputSplit split,</span><br><span class="line">                                         TaskAttemptContext context</span><br><span class="line">                                        ) throws IOException, </span><br><span class="line">                                                 InterruptedException;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>首先是先把输入的文件分区，然后通过RecordReader读取数据</li>
-</ul>
-<h4 id="2-2-TextInputFormat"><a href="#2-2-TextInputFormat" class="headerlink" title="2.2 TextInputFormat"></a>2.2 TextInputFormat</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public RecordReader&lt;LongWritable, Text&gt; </span><br><span class="line">  createRecordReader(InputSplit split,</span><br><span class="line">                     TaskAttemptContext context) &#123;</span><br><span class="line">  String delimiter &#x3D; context.getConfiguration().get(</span><br><span class="line">      &quot;textinputformat.record.delimiter&quot;);</span><br><span class="line">  byte[] recordDelimiterBytes &#x3D; null;</span><br><span class="line">  if (null !&#x3D; delimiter)</span><br><span class="line">    recordDelimiterBytes &#x3D; delimiter.getBytes(Charsets.UTF_8);</span><br><span class="line">  return new LineRecordReader(recordDelimiterBytes)&#123;</span><br><span class="line">        public void initialize(InputSplit genericSplit,</span><br><span class="line">                       TaskAttemptContext context) throws IOException &#123;</span><br><span class="line">          FileSplit split &#x3D; (FileSplit) genericSplit;</span><br><span class="line">          Configuration job &#x3D; context.getConfiguration();</span><br><span class="line">          this.maxLineLength &#x3D; job.getInt(MAX_LINE_LENGTH, Integer.MAX_VALUE);</span><br><span class="line">          start &#x3D; split.getStart();</span><br><span class="line">          end &#x3D; start + split.getLength();</span><br><span class="line">          final Path file &#x3D; split.getPath();</span><br><span class="line">      </span><br><span class="line">          &#x2F;&#x2F; open the file and seek to the start of the split</span><br><span class="line">          final FileSystem fs &#x3D; file.getFileSystem(job);</span><br><span class="line">          fileIn &#x3D; fs.open(file);</span><br><span class="line">          </span><br><span class="line">          CompressionCodec codec &#x3D; new CompressionCodecFactory(job).getCodec(file);</span><br><span class="line">          if (null!&#x3D;codec) &#123;</span><br><span class="line">            isCompressedInput &#x3D; true;	</span><br><span class="line">            decompressor &#x3D; CodecPool.getDecompressor(codec);</span><br><span class="line">            if (codec instanceof SplittableCompressionCodec) &#123;</span><br><span class="line">              final SplitCompressionInputStream cIn &#x3D;</span><br><span class="line">                ((SplittableCompressionCodec)codec).createInputStream(</span><br><span class="line">                  fileIn, decompressor, start, end,</span><br><span class="line">                  SplittableCompressionCodec.READ_MODE.BYBLOCK);</span><br><span class="line">              in &#x3D; new CompressedSplitLineReader(cIn, job,</span><br><span class="line">                  this.recordDelimiterBytes);</span><br><span class="line">              start &#x3D; cIn.getAdjustedStart();</span><br><span class="line">              end &#x3D; cIn.getAdjustedEnd();</span><br><span class="line">              filePosition &#x3D; cIn;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">              in &#x3D; new SplitLineReader(codec.createInputStream(fileIn,</span><br><span class="line">                  decompressor), job, this.recordDelimiterBytes);</span><br><span class="line">              filePosition &#x3D; fileIn;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            fileIn.seek(start);</span><br><span class="line">            in &#x3D; new UncompressedSplitLineReader(</span><br><span class="line">                fileIn, job, this.recordDelimiterBytes, split.getLength());</span><br><span class="line">            filePosition &#x3D; fileIn;</span><br><span class="line">          &#125;</span><br><span class="line">          &#x2F;&#x2F; If this is not the first split, we always throw away first record</span><br><span class="line">          &#x2F;&#x2F; because we always (except the last split) read one extra line in</span><br><span class="line">          &#x2F;&#x2F; next() method.</span><br><span class="line">          if (start !&#x3D; 0) &#123;</span><br><span class="line">            start +&#x3D; in.readLine(new Text(), 0, maxBytesToConsume(start));</span><br><span class="line">          &#125;</span><br><span class="line">          this.pos &#x3D; start;</span><br><span class="line">        &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>getSplits 是把每个分片的数据岂止偏移量和分了多少片的信息记录下来</li>
-<li>createRecordReader 创建了一个Reader来读取文本数据</li>
-<li>是通过之前记录的每个分片的偏移量来读取数据，由此可见，RecordReader是一个逻辑分区，并不是想block那样，没有实实在在的文件</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fileIn.seek(start);</span><br><span class="line">in &#x3D; new UncompressedSplitLineReader(</span><br><span class="line">  fileIn, job, this.recordDelimiterBytes, split.getLength());</span><br><span class="line">filePosition &#x3D; fileIn;</span><br><span class="line">start +&#x3D; in.readLine(new Text(), 0, maxBytesToConsume(start));</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-InputFormat-常用的几种子类"><a href="#3-InputFormat-常用的几种子类" class="headerlink" title="3 InputFormat 常用的几种子类"></a>3 InputFormat 常用的几种子类</h3><ul>
-<li>FileInputFormat</li>
-<li>TextInputFormat</li>
-<li>KeyValueTextInputFormat</li>
-<li>NLineInputFormat</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FileInputFormat、TextInputFormat之前文章里面已经写过DEMO了，今天就对NLineInputFormat、KeyValueTextInputFormat来分析一波</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-1-KeyValueTextInputFormat"><a href="#3-1-KeyValueTextInputFormat" class="headerlink" title="3.1 KeyValueTextInputFormat"></a>3.1 KeyValueTextInputFormat</h5><h6 id="3-1-1-需求"><a href="#3-1-1-需求" class="headerlink" title="3.1.1 需求"></a>3.1.1 需求</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">文件中第一个单词的词频统计</span><br></pre></td></tr></table></figure>
-
-<h6 id="3-1-2-POM文件增加依赖"><a href="#3-1-2-POM文件增加依赖" class="headerlink" title="3.1.2 POM文件增加依赖"></a>3.1.2 POM文件增加依赖</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.hadoop&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;hadoop-client&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.6.0-cdh5.16.2&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
-
-<h6 id="3-1-3-数据"><a href="#3-1-3-数据" class="headerlink" title="3.1.3 数据"></a>3.1.3 数据</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hadoop,spark,flink</span><br><span class="line">hbase,hadoop,spark,flink</span><br><span class="line">spark</span><br><span class="line">hadoop</span><br></pre></td></tr></table></figure>
-<h6 id="3-1-4-Code"><a href="#3-1-4-Code" class="headerlink" title="3.1.4 Code"></a>3.1.4 Code</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigata.hadoop.mapreduce.inputformat;</span><br><span class="line"></span><br><span class="line">import com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.KeyValueLineRecordReader;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class KeyValueTextInputFormatDriver &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        String input &#x3D; &quot;mapreduce-basic&#x2F;data&#x2F;wc.txt&quot;;</span><br><span class="line">        String output &#x3D; &quot;mapreduce-basic&#x2F;out&quot;;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 1 创建 MapReduce job</span><br><span class="line">        Configuration conf &#x3D; new Configuration();</span><br><span class="line">        conf.set(KeyValueLineRecordReader.KEY_VALUE_SEPERATOR, &quot;,&quot;);</span><br><span class="line">        Job job &#x3D; Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 删除输出路径</span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2 设置运行主类</span><br><span class="line">        job.setJarByClass(KeyValueTextInputFormatDriver.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 3 设置Map和Reduce运行的类</span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 4 设置Map 输出的 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 6 设置输入和输出路径</span><br><span class="line">        job.setInputFormatClass(KeyValueTextInputFormat.class);</span><br><span class="line">        FileInputFormat.setInputPaths(job, new Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new Path(output));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 7 提交job</span><br><span class="line">        boolean result &#x3D; job.waitForCompletion(true);</span><br><span class="line">        System.exit(result ? 0 : 1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyMapper extends Mapper&lt;Text, Text, Text, IntWritable&gt; &#123;</span><br><span class="line"></span><br><span class="line">        IntWritable ONE &#x3D; new IntWritable(1);</span><br><span class="line"></span><br><span class="line">        &#x2F;**</span><br><span class="line">         * @param key 这一行数据里面，按照设定的分区符号的第一个字段</span><br><span class="line">         * @param value 这一行数据</span><br><span class="line">         * @throws IOException</span><br><span class="line">         * @throws InterruptedException</span><br><span class="line">         *&#x2F;</span><br><span class="line">        @Override</span><br><span class="line">        protected void map(Text key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            context.write(key, ONE);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyReducer extends Reducer&lt;Text, IntWritable, Text, IntWritable&gt; &#123;</span><br><span class="line">        @Override</span><br><span class="line">        protected void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            int count &#x3D; 0;</span><br><span class="line">            for (IntWritable value : values) &#123;</span><br><span class="line">                count +&#x3D; value.get();</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(key, new IntWritable(count));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="3-1-5-结果"><a href="#3-1-5-结果" class="headerlink" title="3.1.5 结果"></a>3.1.5 结果</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop	2</span><br><span class="line">hbase	1</span><br><span class="line">spark	1</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/inputformat/KeyValueTextInputFormatDriver.java">KeyValueTextInputFormatDriver</a></p>
-<h5 id="3-2-NLineInputFormat"><a href="#3-2-NLineInputFormat" class="headerlink" title="3.2 NLineInputFormat"></a>3.2 NLineInputFormat</h5><h6 id="3-2-1-POM文件增加依赖"><a href="#3-2-1-POM文件增加依赖" class="headerlink" title="3.2.1 POM文件增加依赖"></a>3.2.1 POM文件增加依赖</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.hadoop&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;hadoop-client&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.6.0-cdh5.16.2&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    <div class="article-pop-out tagcloud">
-      <i class="icon-tuding"></i>
-      <a class="article-tag-list-link color3">置顶</a>
-    </div>
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2017/05/07/MapReduce--InputFormat%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
 
-
-
-
-  
-    <article id="post-MapReduce build-in 数据类型以及自定义数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2017/05/05/MapReduce%20build-in%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" target="_blank">数据类型以及自定义数据类型</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2017/05/05/MapReduce%20build-in%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-        <time datetime="2017-05-05T13:34:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="MapReduce-build-in-数据类型以及自定义数据类型"><a href="#MapReduce-build-in-数据类型以及自定义数据类型" class="headerlink" title="MapReduce build-in 数据类型以及自定义数据类型"></a>MapReduce build-in 数据类型以及自定义数据类型</h2><h3 id="1-MapReduce-build-in-数据类型"><a href="#1-MapReduce-build-in-数据类型" class="headerlink" title="1 MapReduce build-in 数据类型"></a>1 MapReduce build-in 数据类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MapReduce 作为一个分布式计算框架，数据类型则需要需要实现序列化，Java实现序列化，需要implements Serializable,MapReduce 定了一个自己的基础的数据类型 -- Writable，是可以实现序列化的</span><br></pre></td></tr></table></figure>
-<ul>
-<li>BooleanWritable:Boolean</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class BooleanWritable implements WritableComparable&lt;BooleanWritable&gt; </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>IntWritable:Int</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class IntWritable implements WritableComparable&lt;IntWritable&gt; </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>ByteWritable:Byte</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class ByteWritable implements WritableComparable&lt;ByteWritable&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>FloatWritable:Float</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class FloatWritable implements WritableComparable&lt;FloatWritable&gt; </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>LongWritable:Long</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class LongWritable implements WritableComparable&lt;LongWritable&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>DoubleWritable:Double</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class DoubleWritable implements WritableComparable&lt;DoubleWritable&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Text:String</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class Text extends BinaryComparable</span><br><span class="line">    implements WritableComparable&lt;BinaryComparable</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>WritableComparable</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface WritableComparable&lt;T&gt; extends Writable, Comparable&lt;T&gt; </span><br></pre></td></tr></table></figure>
-
-<h3 id="2-自定义数据类型案例"><a href="#2-自定义数据类型案例" class="headerlink" title="2 自定义数据类型案例"></a>2 自定义数据类型案例</h3><h4 id="2-1-数据"><a href="#2-1-数据" class="headerlink" title="2.1 数据"></a>2.1 数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1363157985066 	13726230503	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	2481	24681	200</span><br><span class="line">1363157995052 	13826544101	5C-0E-8B-C7-F1-E0:CMCC	120.197.40.4			4	0	264	0	200</span><br><span class="line">1363157991076 	13926435656	20-10-7A-28-CC-0A:CMCC	120.196.100.99			2	4	132	1512	200</span><br><span class="line">1363154400022 	13926251106	5C-0E-8B-8B-B1-50:CMCC	120.197.40.4			4	0	240	0	200</span><br><span class="line">1363157993044 	18211575961	94-71-AC-CD-E6-18:CMCC-EASY	120.196.100.99	iface.qiyi.com	视频网站	15	12	1527	2106	200</span><br><span class="line">1363157995074 	84138413	5C-0E-8B-8C-E8-20:7DaysInn	120.197.40.4	122.72.52.12		20	16	4116	1432	200</span><br><span class="line">1363157993055 	13560439658	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			18	15	1116	954	200</span><br><span class="line">1363157995033 	15920133257	5C-0E-8B-C7-BA-20:CMCC	120.197.40.4	sug.so.360.cn	信息安全	20	20	3156	2936	200</span><br><span class="line">1363157983019 	13719199419	68-A1-B7-03-07-B1:CMCC-EASY	120.196.100.82			4	0	240	0	200</span><br><span class="line">1363157984041 	13660577991	5C-0E-8B-92-5C-20:CMCC-EASY	120.197.40.4	s19.cnzz.com	站点统计	24	9	6960	690	200</span><br><span class="line">1363157973098 	15013685858	5C-0E-8B-C7-F7-90:CMCC	120.197.40.4	rank.ie.sogou.com	搜索引擎	28	27	3659	3538	200</span><br><span class="line">1363157986029 	15989002119	E8-99-C4-4E-93-E0:CMCC-EASY	120.196.100.99	www.umeng.com	站点统计	3	3	1938	180	200</span><br><span class="line">1363157992093 	13560439658	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			15	9	918	4938	200</span><br><span class="line">1363157986041 	13480253104	5C-0E-8B-C7-FC-80:CMCC-EASY	120.197.40.4			3	3	180	180	200</span><br><span class="line">1363157984040 	13602846565	5C-0E-8B-8B-B6-00:CMCC	120.197.40.4	2052.flash2-http.qq.com	综合门户	15	12	1938	2910	200</span><br><span class="line">1363157995093 	13922314466	00-FD-07-A2-EC-BA:CMCC	120.196.100.82	img.qfc.cn		12	12	3008	3720	200</span><br><span class="line">1363157982040 	13502468823	5C-0A-5B-6A-0B-D4:CMCC-EASY	120.196.100.99	y0.ifengimg.com	综合门户	57	102	7335	110349	200</span><br><span class="line">1363157986072 	18320173382	84-25-DB-4F-10-1A:CMCC-EASY	120.196.100.99	input.shouji.sogou.com	搜索引擎	21	18	9531	2412	200</span><br><span class="line">1363157990043 	13925057413	00-1F-64-E1-E6-9A:CMCC	120.196.100.55	t3.baidu.com	搜索引擎	69	63	11058	48243	200</span><br><span class="line">1363157988072 	13760778710	00-FD-07-A4-7B-08:CMCC	120.196.100.82			2	2	120	120	200</span><br><span class="line">1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	2481	24681	200</span><br><span class="line">1363157993055 	13560436666	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			18	15	1116	954	200</span><br><span class="line">1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	10000	20000	200</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-需求"><a href="#2-2-需求" class="headerlink" title="2.2 需求"></a>2.2 需求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二个字段：手机号</span><br><span class="line">倒数第三个字段：上行流量</span><br><span class="line">倒数第二个字段：下行流量</span><br><span class="line">&#x3D;&#x3D;&gt; 统计每个手机号所耗费的上行流量之和、下行流量之和、总流量之和</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-Code"><a href="#2-3-Code" class="headerlink" title="2.3 Code"></a>2.3 Code</h4><h5 id="2-3-1-Domain"><a href="#2-3-1-Domain" class="headerlink" title="2.3.1 Domain"></a>2.3.1 Domain</h5><ol>
-<li>实现WritableComparable/Writable接口</li>
-<li>重写 write、readFields、compareTo方法</li>
-<li>要有一个无参的构造器</li>
-<li>write和readFields的字段顺序要保持一致</li>
-<li>输出结果：需要重写toString(非必选)</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigata.hadoop.mapreduce.domain;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.io.WritableComparable;</span><br><span class="line"></span><br><span class="line">import java.io.DataInput;</span><br><span class="line">import java.io.DataOutput;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 自定义数据类型步骤：</span><br><span class="line"> * 1. 实现WritableComparable&#x2F;Writable接口</span><br><span class="line"> * 2. 重写 write、readFields、compareTo方法</span><br><span class="line"> * 3. 要有一个无参的构造器</span><br><span class="line"> * 4. write和readFields的字段顺序要保持一致</span><br><span class="line"> * 5. 输出结果：需要重写toString(非必选)</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class AccessDomain implements WritableComparable&lt;AccessDomain&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private String phone;</span><br><span class="line"></span><br><span class="line">    private Long up;</span><br><span class="line"></span><br><span class="line">    private Long down;</span><br><span class="line"></span><br><span class="line">    private Long sum;</span><br><span class="line"></span><br><span class="line">    public String getPhone() &#123;</span><br><span class="line">        return phone;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPhone(String phone) &#123;</span><br><span class="line">        this.phone &#x3D; phone;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getUp() &#123;</span><br><span class="line">        return up;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUp(Long up) &#123;</span><br><span class="line">        this.up &#x3D; up;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getDown() &#123;</span><br><span class="line">        return down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDown(Long down) &#123;</span><br><span class="line">        this.down &#x3D; down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getSum() &#123;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSum(Long sum) &#123;</span><br><span class="line">        this.sum &#x3D; sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public AccessDomain() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public AccessDomain(String phone, Long up, Long down) &#123;</span><br><span class="line">        this.phone &#x3D; phone;</span><br><span class="line">        this.up &#x3D; up;</span><br><span class="line">        this.down &#x3D; down;</span><br><span class="line">        this.sum &#x3D; up + down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return phone + &#39;\t&#39; +</span><br><span class="line">               up + &#39;\t&#39; +</span><br><span class="line">               down + &#39;\t&#39; +</span><br><span class="line">               sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void write(DataOutput out) throws IOException &#123;</span><br><span class="line">        out.writeUTF(phone);</span><br><span class="line">        out.writeLong(up);</span><br><span class="line">        out.writeLong(down);</span><br><span class="line">        out.writeLong(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void readFields(DataInput in) throws IOException &#123;</span><br><span class="line">        phone &#x3D; in.readUTF();</span><br><span class="line">        up &#x3D; in.readLong();</span><br><span class="line">        down &#x3D; in.readLong();</span><br><span class="line">        sum &#x3D; in.readLong();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int compareTo(AccessDomain o) &#123;</span><br><span class="line">        return Integer.parseInt(String.valueOf((o.sum - sum)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-3-2-Driver"><a href="#2-3-2-Driver" class="headerlink" title="2.3.2 Driver"></a>2.3.2 Driver</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigata.hadoop.mapreduce.access;</span><br><span class="line"></span><br><span class="line">import com.xk.bigata.hadoop.mapreduce.domain.AccessDomain;</span><br><span class="line">import com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.LongWritable;</span><br><span class="line">import org.apache.hadoop.io.NullWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class AccessDriver &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        String input &#x3D; &quot;mapreduce-basic&#x2F;data&#x2F;access.log&quot;;</span><br><span class="line">        String output &#x3D; &quot;mapreduce-basic&#x2F;out&quot;;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 1 创建 MapReduce job</span><br><span class="line">        Configuration conf &#x3D; new Configuration();</span><br><span class="line">        Job job &#x3D; Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 删除输出路径</span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2 设置运行主类</span><br><span class="line">        job.setJarByClass(AccessDriver.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 3 设置Map和Reduce运行的类</span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 4 设置Map 输出的 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(AccessDomain.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setOutputKeyClass(NullWritable.class);</span><br><span class="line">        job.setOutputValueClass(AccessDomain.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 6 设置输入和输出路径</span><br><span class="line">        FileInputFormat.setInputPaths(job, new Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new Path(output));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 7 提交job</span><br><span class="line">        boolean result &#x3D; job.waitForCompletion(true);</span><br><span class="line">        System.exit(result ? 0 : 1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyMapper extends Mapper&lt;LongWritable, Text, Text, AccessDomain&gt; &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            String[] spilts &#x3D; value.toString().split(&quot;\t&quot;);</span><br><span class="line">            String phone &#x3D; spilts[1];</span><br><span class="line">            long up &#x3D; Long.parseLong(spilts[spilts.length - 3]);</span><br><span class="line">            long down &#x3D; Long.parseLong(spilts[spilts.length - 2]);</span><br><span class="line">            context.write(new Text(phone), new AccessDomain(phone, up, down));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyReducer extends Reducer&lt;Text, AccessDomain, NullWritable, AccessDomain&gt; &#123;</span><br><span class="line">        @Override</span><br><span class="line">        protected void reduce(Text key, Iterable&lt;AccessDomain&gt; values, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            Long up &#x3D; 0L;</span><br><span class="line">            Long down &#x3D; 0L;</span><br><span class="line">            for (AccessDomain access : values) &#123;</span><br><span class="line">                up +&#x3D; access.getUp();</span><br><span class="line">                down +&#x3D; access.getDown();</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(NullWritable.get(), new AccessDomain(key.toString(), up, down));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-结果展示"><a href="#2-4-结果展示" class="headerlink" title="2.4 结果展示"></a>2.4 结果展示</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">13480253104	180	180	360</span><br><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">13719199419	240	0	240</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13760778710	120	120	240</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13926435656	132	1512	1644</span><br><span class="line">15013685858	3659	3538	7197</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">15989002119	1938	180	2118</span><br><span class="line">18211575961	1527	2106	3633</span><br><span class="line">18320173382	9531	2412	11943</span><br><span class="line">84138413	4116	1432	5548</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/access/AccessDriver.java">AccessDriver</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    <div class="article-pop-out tagcloud">
-      <i class="icon-tuding"></i>
-      <a class="article-tag-list-link color3">置顶</a>
-    </div>
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2017/05/05/MapReduce%20build-in%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MapReduce--WC案例以及初识源代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2017/05/03/MapReduce--WC%E6%A1%88%E4%BE%8B%E4%BB%A5%E5%8F%8A%E5%88%9D%E8%AF%86%E6%BA%90%E4%BB%A3%E7%A0%81/" target="_blank">MapReduce--WC案例以及初识源代码</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2017/05/03/MapReduce--WC%E6%A1%88%E4%BE%8B%E4%BB%A5%E5%8F%8A%E5%88%9D%E8%AF%86%E6%BA%90%E4%BB%A3%E7%A0%81/" class="archive-article-date">
-        <time datetime="2017-05-03T07:47:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="MapReduce–WC案例以及初识源代码"><a href="#MapReduce–WC案例以及初识源代码" class="headerlink" title="MapReduce–WC案例以及初识源代码"></a>MapReduce–WC案例以及初识源代码</h2><h3 id="1-MapReduce-介绍"><a href="#1-MapReduce-介绍" class="headerlink" title="1 MapReduce 介绍"></a>1 MapReduce 介绍</h3><p><a target="_blank" rel="noopener" href="https://hadoop.apache.org/">Hadoop 官网</a></p>
-<ul>
-<li>MapReduce 是一个基于Google的同名论文开发出来的。</li>
-<li>MapReduce 是一个分布式计算框架，每个组件之间分而治之。</li>
-<li>MapReduce 是一个高性能的分布式计算框架，用于对海量数据进行并行分析和处理。</li>
-</ul>
-<h4 id="1-1-MapReduce-优点"><a href="#1-1-MapReduce-优点" class="headerlink" title="1.1 MapReduce 优点"></a>1.1 MapReduce 优点</h4><ul>
-<li>MapReduce适合于离线计算/批计算</li>
-<li>MapReduce编程对于自己实现分布式而言是要简单的</li>
-<li>扩展性强，可以横向添加机器，来增加计算能力</li>
-<li>处理的数据量可以很大</li>
-<li>容错性能比较高</li>
-</ul>
-<h4 id="1-2-MapReduce缺点"><a href="#1-2-MapReduce缺点" class="headerlink" title="1.2 MapReduce缺点"></a>1.2 MapReduce缺点</h4><ul>
-<li>Task都是以进程级别运行，进程开启关闭需要时间，MapReduce总体运行速度会比较慢</li>
-<li>MapReduce不适合实时处理</li>
-</ul>
-<h3 id="2-MapReduce-wordcount-案例"><a href="#2-MapReduce-wordcount-案例" class="headerlink" title="2 MapReduce wordcount 案例"></a>2 MapReduce wordcount 案例</h3><h4 id="2-1-数据"><a href="#2-1-数据" class="headerlink" title="2.1 数据"></a>2.1 数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hadoop,spark,flink</span><br><span class="line">hbase,hadoop,spark,flink</span><br><span class="line">spark</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-Code"><a href="#2-2-Code" class="headerlink" title="2.2 Code"></a>2.2 Code</h4><h4 id="2-2-1-Maven"><a href="#2-2-1-Maven" class="headerlink" title="2.2.1 Maven"></a>2.2.1 Maven</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.apache.hadoop&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;hadoop-client&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;2.6.0-cdh5.16.2&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;4.12&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-2-2-WcDriver"><a href="#2-2-2-WcDriver" class="headerlink" title="2.2.2 WcDriver"></a>2.2.2 WcDriver</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigdata.hadoop.mapreduce.wc;</span><br><span class="line"></span><br><span class="line">import com.xk.bigdata.hadoop.utils.FileUtils;</span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.IntWritable;</span><br><span class="line">import org.apache.hadoop.io.LongWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class WcDriver &#123;</span><br><span class="line"></span><br><span class="line">    public class MyMapper extends Mapper&lt;LongWritable, Text, Text, IntWritable&gt; &#123;</span><br><span class="line">        IntWritable ONE &#x3D; new IntWritable(1);</span><br><span class="line">        </span><br><span class="line">        &#x2F;**</span><br><span class="line">         * @param key : 文件的Offset</span><br><span class="line">         * @param value ： 当前行的数据</span><br><span class="line">         * @param context ： MapReduce 上下文，可以理解成缓存数据,把Map处理好的数据放进去</span><br><span class="line">         *&#x2F;</span><br><span class="line">        @Override</span><br><span class="line">        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            String[] spilts &#x3D; value.toString().split(&quot;,&quot;);</span><br><span class="line">            for (String word : spilts) &#123;</span><br><span class="line">                context.write(new Text(word), ONE);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public class MyReducer extends Reducer&lt;Text, IntWritable, Text, IntWritable&gt; &#123;</span><br><span class="line">    </span><br><span class="line">        &#x2F;**</span><br><span class="line">         *  shuffle 之后把key相同的数据全部都放到一起 eg : &lt;hadoop,&lt;1,1&gt;&gt;</span><br><span class="line">         * @param key ：eg: hadoop</span><br><span class="line">         * @param values :eg : &lt;1,1&gt;</span><br><span class="line">         * @param context : MapReduce 上下文，把Reducec处理好的数据放进去</span><br><span class="line">         *&#x2F;</span><br><span class="line">        @Override</span><br><span class="line">        protected void reduce(Text key, Iterable&lt;IntWritable&gt; values, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            int count &#x3D; 0;</span><br><span class="line">            for (IntWritable value : values) &#123;</span><br><span class="line">                count +&#x3D; value.get();</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(key, new IntWritable(count));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        String input &#x3D; &quot;hdfs-basic&#x2F;data&#x2F;demo.txt&quot;;</span><br><span class="line">        String output &#x3D; &quot;hdfs-basic&#x2F;out&quot;;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 1 创建 MapReduce job</span><br><span class="line">        Configuration conf &#x3D; new Configuration();</span><br><span class="line">        Job job &#x3D; Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 删除输出路径</span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(),output);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2 设置运行主类</span><br><span class="line">        job.setJarByClass(WcDriver.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 3 设置Map和Reduce运行的类</span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 4 设置Map 输出的 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 6 设置输入和输出路径</span><br><span class="line">        FileInputFormat.setInputPaths(job, new Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new Path(output));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 7 提交job</span><br><span class="line">        boolean result &#x3D; job.waitForCompletion(true);</span><br><span class="line">        System.exit(result ? 0 : 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h5 id="2-2-3-FileUtils"><a href="#2-2-3-FileUtils" class="headerlink" title="2.2.3 FileUtils"></a>2.2.3 FileUtils</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigdata.hadoop.utils;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.FileSystem;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line"></span><br><span class="line">public class FileUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static void deleteFile(Configuration conf, String output) throws Exception &#123;</span><br><span class="line">        FileSystem fileSystem &#x3D; FileSystem.get(conf);</span><br><span class="line">        Path outputPath &#x3D; new Path(output);</span><br><span class="line">        if (fileSystem.exists(outputPath)) &#123;</span><br><span class="line">            fileSystem.delete(outputPath, true);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/hdfs-basic/src/main/java/com/xk/bigdata/hadoop/mapreduce/wc/WcDriver.java">WC CODE</a></p>
-<h4 id="2-3-报错"><a href="#2-3-报错" class="headerlink" title="2.3 报错"></a>2.3 报错</h4><h5 id="2-3-1-找不到自定义Mapper"><a href="#2-3-1-找不到自定义Mapper" class="headerlink" title="2.3.1 找不到自定义Mapper"></a>2.3.1 找不到自定义Mapper</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.NoSuchMethodException: com.xk.bigdata.hadoop.mapreduce.wc.WcDriver$MyMapper.&lt;init&gt;()</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-3-2-解决方案"><a href="#2-3-2-解决方案" class="headerlink" title="2.3.2 解决方案"></a>2.3.2 解决方案</h5><ul>
-<li>把自定义的Mapper和Reducer类前面加上 statis</li>
-</ul>
-<h4 id="2-4-结果"><a href="#2-4-结果" class="headerlink" title="2.4 结果"></a>2.4 结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flink	2</span><br><span class="line">hadoop	2</span><br><span class="line">hbase	1</span><br><span class="line">spark	3</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-5-解析WC过程"><a href="#2-5-解析WC过程" class="headerlink" title="2.5 解析WC过程"></a>2.5 解析WC过程</h4><p><img src="https://github.com/Rayxk94/note_file/blob/master/photo/hadoop/mapreduce/mapreduce%E6%B5%81%E7%A8%8B.jpg?raw=true" alt="image"></p>
-<p><img src="https://github.com/Hackeruncle/BigData/blob/master/blog/pic/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.png?raw=true" alt="image"></p>
-<h3 id="3-提交到Yarn上面运行"><a href="#3-提交到Yarn上面运行" class="headerlink" title="3 提交到Yarn上面运行"></a>3 提交到Yarn上面运行</h3><h4 id="3-1-修改代码：把输入数据路径和输出路径改成通过外部传参"><a href="#3-1-修改代码：把输入数据路径和输出路径改成通过外部传参" class="headerlink" title="3.1 修改代码：把输入数据路径和输出路径改成通过外部传参"></a>3.1 修改代码：把输入数据路径和输出路径改成通过外部传参</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String input &#x3D; &quot;&quot;;</span><br><span class="line">String output &#x3D; &quot;&quot;;</span><br><span class="line">if (args.length &#x3D;&#x3D; 2) &#123;</span><br><span class="line">    input &#x3D; args[0];</span><br><span class="line">    output &#x3D; args[1];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    throw new Exception(&quot;parameter error&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-package"><a href="#3-2-package" class="headerlink" title="3.2 package"></a>3.2 package</h4><h4 id="3-3-Linux运行命令"><a href="#3-3-Linux运行命令" class="headerlink" title="3.3 Linux运行命令"></a>3.3 Linux运行命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar &#x2F;home&#x2F;work&#x2F;lib&#x2F;hdfs-basic-1.0.jar com.xk.bigdata.hadoop.mapreduce.wc.WcDriver &#x2F;data&#x2F;wc&#x2F;demo.txt &#x2F;data&#x2F;wc&#x2F;out</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-查看输出结果"><a href="#3-4-查看输出结果" class="headerlink" title="3.4 查看输出结果"></a>3.4 查看输出结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[work@bigdatatest02 lib]$ hadoop fs -text &#x2F;data&#x2F;wc&#x2F;out&#x2F;part*</span><br><span class="line">flink	2</span><br><span class="line">hbase	1</span><br><span class="line">spark	3</span><br><span class="line">hadoop	2</span><br></pre></td></tr></table></figure>
-
-
-<h4 id="4-MapReduce-初识源代码"><a href="#4-MapReduce-初识源代码" class="headerlink" title="4 MapReduce 初识源代码"></a>4 MapReduce 初识源代码</h4><h5 id="4-1-Mapper"><a href="#4-1-Mapper" class="headerlink" title="4.1 Mapper"></a>4.1 Mapper</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Licensed to the Apache Software Foundation (ASF) under one</span><br><span class="line"> * or more contributor license agreements.  See the NOTICE file</span><br><span class="line"> * distributed with this work for additional information</span><br><span class="line"> * regarding copyright ownership.  The ASF licenses this file</span><br><span class="line"> * to you under the Apache License, Version 2.0 (the</span><br><span class="line"> * &quot;License&quot;); you may not use this file except in compliance</span><br><span class="line"> * with the License.  You may obtain a copy of the License at</span><br><span class="line"> *</span><br><span class="line"> *     http:&#x2F;&#x2F;www.apache.org&#x2F;licenses&#x2F;LICENSE-2.0</span><br><span class="line"> *</span><br><span class="line"> * Unless required by applicable law or agreed to in writing, software</span><br><span class="line"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"> * See the License for the specific language governing permissions and</span><br><span class="line"> * limitations under the License.</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">package org.apache.hadoop.mapreduce;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.classification.InterfaceAudience;</span><br><span class="line">import org.apache.hadoop.classification.InterfaceStability;</span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.io.RawComparator;</span><br><span class="line">import org.apache.hadoop.io.compress.CompressionCodec;</span><br><span class="line">import org.apache.hadoop.mapreduce.task.MapContextImpl;</span><br><span class="line"></span><br><span class="line">&#x2F;** </span><br><span class="line"> * Maps input key&#x2F;value pairs to a set of intermediate key&#x2F;value pairs.  </span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;Maps are the individual tasks which transform input records into a </span><br><span class="line"> * intermediate records. The transformed intermediate records need not be of </span><br><span class="line"> * the same type as the input records. A given input pair may map to zero or </span><br><span class="line"> * many output pairs.&lt;&#x2F;p&gt; </span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;The Hadoop Map-Reduce framework spawns one map task for each </span><br><span class="line"> * &#123;@link InputSplit&#125; generated by the &#123;@link InputFormat&#125; for the job.</span><br><span class="line"> * &lt;code&gt;Mapper&lt;&#x2F;code&gt; implementations can access the &#123;@link Configuration&#125; for </span><br><span class="line"> * the job via the &#123;@link JobContext#getConfiguration()&#125;.</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;The framework first calls </span><br><span class="line"> * &#123;@link #setup(org.apache.hadoop.mapreduce.Mapper.Context)&#125;, followed by</span><br><span class="line"> * &#123;@link #map(Object, Object, Context)&#125; </span><br><span class="line"> * for each key&#x2F;value pair in the &lt;code&gt;InputSplit&lt;&#x2F;code&gt;. Finally </span><br><span class="line"> * &#123;@link #cleanup(Context)&#125; is called.&lt;&#x2F;p&gt;</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;All intermediate values associated with a given output key are </span><br><span class="line"> * subsequently grouped by the framework, and passed to a &#123;@link Reducer&#125; to  </span><br><span class="line"> * determine the final output. Users can control the sorting and grouping by </span><br><span class="line"> * specifying two key &#123;@link RawComparator&#125; classes.&lt;&#x2F;p&gt;</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;The &lt;code&gt;Mapper&lt;&#x2F;code&gt; outputs are partitioned per </span><br><span class="line"> * &lt;code&gt;Reducer&lt;&#x2F;code&gt;. Users can control which keys (and hence records) go to </span><br><span class="line"> * which &lt;code&gt;Reducer&lt;&#x2F;code&gt; by implementing a custom &#123;@link Partitioner&#125;.</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;Users can optionally specify a &lt;code&gt;combiner&lt;&#x2F;code&gt;, via </span><br><span class="line"> * &#123;@link Job#setCombinerClass(Class)&#125;, to perform local aggregation of the </span><br><span class="line"> * intermediate outputs, which helps to cut down the amount of data transferred </span><br><span class="line"> * from the &lt;code&gt;Mapper&lt;&#x2F;code&gt; to the &lt;code&gt;Reducer&lt;&#x2F;code&gt;.</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;Applications can specify if and how the intermediate</span><br><span class="line"> * outputs are to be compressed and which &#123;@link CompressionCodec&#125;s are to be</span><br><span class="line"> * used via the &lt;code&gt;Configuration&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;</span><br><span class="line"> *  </span><br><span class="line"> * &lt;p&gt;If the job has zero</span><br><span class="line"> * reduces then the output of the &lt;code&gt;Mapper&lt;&#x2F;code&gt; is directly written</span><br><span class="line"> * to the &#123;@link OutputFormat&#125; without sorting by keys.&lt;&#x2F;p&gt;</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;Example:&lt;&#x2F;p&gt;</span><br><span class="line"> * &lt;p&gt;&lt;blockquote&gt;&lt;pre&gt;</span><br><span class="line"> * public class TokenCounterMapper </span><br><span class="line"> *     extends Mapper&lt;Object, Text, Text, IntWritable&gt;&#123;</span><br><span class="line"> *    </span><br><span class="line"> *   private final static IntWritable one &#x3D; new IntWritable(1);</span><br><span class="line"> *   private Text word &#x3D; new Text();</span><br><span class="line"> *   </span><br><span class="line"> *   public void map(Object key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line"> *     StringTokenizer itr &#x3D; new StringTokenizer(value.toString());</span><br><span class="line"> *     while (itr.hasMoreTokens()) &#123;</span><br><span class="line"> *       word.set(itr.nextToken());</span><br><span class="line"> *       context.write(word, one);</span><br><span class="line"> *     &#125;</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> * &lt;&#x2F;pre&gt;&lt;&#x2F;blockquote&gt;&lt;&#x2F;p&gt;</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;Applications may override the &#123;@link #run(Context)&#125; method to exert </span><br><span class="line"> * greater control on map processing e.g. multi-threaded &lt;code&gt;Mapper&lt;&#x2F;code&gt;s </span><br><span class="line"> * etc.&lt;&#x2F;p&gt;</span><br><span class="line"> * </span><br><span class="line"> * @see InputFormat</span><br><span class="line"> * @see JobContext</span><br><span class="line"> * @see Partitioner  </span><br><span class="line"> * @see Reducer</span><br><span class="line"> *&#x2F;</span><br><span class="line">@InterfaceAudience.Public</span><br><span class="line">@InterfaceStability.Stable</span><br><span class="line">public class Mapper&lt;KEYIN, VALUEIN, KEYOUT, VALUEOUT&gt; &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * The &lt;code&gt;Context&lt;&#x2F;code&gt; passed on to the &#123;@link Mapper&#125; implementations.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public abstract class Context</span><br><span class="line">    implements MapContext&lt;KEYIN,VALUEIN,KEYOUT,VALUEOUT&gt; &#123;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Called once at the beginning of the task.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  protected void setup(Context context</span><br><span class="line">                       ) throws IOException, InterruptedException &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTHING</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Called once for each key&#x2F;value pair in the input split. Most applications</span><br><span class="line">   * should override this, but the default is the identity function.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">  protected void map(KEYIN key, VALUEIN value, </span><br><span class="line">                     Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">    context.write((KEYOUT) key, (VALUEOUT) value);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Called once at the end of the task.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  protected void cleanup(Context context</span><br><span class="line">                         ) throws IOException, InterruptedException &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTHING</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Expert users can override this method for more complete control over the</span><br><span class="line">   * execution of the Mapper.</span><br><span class="line">   * @param context</span><br><span class="line">   * @throws IOException</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public void run(Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">    setup(context);</span><br><span class="line">    try &#123;</span><br><span class="line">      while (context.nextKeyValue()) &#123;</span><br><span class="line">        map(context.getCurrentKey(), context.getCurrentValue(), context);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      cleanup(context);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>在调用Mapper的时候需要传四个参数：Mapper&lt;KEYIN, VALUEIN, KEYOUT, VALUEOUT&gt;</p>
-<ul>
-<li> KEYIN：Mapper数据进来的KEY的数据类型，如果是文件，一般都是offset是Mapper的KEY，一般使用LongWritable</li>
-<li> VALUEIN：Mapper数据进来的VALUE的数据类型，如果是文件的话，进来的是这一行数据，一般使用Text</li>
-<li> KEYOUT：Mapper数据输出的KEY的数据类型，本文我们使用的是WC作为讲解，输出的KEY是单词，一般使用Text</li>
-<li> VALUEOUT：Mapper数据输出的VALUE的数据类型，本文我们使用的是WC作为讲解，输出的KEY是单词的次数，可以使用IntWritable或者LongWritable</li>
-</ul>
-</li>
-<li><p>run 方法</p>
-<ul>
-<li>使用的模板模式，首先会先执行setup 然后执行map最后cleanup</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public void run(Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">    setup(context);</span><br><span class="line">    try &#123;</span><br><span class="line">      while (context.nextKeyValue()) &#123;</span><br><span class="line">        map(context.getCurrentKey(), context.getCurrentValue(), context);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      cleanup(context);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-2-Reducer"><a href="#4-2-Reducer" class="headerlink" title="4.2 Reducer"></a>4.2 Reducer</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * Licensed to the Apache Software Foundation (ASF) under one</span><br><span class="line"> * or more contributor license agreements.  See the NOTICE file</span><br><span class="line"> * distributed with this work for additional information</span><br><span class="line"> * regarding copyright ownership.  The ASF licenses this file</span><br><span class="line"> * to you under the Apache License, Version 2.0 (the</span><br><span class="line"> * &quot;License&quot;); you may not use this file except in compliance</span><br><span class="line"> * with the License.  You may obtain a copy of the License at</span><br><span class="line"> *</span><br><span class="line"> *     http:&#x2F;&#x2F;www.apache.org&#x2F;licenses&#x2F;LICENSE-2.0</span><br><span class="line"> *</span><br><span class="line"> * Unless required by applicable law or agreed to in writing, software</span><br><span class="line"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"> * See the License for the specific language governing permissions and</span><br><span class="line"> * limitations under the License.</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">package org.apache.hadoop.mapreduce;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.classification.InterfaceAudience;</span><br><span class="line">import org.apache.hadoop.classification.InterfaceStability;</span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.mapreduce.task.annotation.Checkpointable;</span><br><span class="line"></span><br><span class="line">import java.util.Iterator;</span><br><span class="line"></span><br><span class="line">&#x2F;** </span><br><span class="line"> * Reduces a set of intermediate values which share a key to a smaller set of</span><br><span class="line"> * values.  </span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;&lt;code&gt;Reducer&lt;&#x2F;code&gt; implementations </span><br><span class="line"> * can access the &#123;@link Configuration&#125; for the job via the </span><br><span class="line"> * &#123;@link JobContext#getConfiguration()&#125; method.&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line"> * &lt;p&gt;&lt;code&gt;Reducer&lt;&#x2F;code&gt; has 3 primary phases:&lt;&#x2F;p&gt;</span><br><span class="line"> * &lt;ol&gt;</span><br><span class="line"> *   &lt;li&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;h4 id&#x3D;&quot;Shuffle&quot;&gt;Shuffle&lt;&#x2F;h4&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;p&gt;The &lt;code&gt;Reducer&lt;&#x2F;code&gt; copies the sorted output from each </span><br><span class="line"> *   &#123;@link Mapper&#125; using HTTP across the network.&lt;&#x2F;p&gt;</span><br><span class="line"> *   &lt;&#x2F;li&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;li&gt;</span><br><span class="line"> *   &lt;h4 id&#x3D;&quot;Sort&quot;&gt;Sort&lt;&#x2F;h4&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;p&gt;The framework merge sorts &lt;code&gt;Reducer&lt;&#x2F;code&gt; inputs by </span><br><span class="line"> *   &lt;code&gt;key&lt;&#x2F;code&gt;s </span><br><span class="line"> *   (since different &lt;code&gt;Mapper&lt;&#x2F;code&gt;s may have output the same key).&lt;&#x2F;p&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;p&gt;The shuffle and sort phases occur simultaneously i.e. while outputs are</span><br><span class="line"> *   being fetched they are merged.&lt;&#x2F;p&gt;</span><br><span class="line"> *      </span><br><span class="line"> *   &lt;h5 id&#x3D;&quot;SecondarySort&quot;&gt;SecondarySort&lt;&#x2F;h5&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;p&gt;To achieve a secondary sort on the values returned by the value </span><br><span class="line"> *   iterator, the application should extend the key with the secondary</span><br><span class="line"> *   key and define a grouping comparator. The keys will be sorted using the</span><br><span class="line"> *   entire key, but will be grouped using the grouping comparator to decide</span><br><span class="line"> *   which keys and values are sent in the same call to reduce.The grouping </span><br><span class="line"> *   comparator is specified via </span><br><span class="line"> *   &#123;@link Job#setGroupingComparatorClass(Class)&#125;. The sort order is</span><br><span class="line"> *   controlled by </span><br><span class="line"> *   &#123;@link Job#setSortComparatorClass(Class)&#125;.&lt;&#x2F;p&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   </span><br><span class="line"> *   For example, say that you want to find duplicate web pages and tag them </span><br><span class="line"> *   all with the url of the &quot;best&quot; known example. You would set up the job </span><br><span class="line"> *   like:</span><br><span class="line"> *   &lt;ul&gt;</span><br><span class="line"> *     &lt;li&gt;Map Input Key: url&lt;&#x2F;li&gt;</span><br><span class="line"> *     &lt;li&gt;Map Input Value: document&lt;&#x2F;li&gt;</span><br><span class="line"> *     &lt;li&gt;Map Output Key: document checksum, url pagerank&lt;&#x2F;li&gt;</span><br><span class="line"> *     &lt;li&gt;Map Output Value: url&lt;&#x2F;li&gt;</span><br><span class="line"> *     &lt;li&gt;Partitioner: by checksum&lt;&#x2F;li&gt;</span><br><span class="line"> *     &lt;li&gt;OutputKeyComparator: by checksum and then decreasing pagerank&lt;&#x2F;li&gt;</span><br><span class="line"> *     &lt;li&gt;OutputValueGroupingComparator: by checksum&lt;&#x2F;li&gt;</span><br><span class="line"> *   &lt;&#x2F;ul&gt;</span><br><span class="line"> *   &lt;&#x2F;li&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;li&gt;   </span><br><span class="line"> *   &lt;h4 id&#x3D;&quot;Reduce&quot;&gt;Reduce&lt;&#x2F;h4&gt;</span><br><span class="line"> *   </span><br><span class="line"> *   &lt;p&gt;In this phase the </span><br><span class="line"> *   &#123;@link #reduce(Object, Iterable, Context)&#125;</span><br><span class="line"> *   method is called for each &lt;code&gt;&lt;key, (collection of values)&gt;&lt;&#x2F;code&gt; in</span><br><span class="line"> *   the sorted inputs.&lt;&#x2F;p&gt;</span><br><span class="line"> *   &lt;p&gt;The output of the reduce task is typically written to a </span><br><span class="line"> *   &#123;@link RecordWriter&#125; via </span><br><span class="line"> *   &#123;@link Context#write(Object, Object)&#125;.&lt;&#x2F;p&gt;</span><br><span class="line"> *   &lt;&#x2F;li&gt;</span><br><span class="line"> * &lt;&#x2F;ol&gt;</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;The output of the &lt;code&gt;Reducer&lt;&#x2F;code&gt; is &lt;b&gt;not re-sorted&lt;&#x2F;b&gt;.&lt;&#x2F;p&gt;</span><br><span class="line"> * </span><br><span class="line"> * &lt;p&gt;Example:&lt;&#x2F;p&gt;</span><br><span class="line"> * &lt;p&gt;&lt;blockquote&gt;&lt;pre&gt;</span><br><span class="line"> * public class IntSumReducer&lt;Key&gt; extends Reducer&lt;Key,IntWritable,</span><br><span class="line"> *                                                 Key,IntWritable&gt; &#123;</span><br><span class="line"> *   private IntWritable result &#x3D; new IntWritable();</span><br><span class="line"> * </span><br><span class="line"> *   public void reduce(Key key, Iterable&lt;IntWritable&gt; values,</span><br><span class="line"> *                      Context context) throws IOException, InterruptedException &#123;</span><br><span class="line"> *     int sum &#x3D; 0;</span><br><span class="line"> *     for (IntWritable val : values) &#123;</span><br><span class="line"> *       sum +&#x3D; val.get();</span><br><span class="line"> *     &#125;</span><br><span class="line"> *     result.set(sum);</span><br><span class="line"> *     context.write(key, result);</span><br><span class="line"> *   &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> * &lt;&#x2F;pre&gt;&lt;&#x2F;blockquote&gt;&lt;&#x2F;p&gt;</span><br><span class="line"> * </span><br><span class="line"> * @see Mapper</span><br><span class="line"> * @see Partitioner</span><br><span class="line"> *&#x2F;</span><br><span class="line">@Checkpointable</span><br><span class="line">@InterfaceAudience.Public</span><br><span class="line">@InterfaceStability.Stable</span><br><span class="line">public class Reducer&lt;KEYIN,VALUEIN,KEYOUT,VALUEOUT&gt; &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * The &lt;code&gt;Context&lt;&#x2F;code&gt; passed on to the &#123;@link Reducer&#125; implementations.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public abstract class Context </span><br><span class="line">    implements ReduceContext&lt;KEYIN,VALUEIN,KEYOUT,VALUEOUT&gt; &#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Called once at the start of the task.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  protected void setup(Context context</span><br><span class="line">                       ) throws IOException, InterruptedException &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTHING</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * This method is called once for each key. Most applications will define</span><br><span class="line">   * their reduce class by overriding this method. The default implementation</span><br><span class="line">   * is an identity function.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  @SuppressWarnings(&quot;unchecked&quot;)</span><br><span class="line">  protected void reduce(KEYIN key, Iterable&lt;VALUEIN&gt; values, Context context</span><br><span class="line">                        ) throws IOException, InterruptedException &#123;</span><br><span class="line">    for(VALUEIN value: values) &#123;</span><br><span class="line">      context.write((KEYOUT) key, (VALUEOUT) value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Called once at the end of the task.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  protected void cleanup(Context context</span><br><span class="line">                         ) throws IOException, InterruptedException &#123;</span><br><span class="line">    &#x2F;&#x2F; NOTHING</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * Advanced application writers can use the </span><br><span class="line">   * &#123;@link #run(org.apache.hadoop.mapreduce.Reducer.Context)&#125; method to</span><br><span class="line">   * control how the reduce task works.</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public void run(Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">    setup(context);</span><br><span class="line">    try &#123;</span><br><span class="line">      while (context.nextKey()) &#123;</span><br><span class="line">        reduce(context.getCurrentKey(), context.getValues(), context);</span><br><span class="line">        &#x2F;&#x2F; If a back up store is used, reset it</span><br><span class="line">        Iterator&lt;VALUEIN&gt; iter &#x3D; context.getValues().iterator();</span><br><span class="line">        if(iter instanceof ReduceContext.ValueIterator) &#123;</span><br><span class="line">          ((ReduceContext.ValueIterator&lt;VALUEIN&gt;)iter).resetBackupStore();        </span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">      cleanup(context);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>在调用Reducer的时候需要传四个参数：Reducer&lt;KEYIN,VALUEIN,KEYOUT,VALUEOUT&gt;</p>
-<ul>
-<li> KEYIN：Reducer数据进来的KEY的数据类型，即Mapper的输出数据KEY的数据类型</li>
-<li> VALUEIN：Reducer数据进来的VALUE的数据类型，即Mapper的输出数据VALUE的数据类型</li>
-<li> KEYOUT：Reducer数据输出的KEY的数据类型，本文我们使用的是WC作为讲解，输出的KEY是单词，一般使用Text</li>
-<li> VALUEOUT：Reducer数据输出的VALUE的数据类型，本文我们使用的是WC作为讲解，输出的KEY是单词的次数，可以使用IntWritable或者LongWritable</li>
-</ul>
-</li>
-<li><p>run 方法</p>
-<ul>
-<li>使用的模板模式，首先会先执行setup 然后执行map最后cleanup</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void run(Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">  setup(context);</span><br><span class="line">  try &#123;</span><br><span class="line">    while (context.nextKey()) &#123;</span><br><span class="line">      reduce(context.getCurrentKey(), context.getValues(), context);</span><br><span class="line">      &#x2F;&#x2F; If a back up store is used, reset it</span><br><span class="line">      Iterator&lt;VALUEIN&gt; iter &#x3D; context.getValues().iterator();</span><br><span class="line">      if(iter instanceof ReduceContext.ValueIterator) &#123;</span><br><span class="line">        ((ReduceContext.ValueIterator&lt;VALUEIN&gt;)iter).resetBackupStore();        </span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; finally &#123;</span><br><span class="line">    cleanup(context);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="4-3-初识MapReduce运行流程"><a href="#4-3-初识MapReduce运行流程" class="headerlink" title="4.3 初识MapReduce运行流程"></a>4.3 初识MapReduce运行流程</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">waitForCompletion&#123;</span><br><span class="line">	submit&#123;</span><br><span class="line">		connect()&#123;</span><br><span class="line">			Cluster.initialize()&#123;</span><br><span class="line">				&#x2F;&#x2F; 确定运行环境：LocalJobRunner、YARNRunner</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		submitter.submitJobInternal(Job.this, cluster)&#123;</span><br><span class="line">			&#x2F;&#x2F;validate the jobs output specs</span><br><span class="line">			checkSpecs(job)&#123;</span><br><span class="line">				OutputFormat.checkOutputSpecs&#123;</span><br><span class="line">					&#x2F;&#x2F; 确定数据输出目录是否存在或者是否设定</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			int maps &#x3D; writeSplits(job, submitJobDir)&#123;</span><br><span class="line">				&#x2F;&#x2F; 确定读取数据的map数量</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    <div class="article-pop-out tagcloud">
-      <i class="icon-tuding"></i>
-      <a class="article-tag-list-link color3">置顶</a>
-    </div>
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2017/05/03/MapReduce--WC%E6%A1%88%E4%BE%8B%E4%BB%A5%E5%8F%8A%E5%88%9D%E8%AF%86%E6%BA%90%E4%BB%A3%E7%A0%81/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HDFS 常见API使用及编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2017/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/" target="_blank">HDFS API编程</a>
-  
-    </h1>
-  
-
-
-  
-  
 <a href="/2017/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/" class="archive-article-date">
         <time datetime="2017-05-01T05:54:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-01</time>
 </a>
@@ -660,6 +203,27 @@
   
   
     
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">14分</span>
+    </span>
+  </span>
+</div>
+
 
   
   </header>
@@ -699,7 +263,59 @@
     
 
     
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Ray
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="http://example.com/2017/05/01/HDFS 常见API使用及编程/" title="HDFS API编程" target="_blank">http://example.com/2017/05/01/HDFS 常见API使用及编程/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
     
 
   </div>
@@ -729,16 +345,80 @@
     
 
     
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2017/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/">展开全文 >></a>
-    </p>
+
     
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2017/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
 
     
     <div class="clearfix"></div>
   </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/05/03/MapReduce--WC%E6%A1%88%E4%BE%8B%E4%BB%A5%E5%8F%8A%E5%88%9D%E8%AF%86%E6%BA%90%E4%BB%A3%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MapReduce--WC案例以及初识源代码
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -759,8 +439,14 @@
 
 
 
-  
-  
+
+
+
+
+
+
+
+
 
 
           </div>
@@ -800,8 +486,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

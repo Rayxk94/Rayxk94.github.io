@@ -6,20 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Hello World | xkBigData</title>
+  <title>数据类型以及自定义数据类型 | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="MapReduce build-in 数据类型以及自定义数据类型1 MapReduce build-in 数据类型1MapReduce 作为一个分布式计算框架，数据类型则需要需要实现序列化，Java实现序列化，需要implements Serializable,MapReduce 定了一个自己的基础的数据类型 -- Writable，是可以实现序列化的  BooleanWritable:Boole">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2020/12/05/hello-world/index.html">
+<meta property="og:title" content="数据类型以及自定义数据类型">
+<meta property="og:url" content="http://example.com/2017/05/05/MapReduce%20build-in%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="MapReduce build-in 数据类型以及自定义数据类型1 MapReduce build-in 数据类型1MapReduce 作为一个分布式计算框架，数据类型则需要需要实现序列化，Java实现序列化，需要implements Serializable,MapReduce 定了一个自己的基础的数据类型 -- Writable，是可以实现序列化的  BooleanWritable:Boole">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-12-05T12:31:51.948Z">
-<meta property="article:modified_time" content="2020-12-05T12:31:51.948Z">
+<meta property="article:published_time" content="2017-05-05T13:34:22.000Z">
+<meta property="article:modified_time" content="2020-12-06T07:38:48.546Z">
 <meta property="article:author" content="Ray">
+<meta property="article:tag" content="hadoop">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
@@ -77,9 +79,7 @@
 			
 				<li><a href="/" target="_blank">主页</a></li>
 			
-				<li><a href="https://zhousiwei.gitee.io/ibooks/" target="_blank">技术笔记</a></li>
-			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
+				<li><a href="https://blog.csdn.net/qq_41301707" target="_blank">技术笔记</a></li>
 			
 			</ul>
 		</nav>
@@ -87,10 +87,6 @@
 			
 				
 					<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
-				
-			
-				
-					<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
 				
 			
 				
@@ -102,23 +98,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
+						<a class="github" href="https://github.com/Rayxk94" 
 												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="gitee" href="#" 
-												title="码云" target="_blank"><i class="icon-gitee"></i></a>
-					
-				
-					
-						<a class="jianshu" href="#" 
-												title="简书" target="_blank"><i class="icon-jianshu"></i></a>
 					
 				
 			</div>
@@ -161,8 +142,6 @@
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -170,36 +149,19 @@
 					
 						
 						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="gitee" target="_blank" 
-							href="#" title="码云"><i class="icon-gitee"></i></a>
-						
-					
-						
-						<a class="jianshu" target="_blank" 
-							href="#" title="简书"><i class="icon-jianshu"></i></a>
+							href="https://github.com/Rayxk94" title="GitHub"><i class="icon-github"></i></a>
 						
 					
 				</div>
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a target="_blank" rel="noopener" href="https://zhousiwei.gitee.io/ibooks/">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 50%"><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41301707">技术笔记</a></li>
 		        
 				</ul>
 			</nav>
@@ -215,14 +177,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-hello-world" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MapReduce build-in 数据类型以及自定义数据类型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      数据类型以及自定义数据类型
     </h1>
   
 
@@ -234,8 +196,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2020/12/05/hello-world/" class="archive-article-date">
-        <time datetime="2020-12-05T12:31:51.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-05</time>
+<a href="/2017/05/05/MapReduce%20build-in%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+        <time datetime="2017-05-05T13:34:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-05</time>
 </a>
 
   
@@ -248,7 +210,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">75字</span>
+      <span class="post-count">1.6k字</span>
     </span>
   </span>
 
@@ -257,7 +219,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -268,19 +230,65 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <h2 id="MapReduce-build-in-数据类型以及自定义数据类型"><a href="#MapReduce-build-in-数据类型以及自定义数据类型" class="headerlink" title="MapReduce build-in 数据类型以及自定义数据类型"></a>MapReduce build-in 数据类型以及自定义数据类型</h2><h3 id="1-MapReduce-build-in-数据类型"><a href="#1-MapReduce-build-in-数据类型" class="headerlink" title="1 MapReduce build-in 数据类型"></a>1 MapReduce build-in 数据类型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MapReduce 作为一个分布式计算框架，数据类型则需要需要实现序列化，Java实现序列化，需要implements Serializable,MapReduce 定了一个自己的基础的数据类型 -- Writable，是可以实现序列化的</span><br></pre></td></tr></table></figure>
+<ul>
+<li>BooleanWritable:Boolean</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class BooleanWritable implements WritableComparable&lt;BooleanWritable&gt; </span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<ul>
+<li>IntWritable:Int</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class IntWritable implements WritableComparable&lt;IntWritable&gt; </span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ByteWritable:Byte</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class ByteWritable implements WritableComparable&lt;ByteWritable&gt;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li>FloatWritable:Float</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class FloatWritable implements WritableComparable&lt;FloatWritable&gt; </span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<ul>
+<li>LongWritable:Long</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class LongWritable implements WritableComparable&lt;LongWritable&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>DoubleWritable:Double</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class DoubleWritable implements WritableComparable&lt;DoubleWritable&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Text:String</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public class Text extends BinaryComparable</span><br><span class="line">    implements WritableComparable&lt;BinaryComparable</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>WritableComparable</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface WritableComparable&lt;T&gt; extends Writable, Comparable&lt;T&gt; </span><br></pre></td></tr></table></figure>
+
+<h3 id="2-自定义数据类型案例"><a href="#2-自定义数据类型案例" class="headerlink" title="2 自定义数据类型案例"></a>2 自定义数据类型案例</h3><h4 id="2-1-数据"><a href="#2-1-数据" class="headerlink" title="2.1 数据"></a>2.1 数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1363157985066 	13726230503	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	2481	24681	200</span><br><span class="line">1363157995052 	13826544101	5C-0E-8B-C7-F1-E0:CMCC	120.197.40.4			4	0	264	0	200</span><br><span class="line">1363157991076 	13926435656	20-10-7A-28-CC-0A:CMCC	120.196.100.99			2	4	132	1512	200</span><br><span class="line">1363154400022 	13926251106	5C-0E-8B-8B-B1-50:CMCC	120.197.40.4			4	0	240	0	200</span><br><span class="line">1363157993044 	18211575961	94-71-AC-CD-E6-18:CMCC-EASY	120.196.100.99	iface.qiyi.com	视频网站	15	12	1527	2106	200</span><br><span class="line">1363157995074 	84138413	5C-0E-8B-8C-E8-20:7DaysInn	120.197.40.4	122.72.52.12		20	16	4116	1432	200</span><br><span class="line">1363157993055 	13560439658	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			18	15	1116	954	200</span><br><span class="line">1363157995033 	15920133257	5C-0E-8B-C7-BA-20:CMCC	120.197.40.4	sug.so.360.cn	信息安全	20	20	3156	2936	200</span><br><span class="line">1363157983019 	13719199419	68-A1-B7-03-07-B1:CMCC-EASY	120.196.100.82			4	0	240	0	200</span><br><span class="line">1363157984041 	13660577991	5C-0E-8B-92-5C-20:CMCC-EASY	120.197.40.4	s19.cnzz.com	站点统计	24	9	6960	690	200</span><br><span class="line">1363157973098 	15013685858	5C-0E-8B-C7-F7-90:CMCC	120.197.40.4	rank.ie.sogou.com	搜索引擎	28	27	3659	3538	200</span><br><span class="line">1363157986029 	15989002119	E8-99-C4-4E-93-E0:CMCC-EASY	120.196.100.99	www.umeng.com	站点统计	3	3	1938	180	200</span><br><span class="line">1363157992093 	13560439658	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			15	9	918	4938	200</span><br><span class="line">1363157986041 	13480253104	5C-0E-8B-C7-FC-80:CMCC-EASY	120.197.40.4			3	3	180	180	200</span><br><span class="line">1363157984040 	13602846565	5C-0E-8B-8B-B6-00:CMCC	120.197.40.4	2052.flash2-http.qq.com	综合门户	15	12	1938	2910	200</span><br><span class="line">1363157995093 	13922314466	00-FD-07-A2-EC-BA:CMCC	120.196.100.82	img.qfc.cn		12	12	3008	3720	200</span><br><span class="line">1363157982040 	13502468823	5C-0A-5B-6A-0B-D4:CMCC-EASY	120.196.100.99	y0.ifengimg.com	综合门户	57	102	7335	110349	200</span><br><span class="line">1363157986072 	18320173382	84-25-DB-4F-10-1A:CMCC-EASY	120.196.100.99	input.shouji.sogou.com	搜索引擎	21	18	9531	2412	200</span><br><span class="line">1363157990043 	13925057413	00-1F-64-E1-E6-9A:CMCC	120.196.100.55	t3.baidu.com	搜索引擎	69	63	11058	48243	200</span><br><span class="line">1363157988072 	13760778710	00-FD-07-A4-7B-08:CMCC	120.196.100.82			2	2	120	120	200</span><br><span class="line">1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	2481	24681	200</span><br><span class="line">1363157993055 	13560436666	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			18	15	1116	954	200</span><br><span class="line">1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	10000	20000	200</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-需求"><a href="#2-2-需求" class="headerlink" title="2.2 需求"></a>2.2 需求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第二个字段：手机号</span><br><span class="line">倒数第三个字段：上行流量</span><br><span class="line">倒数第二个字段：下行流量</span><br><span class="line">&#x3D;&#x3D;&gt; 统计每个手机号所耗费的上行流量之和、下行流量之和、总流量之和</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-Code"><a href="#2-3-Code" class="headerlink" title="2.3 Code"></a>2.3 Code</h4><h5 id="2-3-1-Domain"><a href="#2-3-1-Domain" class="headerlink" title="2.3.1 Domain"></a>2.3.1 Domain</h5><ol>
+<li>实现WritableComparable/Writable接口</li>
+<li>重写 write、readFields、compareTo方法</li>
+<li>要有一个无参的构造器</li>
+<li>write和readFields的字段顺序要保持一致</li>
+<li>输出结果：需要重写toString(非必选)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigata.hadoop.mapreduce.domain;</span><br><span class="line"></span><br><span class="line">import org.apache.hadoop.io.WritableComparable;</span><br><span class="line"></span><br><span class="line">import java.io.DataInput;</span><br><span class="line">import java.io.DataOutput;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * 自定义数据类型步骤：</span><br><span class="line"> * 1. 实现WritableComparable&#x2F;Writable接口</span><br><span class="line"> * 2. 重写 write、readFields、compareTo方法</span><br><span class="line"> * 3. 要有一个无参的构造器</span><br><span class="line"> * 4. write和readFields的字段顺序要保持一致</span><br><span class="line"> * 5. 输出结果：需要重写toString(非必选)</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class AccessDomain implements WritableComparable&lt;AccessDomain&gt; &#123;</span><br><span class="line"></span><br><span class="line">    private String phone;</span><br><span class="line"></span><br><span class="line">    private Long up;</span><br><span class="line"></span><br><span class="line">    private Long down;</span><br><span class="line"></span><br><span class="line">    private Long sum;</span><br><span class="line"></span><br><span class="line">    public String getPhone() &#123;</span><br><span class="line">        return phone;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPhone(String phone) &#123;</span><br><span class="line">        this.phone &#x3D; phone;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getUp() &#123;</span><br><span class="line">        return up;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUp(Long up) &#123;</span><br><span class="line">        this.up &#x3D; up;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getDown() &#123;</span><br><span class="line">        return down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDown(Long down) &#123;</span><br><span class="line">        this.down &#x3D; down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Long getSum() &#123;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSum(Long sum) &#123;</span><br><span class="line">        this.sum &#x3D; sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public AccessDomain() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public AccessDomain(String phone, Long up, Long down) &#123;</span><br><span class="line">        this.phone &#x3D; phone;</span><br><span class="line">        this.up &#x3D; up;</span><br><span class="line">        this.down &#x3D; down;</span><br><span class="line">        this.sum &#x3D; up + down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String toString() &#123;</span><br><span class="line">        return phone + &#39;\t&#39; +</span><br><span class="line">               up + &#39;\t&#39; +</span><br><span class="line">               down + &#39;\t&#39; +</span><br><span class="line">               sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void write(DataOutput out) throws IOException &#123;</span><br><span class="line">        out.writeUTF(phone);</span><br><span class="line">        out.writeLong(up);</span><br><span class="line">        out.writeLong(down);</span><br><span class="line">        out.writeLong(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void readFields(DataInput in) throws IOException &#123;</span><br><span class="line">        phone &#x3D; in.readUTF();</span><br><span class="line">        up &#x3D; in.readLong();</span><br><span class="line">        down &#x3D; in.readLong();</span><br><span class="line">        sum &#x3D; in.readLong();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public int compareTo(AccessDomain o) &#123;</span><br><span class="line">        return Integer.parseInt(String.valueOf((o.sum - sum)));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-2-Driver"><a href="#2-3-2-Driver" class="headerlink" title="2.3.2 Driver"></a>2.3.2 Driver</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">package com.xk.bigata.hadoop.mapreduce.access;</span><br><span class="line"></span><br><span class="line">import com.xk.bigata.hadoop.mapreduce.domain.AccessDomain;</span><br><span class="line">import com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line">import org.apache.hadoop.conf.Configuration;</span><br><span class="line">import org.apache.hadoop.fs.Path;</span><br><span class="line">import org.apache.hadoop.io.LongWritable;</span><br><span class="line">import org.apache.hadoop.io.NullWritable;</span><br><span class="line">import org.apache.hadoop.io.Text;</span><br><span class="line">import org.apache.hadoop.mapreduce.Job;</span><br><span class="line">import org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line">import org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line">import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line">import java.io.IOException;</span><br><span class="line"></span><br><span class="line">public class AccessDriver &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line"></span><br><span class="line">        String input &#x3D; &quot;mapreduce-basic&#x2F;data&#x2F;access.log&quot;;</span><br><span class="line">        String output &#x3D; &quot;mapreduce-basic&#x2F;out&quot;;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 1 创建 MapReduce job</span><br><span class="line">        Configuration conf &#x3D; new Configuration();</span><br><span class="line">        Job job &#x3D; Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 删除输出路径</span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 2 设置运行主类</span><br><span class="line">        job.setJarByClass(AccessDriver.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 3 设置Map和Reduce运行的类</span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 4 设置Map 输出的 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(AccessDomain.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span><br><span class="line">        job.setOutputKeyClass(NullWritable.class);</span><br><span class="line">        job.setOutputValueClass(AccessDomain.class);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 6 设置输入和输出路径</span><br><span class="line">        FileInputFormat.setInputPaths(job, new Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, new Path(output));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; 7 提交job</span><br><span class="line">        boolean result &#x3D; job.waitForCompletion(true);</span><br><span class="line">        System.exit(result ? 0 : 1);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyMapper extends Mapper&lt;LongWritable, Text, Text, AccessDomain&gt; &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            String[] spilts &#x3D; value.toString().split(&quot;\t&quot;);</span><br><span class="line">            String phone &#x3D; spilts[1];</span><br><span class="line">            long up &#x3D; Long.parseLong(spilts[spilts.length - 3]);</span><br><span class="line">            long down &#x3D; Long.parseLong(spilts[spilts.length - 2]);</span><br><span class="line">            context.write(new Text(phone), new AccessDomain(phone, up, down));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static class MyReducer extends Reducer&lt;Text, AccessDomain, NullWritable, AccessDomain&gt; &#123;</span><br><span class="line">        @Override</span><br><span class="line">        protected void reduce(Text key, Iterable&lt;AccessDomain&gt; values, Context context) throws IOException, InterruptedException &#123;</span><br><span class="line">            Long up &#x3D; 0L;</span><br><span class="line">            Long down &#x3D; 0L;</span><br><span class="line">            for (AccessDomain access : values) &#123;</span><br><span class="line">                up +&#x3D; access.getUp();</span><br><span class="line">                down +&#x3D; access.getDown();</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(NullWritable.get(), new AccessDomain(key.toString(), up, down));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-结果展示"><a href="#2-4-结果展示" class="headerlink" title="2.4 结果展示"></a>2.4 结果展示</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">13480253104	180	180	360</span><br><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">13719199419	240	0	240</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13760778710	120	120	240</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13926435656	132	1512	1644</span><br><span class="line">15013685858	3659	3538	7197</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">15989002119	1938	180	2118</span><br><span class="line">18211575961	1527	2106	3633</span><br><span class="line">18320173382	9531	2412	11943</span><br><span class="line">84138413	4116	1432	5548</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/access/AccessDriver.java">AccessDriver</a></p>
 
     
 
@@ -327,7 +335,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2020/12/05/hello-world/" title="Hello World" target="_blank">http://example.com/2020/12/05/hello-world/</a>
+          <a href="http://example.com/2017/05/05/MapReduce build-in 数据类型以及自定义数据类型/" title="数据类型以及自定义数据类型" target="_blank">http://example.com/2017/05/05/MapReduce build-in 数据类型以及自定义数据类型/</a>
         </li>
         
         <li>
@@ -343,7 +351,27 @@
   </div>
   <div class="article-info article-info-index">
     
+    <div class="article-pop-out tagcloud">
+      <i class="icon-tuding"></i>
+      <a class="article-tag-list-link color3">置顶</a>
+    </div>
     
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
 
     
@@ -394,7 +422,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/12/05/hello-world/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2017/05/05/MapReduce%20build-in%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E8%87%AA%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -406,6 +434,25 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+    <a href="/2017/05/07/MapReduce--InputFormat%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MapReduce--InputFormat 源码解析以及常用的类型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/03/MapReduce--WC%E6%A1%88%E4%BE%8B%E4%BB%A5%E5%8F%8A%E5%88%9D%E8%AF%86%E6%BA%90%E4%BB%A3%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MapReduce--WC案例以及初识源代码</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -524,25 +571,17 @@
       
       
     
-      
-      
-      
-    
     
 
     <ul style="width: 70%">
     
     
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
-      
-        
-      
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      <li style="width: 50%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -561,6 +600,14 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -606,70 +653,12 @@
     
 
     
-    	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="https://zhousiwei.gitee.io/ibooks/" target="_blank" 
-                class="search-title" title="记录工作和学习过程中的笔记：Java、前端开发、Hexo博客、聚合支付、Linux笔记、ElasticSearch、ELK日志分析">
-                
-                  <img src="https://zhousiwei.gitee.io/ibooks/favicon.ico">
-                
-                技术笔记
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://github.com/JoeyBling" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                GitHub
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://gitee.com/zhousiwei" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                码云
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://www.jianshu.com/u/02cbf31a043a" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                简书
-              </a>
-            </li>
-          
-            <li class="search-li">
-              <a href="https://blog.csdn.net/qq_30930805" target="_blank" 
-                class="search-title" >
-                
-                  <i class="icon-link icon"></i>
-                
-                CSDN
-              </a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Java后端开发、聚合支付、<br>公众号开发、开源爱好者、Linux<br><br>联系QQ:2434387555<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="aboutme">主要涉及技术：<br>Hadoop生态圈、Spark开发<br>大数据开发以及架构<br><br>联系QQ:2727546553<br><br>很惭愧<br><br>只做了一点微小的工作<br>谢谢大家</div>
   	  	
     	</section>
     
