@@ -6,25 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://rayxk94.github.io">
-  <title>MapReduce--partitioner、combiner 详解以及实现自定义partitioner | xkBigData</title>
+  <title>Archives: 2018 | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MapReduce–partitioner、combiner 详解以及实现自定义partitioner1. partitioner详解  之前我们已经说了InputFormat,今天主要来聊聊partitioner partitioner是位于Map之后。Reduce之前执行的，是Shuffle中的第一步骤 partitioner是把map中清洗之后的数据进行分区，把数据分发到相应的机器上面  1">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MapReduce--partitioner、combiner 详解以及实现自定义partitioner">
-<meta property="og:url" content="https://rayxk94.github.io/2018/05/11/MapReduce--partitioner%E3%80%81combiner%20%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89partitioner/index.html">
+  <meta name="description" content="xkBigData">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xkBigData">
+<meta property="og:url" content="https://rayxk94.github.io/archives/2018/page/2/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="MapReduce–partitioner、combiner 详解以及实现自定义partitioner1. partitioner详解  之前我们已经说了InputFormat,今天主要来聊聊partitioner partitioner是位于Map之后。Reduce之前执行的，是Shuffle中的第一步骤 partitioner是把map中清洗之后的数据进行分区，把数据分发到相应的机器上面  1">
+<meta property="og:description" content="xkBigData">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201207151830957.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMzAxNzA3,size_16,color_FFFFFF,t_70">
-<meta property="article:published_time" content="2018-05-11T11:52:47.000Z">
-<meta property="article:modified_time" content="2020-12-09T12:55:00.206Z">
 <meta property="article:author" content="Ray">
-<meta property="article:tag" content="hadoop">
-<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201207151830957.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMzAxNzA3,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
   
@@ -173,188 +167,41 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MapReduce--partitioner、combiner 详解以及实现自定义partitioner" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2018/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/" class="archive-article-date">
+        <time datetime="2018-05-01T05:54:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-01</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2018/05/01/HDFS%20%E5%B8%B8%E8%A7%81API%E4%BD%BF%E7%94%A8%E5%8F%8A%E7%BC%96%E7%A8%8B/" target="_blank">HDFS API编程</a>
   
-    <h1 class="article-title" itemprop="name">
-      MapReduce--partitioner、combiner 详解以及实现自定义partitioner
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2018/05/11/MapReduce--partitioner%E3%80%81combiner%20%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89partitioner/" class="archive-article-date">
-        <time datetime="2018-05-11T11:52:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-11</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.2k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">12分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="MapReduce–partitioner、combiner-详解以及实现自定义partitioner"><a href="#MapReduce–partitioner、combiner-详解以及实现自定义partitioner" class="headerlink" title="MapReduce–partitioner、combiner 详解以及实现自定义partitioner"></a>MapReduce–partitioner、combiner 详解以及实现自定义partitioner</h2><h3 id="1-partitioner详解"><a href="#1-partitioner详解" class="headerlink" title="1. partitioner详解"></a>1. partitioner详解</h3><p><img src="https://img-blog.csdnimg.cn/20201207151830957.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMzAxNzA3,size_16,color_FFFFFF,t_70" alt="MapReduce 流程"></p>
-<ul>
-<li>之前我们已经说了InputFormat,今天主要来聊聊partitioner</li>
-<li>partitioner是位于Map之后。Reduce之前执行的，是Shuffle中的第一步骤</li>
-<li>partitioner是把map中清洗之后的数据进行分区，把数据分发到相应的机器上面</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Partitions the key space.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * &lt;p&gt;&lt;code&gt;Partitioner&lt;/code&gt; controls the partitioning of the keys of the </span></span><br><span class="line"><span class="comment"> * intermediate map-outputs. The key (or a subset of the key) is used to derive</span></span><br><span class="line"><span class="comment"> * the partition, typically by a hash function. The total number of partitions</span></span><br><span class="line"><span class="comment"> * is the same as the number of reduce tasks for the job. Hence this controls</span></span><br><span class="line"><span class="comment"> * which of the &lt;code&gt;m&lt;/code&gt; reduce tasks the intermediate key (and hence the </span></span><br><span class="line"><span class="comment"> * record) is sent for reduction.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * Note: If you require your Partitioner class to obtain the Job&#x27;s configuration</span></span><br><span class="line"><span class="comment"> * object, implement the &#123;<span class="doctag">@link</span> Configurable&#125; interface.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> Reducer</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果需要实现自定义partitioner,则需要实现getPartition函数</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** </span></span><br><span class="line"><span class="comment"> * Get the partition number for a given key (hence record) given the total </span></span><br><span class="line"><span class="comment"> * number of partitions i.e. number of reduce-tasks for the job.</span></span><br><span class="line"><span class="comment"> *   </span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Typically a hash function on a all or a subset of the key.&lt;/p&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> key the key to be partioned.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> value the entry value.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> numPartitions the total number of partitions.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the partition number for the &lt;code&gt;key&lt;/code&gt;.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(KEY key, VALUE value, <span class="keyword">int</span> numPartitions)</span></span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>默认使用的是Partitioner中的一个实现类：HashPartitioner</li>
-<li>HashPartitioner中的getPartition实现方式</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(K key, V value,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="keyword">int</span> numReduceTasks)</span> </span>&#123;</span><br><span class="line"><span class="keyword">return</span> (key.hashCode() &amp; Integer.MAX_VALUE) % numReduceTasks;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Native</span> <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span>  MAX_VALUE = <span class="number">0x7fffffff</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>通过(key取hash code 然后 &amp; MAX_VALUE) % reduce task的个数来确定是属于哪个分区</li>
-<li>于是相同key会分发到一个分区里面</li>
-<li>如果要是需要实现自定义partitioner,需要实现Partitioner中的getPartition函数</li>
-</ul>
-<h3 id="2-实现自定义partitioner"><a href="#2-实现自定义partitioner" class="headerlink" title="2 实现自定义partitioner"></a>2 实现自定义partitioner</h3><h4 id="2-1-需求"><a href="#2-1-需求" class="headerlink" title="2.1 需求"></a>2.1 需求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第二个字段：手机号</span><br><span class="line">倒数第三个字段：上行流量</span><br><span class="line">倒数第二个字段：下行流量</span><br><span class="line">==&gt; 统计每个手机号所耗费的上行流量之和、下行流量之和、总流量之和</span><br><span class="line">按照手机号前两位分组：</span><br><span class="line">    1. 手机号以13开头的分发到一个partitioner里面</span><br><span class="line">    2. 手机号以18开头的分发到一个partitioner里面</span><br><span class="line">    3. 其他手机号分发到一个partitioner里面</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-数据"><a href="#2-2-数据" class="headerlink" title="2.2 数据"></a>2.2 数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1363157985066 	13726230503	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	2481	24681	200</span><br><span class="line">1363157995052 	13826544101	5C-0E-8B-C7-F1-E0:CMCC	120.197.40.4			4	0	264	0	200</span><br><span class="line">1363157991076 	13926435656	20-10-7A-28-CC-0A:CMCC	120.196.100.99			2	4	132	1512	200</span><br><span class="line">1363154400022 	13926251106	5C-0E-8B-8B-B1-50:CMCC	120.197.40.4			4	0	240	0	200</span><br><span class="line">1363157993044 	18211575961	94-71-AC-CD-E6-18:CMCC-EASY	120.196.100.99	iface.qiyi.com	视频网站	15	12	1527	2106	200</span><br><span class="line">1363157995074 	84138413	5C-0E-8B-8C-E8-20:7DaysInn	120.197.40.4	122.72.52.12		20	16	4116	1432	200</span><br><span class="line">1363157993055 	13560439658	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			18	15	1116	954	200</span><br><span class="line">1363157995033 	15920133257	5C-0E-8B-C7-BA-20:CMCC	120.197.40.4	sug.so.360.cn	信息安全	20	20	3156	2936	200</span><br><span class="line">1363157983019 	13719199419	68-A1-B7-03-07-B1:CMCC-EASY	120.196.100.82			4	0	240	0	200</span><br><span class="line">1363157984041 	13660577991	5C-0E-8B-92-5C-20:CMCC-EASY	120.197.40.4	s19.cnzz.com	站点统计	24	9	6960	690	200</span><br><span class="line">1363157973098 	15013685858	5C-0E-8B-C7-F7-90:CMCC	120.197.40.4	rank.ie.sogou.com	搜索引擎	28	27	3659	3538	200</span><br><span class="line">1363157986029 	15989002119	E8-99-C4-4E-93-E0:CMCC-EASY	120.196.100.99	www.umeng.com	站点统计	3	3	1938	180	200</span><br><span class="line">1363157992093 	13560439658	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			15	9	918	4938	200</span><br><span class="line">1363157986041 	13480253104	5C-0E-8B-C7-FC-80:CMCC-EASY	120.197.40.4			3	3	180	180	200</span><br><span class="line">1363157984040 	13602846565	5C-0E-8B-8B-B6-00:CMCC	120.197.40.4	2052.flash2-http.qq.com	综合门户	15	12	1938	2910	200</span><br><span class="line">1363157995093 	13922314466	00-FD-07-A2-EC-BA:CMCC	120.196.100.82	img.qfc.cn		12	12	3008	3720	200</span><br><span class="line">1363157982040 	13502468823	5C-0A-5B-6A-0B-D4:CMCC-EASY	120.196.100.99	y0.ifengimg.com	综合门户	57	102	7335	110349	200</span><br><span class="line">1363157986072 	18320173382	84-25-DB-4F-10-1A:CMCC-EASY	120.196.100.99	input.shouji.sogou.com	搜索引擎	21	18	9531	2412	200</span><br><span class="line">1363157990043 	13925057413	00-1F-64-E1-E6-9A:CMCC	120.196.100.55	t3.baidu.com	搜索引擎	69	63	11058	48243	200</span><br><span class="line">1363157988072 	13760778710	00-FD-07-A4-7B-08:CMCC	120.196.100.82			2	2	120	120	200</span><br><span class="line">1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	2481	24681	200</span><br><span class="line">1363157993055 	13560436666	C4-17-FE-BA-DE-D9:CMCC	120.196.100.99			18	15	1116	954	200</span><br><span class="line">1363157985066 	13726238888	00-FD-07-A4-72-B8:CMCC	120.196.100.82	i02.c.aliimg.com		24	27	10000	20000	200</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-Code"><a href="#2-3-Code" class="headerlink" title="2.3 Code"></a>2.3 Code</h4><h5 id="2-3-1-MyPartitionerDriver-Code"><a href="#2-3-1-MyPartitionerDriver-Code" class="headerlink" title="2.3.1 MyPartitionerDriver Code"></a>2.3.1 MyPartitionerDriver Code</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.partitioner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.mapreduce.access.AccessDriver;</span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.mapreduce.domain.AccessDomain;</span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.LongWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.NullWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPartitionerDriver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        String input = <span class="string">&quot;mapreduce-basic/data/access.data&quot;</span>;</span><br><span class="line">        String output = <span class="string">&quot;mapreduce-basic/out&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1 创建 MapReduce job</span></span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除输出路径</span></span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2 设置运行主类</span></span><br><span class="line">        job.setJarByClass(AccessDriver.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3 设置Map和Reduce运行的类</span></span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4 设置Map 输出的 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(AccessDomain.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setOutputKeyClass(NullWritable.class);</span><br><span class="line">        job.setOutputValueClass(AccessDomain.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6 设置输入和输出路径</span></span><br><span class="line">        FileInputFormat.setInputPaths(job, <span class="keyword">new</span> Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(output));</span><br><span class="line">        <span class="comment">// 设置自定义分区器</span></span><br><span class="line">        <span class="comment">// 分区器的输入就是map端的输出</span></span><br><span class="line">        job.setPartitionerClass(MyPartitioner.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置reduce 输出的task个数为3</span></span><br><span class="line">        job.setNumReduceTasks(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7 提交job</span></span><br><span class="line">        <span class="keyword">boolean</span> result = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(result ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">AccessDomain</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            String[] spilts = value.toString().split(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">            String phone = spilts[<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">long</span> up = Long.parseLong(spilts[spilts.length - <span class="number">3</span>]);</span><br><span class="line">            <span class="keyword">long</span> down = Long.parseLong(spilts[spilts.length - <span class="number">2</span>]);</span><br><span class="line">            context.write(<span class="keyword">new</span> Text(phone), <span class="keyword">new</span> AccessDomain(phone, up, down));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">AccessDomain</span>, <span class="title">NullWritable</span>, <span class="title">AccessDomain</span>&gt; </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;AccessDomain&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            Long up = <span class="number">0L</span>;</span><br><span class="line">            Long down = <span class="number">0L</span>;</span><br><span class="line">            <span class="keyword">for</span> (AccessDomain access : values) &#123;</span><br><span class="line">                up += access.getUp();</span><br><span class="line">                down += access.getDown();</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(NullWritable.get(), <span class="keyword">new</span> AccessDomain(key.toString(), up, down));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-3-2-MyPartitioner-Code"><a href="#2-3-2-MyPartitioner-Code" class="headerlink" title="2.3.2 MyPartitioner Code"></a>2.3.2 MyPartitioner Code</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.partitioner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.mapreduce.domain.AccessDomain;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Partitioner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyPartitioner</span> <span class="keyword">extends</span> <span class="title">Partitioner</span>&lt;<span class="title">Text</span>, <span class="title">AccessDomain</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(Text text, AccessDomain accessDomain, <span class="keyword">int</span> numPartitions)</span> </span>&#123;</span><br><span class="line">        String phone = text.toString();</span><br><span class="line">        <span class="keyword">if</span> (phone.startsWith(<span class="string">&quot;13&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (phone.startsWith(<span class="string">&quot;18&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-结果展示"><a href="#2-4-结果展示" class="headerlink" title="2.4 结果展示"></a>2.4 结果展示</h4><h5 id="2-4-1-part-r-00000里面的数据"><a href="#2-4-1-part-r-00000里面的数据" class="headerlink" title="2.4.1 part-r-00000里面的数据"></a>2.4.1 part-r-00000里面的数据</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">13480253104	180	180	360</span><br><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">13719199419	240	0	240</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13760778710	120	120	240</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13926435656	132	1512	1644</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-4-2-part-r-00001里面的数据"><a href="#2-4-2-part-r-00001里面的数据" class="headerlink" title="2.4.2 part-r-00001里面的数据"></a>2.4.2 part-r-00001里面的数据</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">18211575961	1527	2106	3633</span><br><span class="line">18320173382	9531	2412	11943</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-4-3-part-r-00002里面的数据"><a href="#2-4-3-part-r-00002里面的数据" class="headerlink" title="2.4.3 part-r-00002里面的数据"></a>2.4.3 part-r-00002里面的数据</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">15013685858	3659	3538	7197</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">15989002119	1938	180	2118</span><br><span class="line">84138413	4116	1432	5548</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/partitioner/MyPartitionerDriver.java">MyPartitionerDriver Code</a></p>
-<h3 id="3-combiner"><a href="#3-combiner" class="headerlink" title="3 combiner"></a>3 combiner</h3><ul>
-<li>combiner是出于Map和Reduce之间进行的</li>
-<li>combiner相当于局部聚合，以WC为例，map端的输出为 &lt;hadoop,&lt;1,1,1,1&gt;&gt;,经过combiner之后会聚合成：&lt;hadoop,4&gt;,为了减少IO传输，先做了一个初步聚合</li>
-<li>combiner的输入就是Map端的输出，combiner的输出为Reduce端的输出</li>
-<li>有些场景combiner无法使用，最经典的就是求平均值</li>
-</ul>
-<h4 id="3-1-需求"><a href="#3-1-需求" class="headerlink" title="3.1 需求"></a>3.1 需求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用 combiner 进行一次WC计算</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-数据"><a href="#3-2-数据" class="headerlink" title="3.2 数据"></a>3.2 数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hadoop,spark,flink</span><br><span class="line">hbase,hadoop,spark,flink</span><br><span class="line">spark</span><br><span class="line">hadoop</span><br><span class="line">hadoop,spark,flink</span><br><span class="line">hbase,hadoop,spark,flink</span><br><span class="line">spark</span><br><span class="line">hadoop</span><br><span class="line">hbase,hadoop,spark,flink</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-不使用combiner-Code"><a href="#3-3-不使用combiner-Code" class="headerlink" title="3.3 不使用combiner  Code"></a>3.3 不使用combiner  Code</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.combiner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.LongWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CombinerDirver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String input = <span class="string">&quot;mapreduce-basic/data/wc.txt&quot;</span>;</span><br><span class="line">        String output = <span class="string">&quot;mapreduce-basic/out&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1 创建 MapReduce job</span></span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除输出路径</span></span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2 设置运行主类</span></span><br><span class="line">        job.setJarByClass(CombinerDirver.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3 设置Map和Reduce运行的类</span></span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4 设置Map 输出的 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setMapOutputKeyClass(Text.class);</span><br><span class="line">        job.setMapOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setOutputKeyClass(Text.class);</span><br><span class="line">        job.setOutputValueClass(IntWritable.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6 设置输入和输出路径</span></span><br><span class="line">        FileInputFormat.setInputPaths(job, <span class="keyword">new</span> Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(output));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7 提交job</span></span><br><span class="line">        <span class="keyword">boolean</span> result = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(result ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">        IntWritable ONE = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            String[] spilts = value.toString().split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (String word : spilts) &#123;</span><br><span class="line">                context.write(<span class="keyword">new</span> Text(word), ONE);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span> (IntWritable value : values) &#123;</span><br><span class="line">                count += value.get();</span><br><span class="line">            &#125;</span><br><span class="line">            context.write(key, <span class="keyword">new</span> IntWritable(count));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-查看MapReduce-输出日志"><a href="#3-4-查看MapReduce-输出日志" class="headerlink" title="3.4 查看MapReduce 输出日志"></a>3.4 查看MapReduce 输出日志</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Combine input records=<span class="number">0</span></span><br><span class="line">Combine output records=<span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>看出本次MapReduce计算程序并没有使用conbiner</li>
-</ul>
-<h4 id="3-5-使用combiner进行MapReduce-计算"><a href="#3-5-使用combiner进行MapReduce-计算" class="headerlink" title="3.5 使用combiner进行MapReduce 计算"></a>3.5 使用combiner进行MapReduce 计算</h4><ul>
-<li>添加如下代码</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加combiner</span></span><br><span class="line">job.setCombinerClass(MyReducer.class);</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-6-查看输出日志"><a href="#3-6-查看输出日志" class="headerlink" title="3.6 查看输出日志"></a>3.6 查看输出日志</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Combine input records=<span class="number">22</span></span><br><span class="line">Combine output records=<span class="number">4</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>可以看出conbiner里面的input 和output的records</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/combiner/CombinerDirver.java">CombinerDirver Code</a></p>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Ray
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://rayxk94.github.io/2018/05/11/MapReduce--partitioner、combiner 详解以及实现自定义partitioner/" title="MapReduce--partitioner、combiner 详解以及实现自定义partitioner" target="_blank">https://rayxk94.github.io/2018/05/11/MapReduce--partitioner、combiner 详解以及实现自定义partitioner/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -370,116 +217,23 @@
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://rayxk94.github.io/2018/05/11/MapReduce--partitioner%E3%80%81combiner%20%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%AE%9A%E4%B9%89partitioner/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2018/05/13/Java%20SE%20IO%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java SE IO详解
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/07/MapReduce--InputFormat%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E4%BB%A5%E5%8F%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E7%B1%BB%E5%9E%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MapReduce--InputFormat 源码解析以及常用的类型</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/2018/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 
 
           </div>
@@ -520,8 +274,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
