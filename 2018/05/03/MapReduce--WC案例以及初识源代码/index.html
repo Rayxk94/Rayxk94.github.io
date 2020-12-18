@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="xkBigData">
 <meta property="og:description" content="MapReduce–WC案例以及初识源代码1 MapReduce 介绍Hadoop 官网  MapReduce 是一个基于Google的同名论文开发出来的。 MapReduce 是一个分布式计算框架，每个组件之间分而治之。 MapReduce 是一个高性能的分布式计算框架，用于对海量数据进行并行分析和处理。  1.1 MapReduce 优点 MapReduce适合于离线计算&#x2F;批计算 MapRed">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20201202202152625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMzAxNzA3,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://rayxk94.github.io/img/hadoop/mapreduce%E6%B5%81%E7%A8%8B.jpg">
 <meta property="article:published_time" content="2018-05-03T07:47:27.000Z">
-<meta property="article:modified_time" content="2020-12-08T14:10:31.994Z">
+<meta property="article:modified_time" content="2020-12-18T13:24:17.260Z">
 <meta property="article:author" content="Ray">
 <meta property="article:tag" content="hadoop">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20201202202152625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMzAxNzA3,size_16,color_FFFFFF,t_70">
+<meta name="twitter:image" content="https://rayxk94.github.io/img/hadoop/mapreduce%E6%B5%81%E7%A8%8B.jpg">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
   
@@ -226,7 +226,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="MapReduce–WC案例以及初识源代码"><a href="#MapReduce–WC案例以及初识源代码" class="headerlink" title="MapReduce–WC案例以及初识源代码"></a>MapReduce–WC案例以及初识源代码</h2><h3 id="1-MapReduce-介绍"><a href="#1-MapReduce-介绍" class="headerlink" title="1 MapReduce 介绍"></a>1 MapReduce 介绍</h3><p><a target="_blank" rel="noopener" href="https://hadoop.apache.org/">Hadoop 官网</a></p>
+    <h2 id="MapReduce–WC案例以及初识源代码"><a href="#MapReduce–WC案例以及初识源代码" class="headerlink" title="MapReduce–WC案例以及初识源代码"></a><center>MapReduce–WC案例以及初识源代码</center></h2><h3 id="1-MapReduce-介绍"><a href="#1-MapReduce-介绍" class="headerlink" title="1 MapReduce 介绍"></a>1 MapReduce 介绍</h3><p><a target="_blank" rel="noopener" href="https://hadoop.apache.org/">Hadoop 官网</a></p>
 <ul>
 <li>MapReduce 是一个基于Google的同名论文开发出来的。</li>
 <li>MapReduce 是一个分布式计算框架，每个组件之间分而治之。</li>
@@ -260,7 +260,7 @@
 </ul>
 <h4 id="2-4-结果"><a href="#2-4-结果" class="headerlink" title="2.4 结果"></a>2.4 结果</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flink	2</span><br><span class="line">hadoop	2</span><br><span class="line">hbase	1</span><br><span class="line">spark	3</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-5-解析WC过程"><a href="#2-5-解析WC过程" class="headerlink" title="2.5 解析WC过程"></a>2.5 解析WC过程</h4><p><img src="https://img-blog.csdnimg.cn/20201202202152625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMzAxNzA3,size_16,color_FFFFFF,t_70" alt="image"></p>
+<h4 id="2-5-解析WC过程"><a href="#2-5-解析WC过程" class="headerlink" title="2.5 解析WC过程"></a>2.5 解析WC过程</h4><p><img src="/img/hadoop/mapreduce%E6%B5%81%E7%A8%8B.jpg" alt="MapReduce流程"></p>
 <h3 id="3-提交到Yarn上面运行"><a href="#3-提交到Yarn上面运行" class="headerlink" title="3 提交到Yarn上面运行"></a>3 提交到Yarn上面运行</h3><h4 id="3-1-修改代码：把输入数据路径和输出路径改成通过外部传参"><a href="#3-1-修改代码：把输入数据路径和输出路径改成通过外部传参" class="headerlink" title="3.1 修改代码：把输入数据路径和输出路径改成通过外部传参"></a>3.1 修改代码：把输入数据路径和输出路径改成通过外部传参</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String input = <span class="string">&quot;&quot;</span>;</span><br><span class="line">String output = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (args.length == <span class="number">2</span>) &#123;</span><br><span class="line">    input = args[<span class="number">0</span>];</span><br><span class="line">    output = args[<span class="number">1</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">&quot;parameter error&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3-2-package"><a href="#3-2-package" class="headerlink" title="3.2 package"></a>3.2 package</h4><h4 id="3-3-Linux运行命令"><a href="#3-3-Linux运行命令" class="headerlink" title="3.3 Linux运行命令"></a>3.3 Linux运行命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop jar /home/work/lib/hdfs-basic-1.0.jar com.xk.bigdata.hadoop.mapreduce.wc.WcDriver /data/wc/demo.txt /data/wc/out</span><br></pre></td></tr></table></figure>
@@ -367,11 +367,6 @@
 
   </div>
   <div class="article-info article-info-index">
-    
-    <div class="article-pop-out tagcloud">
-      <i class="icon-tuding"></i>
-      <a class="article-tag-list-link color3">置顶</a>
-    </div>
     
     
 	<div class="article-tag tagcloud">

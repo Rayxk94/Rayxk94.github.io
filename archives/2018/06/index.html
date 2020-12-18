@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://rayxk94.github.io">
-  <title>MapReduce--自定义全局Sort、分区Sort | xkBigData</title>
+  <title>Archives: 2018/6 | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="MapReduce–自定义全局Sort、分区Sort1 Sort Sort发生在Map之后Reduce之前 数据经过MapRedcue处理，首先经过Map阶段,然后经过Shuffle阶段 在Shuffle阶段，会对数据进行分割(spilt)、分区(partitioner)、排序(sort)、合并(combine)、压缩(compress)、分组(group)之后输出到Reduce端 全局排序类似于">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MapReduce--自定义全局Sort、分区Sort">
-<meta property="og:url" content="https://rayxk94.github.io/2018/05/16/MapReduce--%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80Sort%E3%80%81%E5%88%86%E5%8C%BASort/index.html">
+  <meta name="description" content="xkBigData">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xkBigData">
+<meta property="og:url" content="https://rayxk94.github.io/archives/2018/06/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="MapReduce–自定义全局Sort、分区Sort1 Sort Sort发生在Map之后Reduce之前 数据经过MapRedcue处理，首先经过Map阶段,然后经过Shuffle阶段 在Shuffle阶段，会对数据进行分割(spilt)、分区(partitioner)、排序(sort)、合并(combine)、压缩(compress)、分组(group)之后输出到Reduce端 全局排序类似于">
+<meta property="og:description" content="xkBigData">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-05-16T10:17:26.000Z">
-<meta property="article:modified_time" content="2020-12-18T13:18:55.375Z">
 <meta property="article:author" content="Ray">
-<meta property="article:tag" content="hadoop">
-<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
@@ -171,281 +167,108 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-MapReduce--自定义全局Sort、分区Sort" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2018/06/10/Hive--%E5%87%BD%E6%95%B0%E3%80%81%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2018-06-10T15:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2018/06/10/Hive--%E5%87%BD%E6%95%B0%E3%80%81%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" target="_blank">Hive--函数、窗口函数</a>
   
-    <h1 class="article-title" itemprop="name">
-      MapReduce--自定义全局Sort、分区Sort
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2018/05/16/MapReduce--%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80Sort%E3%80%81%E5%88%86%E5%8C%BASort/" class="archive-article-date">
-        <time datetime="2018-05-16T10:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.7k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">9分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="MapReduce–自定义全局Sort、分区Sort"><a href="#MapReduce–自定义全局Sort、分区Sort" class="headerlink" title="MapReduce–自定义全局Sort、分区Sort"></a><center>MapReduce–自定义全局Sort、分区Sort</center></h2><h3 id="1-Sort"><a href="#1-Sort" class="headerlink" title="1 Sort"></a>1 Sort</h3><ul>
-<li>Sort发生在Map之后Reduce之前</li>
-<li>数据经过MapRedcue处理，首先经过Map阶段,然后经过Shuffle阶段</li>
-<li>在Shuffle阶段，会对数据进行分割(spilt)、分区(partitioner)、排序(sort)、合并(combine)、压缩(compress)、分组(group)之后输出到Reduce端</li>
-<li>全局排序类似于sql中的order by,只有一个reduce输出，保证全局有序</li>
-<li>分区/局部排序保证每个分区有序</li>
-<li>二次排序是有多个排序条件</li>
-</ul>
-<h3 id="2-自定义-MapReduce-全排"><a href="#2-自定义-MapReduce-全排" class="headerlink" title="2 自定义 MapReduce 全排"></a>2 自定义 MapReduce 全排</h3><h4 id="2-1-需求"><a href="#2-1-需求" class="headerlink" title="2.1 需求"></a>2.1 需求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一个字段：手机号</span><br><span class="line">第二个字段：上行流量</span><br><span class="line">第三个字段：下行流量</span><br><span class="line">第四个字段：流量总和</span><br><span class="line"></span><br><span class="line">按照流量之和进行排序</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-数据"><a href="#2-2-数据" class="headerlink" title="2.2 数据"></a>2.2 数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">13480253104	180	180	360</span><br><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">13719199419	240	0	240</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13760778710	120	120	240</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13926435656	132	1512	1644</span><br><span class="line">15013685858	3659	3538	7197</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">15989002119	1938	180	2118</span><br><span class="line">18211575961	1527	2106	3633</span><br><span class="line">18320173382	9531	2412	11943</span><br><span class="line">84138413	4116	1432	5548</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-3-Code"><a href="#2-3-Code" class="headerlink" title="2.3 Code"></a>2.3 Code</h4><h5 id="2-3-1-AllSortDriver-Code"><a href="#2-3-1-AllSortDriver-Code" class="headerlink" title="2.3.1 AllSortDriver Code"></a>2.3.1 AllSortDriver Code</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.mapreduce.domain.AccessAllSortDomain;</span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.LongWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.NullWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AllSortDriver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        String input = <span class="string">&quot;mapreduce-basic/data/sort.data&quot;</span>;</span><br><span class="line">        String output = <span class="string">&quot;mapreduce-basic/out&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1 创建 MapReduce job</span></span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除输出路径</span></span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2 设置运行主类</span></span><br><span class="line">        job.setJarByClass(AllSortDriver.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3 设置Map和Reduce运行的类</span></span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4 设置Map 输出的 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setMapOutputKeyClass(AccessAllSortDomain.class);</span><br><span class="line">        job.setMapOutputValueClass(Text.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setOutputKeyClass(AccessAllSortDomain.class);</span><br><span class="line">        job.setOutputValueClass(NullWritable.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6 设置输入和输出路径</span></span><br><span class="line">        FileInputFormat.setInputPaths(job, <span class="keyword">new</span> Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(output));</span><br><span class="line"></span><br><span class="line">        job.setNumReduceTasks(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7 提交job</span></span><br><span class="line">        <span class="keyword">boolean</span> result = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(result ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>, <span class="title">Text</span>, <span class="title">AccessAllSortDomain</span>, <span class="title">Text</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            String[] spilts = value.toString().split(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">            String phone = spilts[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">long</span> up = Long.parseLong(spilts[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">long</span> down = Long.parseLong(spilts[<span class="number">2</span>]);</span><br><span class="line">            <span class="keyword">long</span> sum = Long.parseLong(spilts[<span class="number">3</span>]);</span><br><span class="line">            context.write(<span class="keyword">new</span> AccessAllSortDomain(phone, up, down, sum), <span class="keyword">new</span> Text(phone));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">AccessAllSortDomain</span>, <span class="title">Text</span>, <span class="title">AccessAllSortDomain</span>, <span class="title">NullWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(AccessAllSortDomain key, Iterable&lt;Text&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (Text value : values) &#123;</span><br><span class="line">                context.write(key, NullWritable.get());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-3-2-AccessAllSortDomain-Code"><a href="#2-3-2-AccessAllSortDomain-Code" class="headerlink" title="2.3.2 AccessAllSortDomain Code"></a>2.3.2 AccessAllSortDomain Code</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.WritableComparable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.DataInput;</span><br><span class="line"><span class="keyword">import</span> java.io.DataOutput;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义数据类型步骤：</span></span><br><span class="line"><span class="comment"> * 1. 实现WritableComparable/Writable接口</span></span><br><span class="line"><span class="comment"> * 2. 重写 write、readFields、compareTo方法</span></span><br><span class="line"><span class="comment"> * 3. 要有一个无参的构造器</span></span><br><span class="line"><span class="comment"> * 4. write和readFields的字段顺序要保持一致</span></span><br><span class="line"><span class="comment"> * 5. 输出结果：需要重写toString(非必选)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AccessAllSortDomain</span> <span class="keyword">implements</span> <span class="title">WritableComparable</span>&lt;<span class="title">AccessAllSortDomain</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String phone;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long up;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long down;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Long sum;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPhone</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> phone;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPhone</span><span class="params">(String phone)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.phone = phone;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getUp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> up;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">(Long up)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.up = up;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getDown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDown</span><span class="params">(Long down)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.down = down;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Long <span class="title">getSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSum</span><span class="params">(Long sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.sum = sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccessAllSortDomain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AccessAllSortDomain</span><span class="params">(String phone, Long up, Long down, Long sum)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.phone = phone;</span><br><span class="line">        <span class="keyword">this</span>.up = up;</span><br><span class="line">        <span class="keyword">this</span>.down = down;</span><br><span class="line">        <span class="keyword">this</span>.sum = sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> phone + <span class="string">&#x27;\t&#x27;</span> +</span><br><span class="line">                up + <span class="string">&#x27;\t&#x27;</span> +</span><br><span class="line">                down + <span class="string">&#x27;\t&#x27;</span> +</span><br><span class="line">                sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(DataOutput out)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        out.writeUTF(phone);</span><br><span class="line">        out.writeLong(up);</span><br><span class="line">        out.writeLong(down);</span><br><span class="line">        out.writeLong(sum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">readFields</span><span class="params">(DataInput in)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        phone = in.readUTF();</span><br><span class="line">        up = in.readLong();</span><br><span class="line">        down = in.readLong();</span><br><span class="line">        sum = in.readLong();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(AccessAllSortDomain o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.getSum() &gt; o.getSum() ? -<span class="number">1</span> : <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-4-结果"><a href="#2-4-结果" class="headerlink" title="2.4 结果"></a>2.4 结果</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">18320173382	9531	2412	11943</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">15013685858	3659	3538	7197</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">84138413	4116	1432	5548</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">18211575961	1527	2106	3633</span><br><span class="line">15989002119	1938	180	2118</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13926435656	132	1512	1644</span><br><span class="line">13480253104	180	180	360</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13760778710	120	120	240</span><br><span class="line">13719199419	240	0	240</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/sort/AllSortDriver.java">AllSortDriver Code</a></p>
-<h3 id="3-自定义-MapReduce-分区内排序"><a href="#3-自定义-MapReduce-分区内排序" class="headerlink" title="3 自定义 MapReduce 分区内排序"></a>3 自定义 MapReduce 分区内排序</h3><h4 id="3-1-需求"><a href="#3-1-需求" class="headerlink" title="3.1 需求"></a>3.1 需求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第一个字段：手机号</span><br><span class="line">第二个字段：上行流量</span><br><span class="line">第三个字段：下行流量</span><br><span class="line">第四个字段：流量总和</span><br><span class="line"></span><br><span class="line">手机号为13开头的一个分区</span><br><span class="line">手机号为18开头的一个分区</span><br><span class="line">其他一个分区</span><br><span class="line">按照流量之和进行分区排序</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-2-数据"><a href="#3-2-数据" class="headerlink" title="3.2 数据"></a>3.2 数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">13480253104	180	180	360</span><br><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">13719199419	240	0	240</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13760778710	120	120	240</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13926435656	132	1512	1644</span><br><span class="line">15013685858	3659	3538	7197</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">15989002119	1938	180	2118</span><br><span class="line">18211575961	1527	2106	3633</span><br><span class="line">18320173382	9531	2412	11943</span><br><span class="line">84138413	4116	1432	5548</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-3-Code"><a href="#3-3-Code" class="headerlink" title="3.3 Code"></a>3.3 Code</h4><h5 id="3-3-1-PartitionSortDriver-Code"><a href="#3-3-1-PartitionSortDriver-Code" class="headerlink" title="3.3.1 PartitionSortDriver Code"></a>3.3.1 PartitionSortDriver Code</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.mapreduce.domain.AccessAllSortDomain;</span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.utils.FileUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.LongWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.NullWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PartitionSortDriver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        String input = <span class="string">&quot;mapreduce-basic/data/sort.data&quot;</span>;</span><br><span class="line">        String output = <span class="string">&quot;mapreduce-basic/out&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 1 创建 MapReduce job</span></span><br><span class="line">        Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">        Job job = Job.getInstance(conf);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置自定义分区类</span></span><br><span class="line">        job.setPartitionerClass(PhonePartitioner.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 删除输出路径</span></span><br><span class="line">        FileUtils.deleteFile(job.getConfiguration(), output);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2 设置运行主类</span></span><br><span class="line">        job.setJarByClass(PartitionSortDriver.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 3 设置Map和Reduce运行的类</span></span><br><span class="line">        job.setMapperClass(MyMapper.class);</span><br><span class="line">        job.setReducerClass(MyReducer.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 4 设置Map 输出的 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setMapOutputKeyClass(AccessAllSortDomain.class);</span><br><span class="line">        job.setMapOutputValueClass(Text.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 5 设置Reduce 输出 KEY 和 VALUE 数据类型</span></span><br><span class="line">        job.setOutputKeyClass(AccessAllSortDomain.class);</span><br><span class="line">        job.setOutputValueClass(NullWritable.class);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 6 设置输入和输出路径</span></span><br><span class="line">        FileInputFormat.setInputPaths(job, <span class="keyword">new</span> Path(input));</span><br><span class="line">        FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(output));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置 reduce task 个数</span></span><br><span class="line">        job.setNumReduceTasks(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 7 提交job</span></span><br><span class="line">        <span class="keyword">boolean</span> result = job.waitForCompletion(<span class="keyword">true</span>);</span><br><span class="line">        System.exit(result ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">LongWritable</span>, <span class="title">Text</span>, <span class="title">AccessAllSortDomain</span>, <span class="title">Text</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(LongWritable key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            String[] spilts = value.toString().split(<span class="string">&quot;\t&quot;</span>);</span><br><span class="line">            String phone = spilts[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">long</span> up = Long.parseLong(spilts[<span class="number">1</span>]);</span><br><span class="line">            <span class="keyword">long</span> down = Long.parseLong(spilts[<span class="number">2</span>]);</span><br><span class="line">            <span class="keyword">long</span> sum = Long.parseLong(spilts[<span class="number">3</span>]);</span><br><span class="line">            context.write(<span class="keyword">new</span> AccessAllSortDomain(phone, up, down, sum), <span class="keyword">new</span> Text(phone));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">MyReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">AccessAllSortDomain</span>, <span class="title">Text</span>, <span class="title">AccessAllSortDomain</span>, <span class="title">NullWritable</span>&gt; </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(AccessAllSortDomain key, Iterable&lt;Text&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">            <span class="keyword">for</span> (Text value : values) &#123;</span><br><span class="line">                context.write(key, NullWritable.get());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-3-2-PhonePartitioner-Code"><a href="#3-3-2-PhonePartitioner-Code" class="headerlink" title="3.3.2 PhonePartitioner Code"></a>3.3.2 PhonePartitioner Code</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xk.bigata.hadoop.mapreduce.sort;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xk.bigata.hadoop.mapreduce.domain.AccessAllSortDomain;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Partitioner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PhonePartitioner</span> <span class="keyword">extends</span> <span class="title">Partitioner</span>&lt;<span class="title">AccessAllSortDomain</span>, <span class="title">Text</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPartition</span><span class="params">(AccessAllSortDomain accessAllSortDomain, Text text, <span class="keyword">int</span> numPartitions)</span> </span>&#123;</span><br><span class="line">        String phone = accessAllSortDomain.getPhone();</span><br><span class="line">        <span class="keyword">if</span> (phone.startsWith(<span class="string">&quot;13&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (phone.startsWith(<span class="string">&quot;18&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-4-结果"><a href="#3-4-结果" class="headerlink" title="3.4 结果"></a>3.4 结果</h4><h5 id="3-4-1-part-r-00000"><a href="#3-4-1-part-r-00000" class="headerlink" title="3.4.1 part-r-00000"></a>3.4.1 part-r-00000</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">13502468823	7335	110349	117684</span><br><span class="line">13925057413	11058	48243	59301</span><br><span class="line">13726238888	12481	44681	57162</span><br><span class="line">13726230503	2481	24681	27162</span><br><span class="line">13560439658	2034	5892	7926</span><br><span class="line">13660577991	6960	690	7650</span><br><span class="line">13922314466	3008	3720	6728</span><br><span class="line">13602846565	1938	2910	4848</span><br><span class="line">13560436666	1116	954	2070</span><br><span class="line">13926435656	132	1512	1644</span><br><span class="line">13480253104	180	180	360</span><br><span class="line">13826544101	264	0	264</span><br><span class="line">13719199419	240	0	240</span><br><span class="line">13926251106	240	0	240</span><br><span class="line">13760778710	120	120	240</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-4-2-part-r-00001"><a href="#3-4-2-part-r-00001" class="headerlink" title="3.4.2 part-r-00001"></a>3.4.2 part-r-00001</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">18320173382	9531	2412	11943</span><br><span class="line">18211575961	1527	2106	3633</span><br></pre></td></tr></table></figure>
-
-<h5 id="3-4-3-part-r-00002"><a href="#3-4-3-part-r-00002" class="headerlink" title="3.4.3 part-r-00002"></a>3.4.3 part-r-00002</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">15013685858	3659	3538	7197</span><br><span class="line">15920133257	3156	2936	6092</span><br><span class="line">84138413	4116	1432	5548</span><br><span class="line">15989002119	1938	180	2118</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://github.com/Rayxk94/hadoop-project/blob/master/mapreduce-basic/src/main/java/com/xk/bigata/hadoop/mapreduce/sort/PartitionSortDriver.java">PartitionSortDriver Code</a></p>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Ray
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://rayxk94.github.io/2018/05/16/MapReduce--自定义全局Sort、分区Sort/" title="MapReduce--自定义全局Sort、分区Sort" target="_blank">https://rayxk94.github.io/2018/05/16/MapReduce--自定义全局Sort、分区Sort/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://rayxk94.github.io/2018/05/16/MapReduce--%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80Sort%E3%80%81%E5%88%86%E5%8C%BASort/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
   
-    <a href="/2018/05/18/Socket%20%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Socket 编程
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/05/15/MapReduce--MapJoin%E3%80%81ReduceJoin%E3%80%81TopN/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MapReduce--MapJoin、ReduceJoin、TopN</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/" class="archive-article-date">
+        <time datetime="2018-06-05T14:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
+</a>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
+    	 
+  
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/" target="_blank">Hive--参数优化、Map、Reduce Task个数优化</a>
+  
+    </h1>
+  
 
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -486,8 +309,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
