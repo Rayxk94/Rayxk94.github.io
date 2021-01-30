@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://rayxk94.github.io">
-  <title>Archives: 2018 | xkBigData</title>
+  <title>Kafka简介以及部署 | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="xkBigData">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xkBigData">
-<meta property="og:url" content="https://rayxk94.github.io/archives/2018/page/2/index.html">
+  <meta name="description" content="Kafka简介以及部署Kafka 官网 1. Kafka 介绍 推荐一个可以监控 Kafka Topic 的工具：&#x3D;&#x3D;kafka-eagle&#x3D;&#x3D;  1.1 什么是Kafka Kafka是一个分布式消息队列。 Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer，消息接受者称为Consumer，此外kafka集群有多个kafka实例组成，每个实例(server)称为broke">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka简介以及部署">
+<meta property="og:url" content="https://rayxk94.github.io/2018/08/15/Kafka%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="xkBigData">
+<meta property="og:description" content="Kafka简介以及部署Kafka 官网 1. Kafka 介绍 推荐一个可以监控 Kafka Topic 的工具：&#x3D;&#x3D;kafka-eagle&#x3D;&#x3D;  1.1 什么是Kafka Kafka是一个分布式消息队列。 Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer，消息接受者称为Consumer，此外kafka集群有多个kafka实例组成，每个实例(server)称为broke">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://rayxk94.github.io/img/kafka/Kafka%E6%9E%B6%E6%9E%84.png">
+<meta property="article:published_time" content="2018-08-15T12:19:16.000Z">
+<meta property="article:modified_time" content="2021-01-30T09:46:09.840Z">
 <meta property="article:author" content="Ray">
+<meta property="article:tag" content="kafka">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://rayxk94.github.io/img/kafka/Kafka%E6%9E%B6%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
   
@@ -167,472 +172,374 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Kafka简介以及部署" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/06/10/Hive--%E5%87%BD%E6%95%B0%E3%80%81%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" class="archive-article-date">
-        <time datetime="2018-06-10T15:57:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/06/10/Hive--%E5%87%BD%E6%95%B0%E3%80%81%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" target="_blank">Hive--函数、窗口函数</a>
   
+    <h1 class="article-title" itemprop="name">
+      Kafka简介以及部署
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2018/08/15/Kafka%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" class="archive-article-date">
+        <time datetime="2018-08-15T12:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">16分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="Kafka简介以及部署"><a href="#Kafka简介以及部署" class="headerlink" title="Kafka简介以及部署"></a><center>Kafka简介以及部署</center></h2><p><a target="_blank" rel="noopener" href="https://kafka.apache.org/">Kafka 官网</a></p>
+<h3 id="1-Kafka-介绍"><a href="#1-Kafka-介绍" class="headerlink" title="1. Kafka 介绍"></a>1. Kafka 介绍</h3><ul>
+<li>推荐一个可以监控 Kafka Topic 的工具：==kafka-eagle==</li>
+</ul>
+<h4 id="1-1-什么是Kafka"><a href="#1-1-什么是Kafka" class="headerlink" title="1.1 什么是Kafka"></a>1.1 什么是Kafka</h4><ul>
+<li>Kafka是一个分布式消息队列。</li>
+<li>Kafka对消息保存时根据Topic进行归类，发送消息者称为Producer，消息接受者称为Consumer，此外kafka集群有多个kafka实例组成，每个实例(server)称为broker。无论是kafka集群，还是consumer都依赖于Zookeeper集群保存一些meta信息，来保证系统可用性。</li>
+</ul>
+<h4 id="1-2-Kafka-优点"><a href="#1-2-Kafka-优点" class="headerlink" title="1.2 Kafka 优点"></a>1.2 Kafka 优点</h4><ul>
+<li>==解耦==：在项目启动之初来预测将来项目会碰到什么需求，是极其困难的。消息系统在处理过程中间插入了一个隐含的、基于数据的接口层，两边的处理过程都要实现这一接口。这允许你独立的扩展或修改两边的处理过程，只要确保它们遵守同样的接口约束。</li>
+<li>==冗余（副本）==：有些情况下，处理数据的过程会失败。除非数据被持久化，否则将造成丢失。消息队列把数据进行持久化直到它们已经被完全处理，通过这一方式规避了数据丢失风险。许多消息队列所采用的”插入-获取-删除”范式中，在把一个消息从队列中删除之前，需要你的处理系统明确的指出该消息已经被处理完毕，从而确保你的数据被安全的保存直到你使用完毕。</li>
+<li>==扩展性==：因为消息队列解耦了你的处理过程，所以增大消息入队和处理的频率是很容易的，只要另外增加处理过程即可。不需要改变代码、不需要调节参数。扩展就像调大电力按钮一样简单。</li>
+<li>==灵活性&amp;峰值处理能力==：在访问量剧增的情况下，应用仍然需要继续发挥作用，但是这样的突发流量并不常见；如果为以能处理这类峰值访问为标准来投入资源随时待命无疑是巨大的浪费。使用消息队列能够使关键组件顶住突发的访问压力，而不会因为突发的超负荷的请求而完全崩溃。</li>
+<li>==可恢复性==：系统的一部分组件失效时，不会影响到整个系统。消息队列降低了进程间的耦合度，所以即使一个处理消息的进程挂掉，加入队列中的消息仍然可以在系统恢复后被处理。</li>
+<li>==顺序保证==：在大多使用场景下，数据处理的顺序都很重要。大部分消息队列本来就是排序的，并且能保证数据会按照特定的顺序来处理。Kafka保证一个Partition内的消息的有序性。</li>
+<li>==缓冲==：在任何重要的系统中，都会有需要不同的处理时间的元素。例如，加载一张图片比应用过滤器花费更少的时间。消息队列通过一个缓冲层来帮助任务最高效率的执行———写入队列的处理会尽可能的快速。该缓冲有助于控制和优化数据流经过系统的速度。</li>
+<li>==异步通信==：很多时候，用户不想也不需要立即处理消息。消息队列提供了异步处理机制，允许用户把一个消息放入队列，但并不立即处理它。想向队列中放入多少消息就放多少，然后在需要的时候再去处理它们。</li>
+</ul>
+<h4 id="1-3-Kafka-架构"><a href="#1-3-Kafka-架构" class="headerlink" title="1.3 Kafka 架构"></a>1.3 Kafka 架构</h4><p><img src="/img/kafka/Kafka%E6%9E%B6%E6%9E%84.png" alt="Kafka架构"></p>
+<ul>
+<li>broker：Kafka 集群包含一个或多个服务器，服务器节点称为broker。broker存储topic的数据。<ul>
+<li>如果某topic有N个partition，集群有N个broker，那么每个broker存储该topic的一个partition。</li>
+<li>如果某topic有N个partition，集群有(N+M)个broker，那么其中有N个broker存储该topic的一个partition，剩下的M个broker不存储该topic的partition数据。</li>
+<li>如果某topic有N个partition，集群中broker数目少于N个，那么一个broker存储该topic的一个或多个partition。在实际生产环境中，尽量避免这种情况的发生，这种情况容易导致Kafka集群数据不均衡。</li>
+</ul>
+</li>
+<li>Topic：每条发布到Kafka集群的消息都有一个类别，这个类别被称为Topic。（物理上不同Topic的消息分开存储，逻辑上一个Topic的消息虽然保存于一个或多个broker上但用户只需指定消息的Topic即可生产或消费数据而不必关心数据存于何处），类似于数据库的表名。</li>
+<li>Partition：topic中的数据分割为一个或多个partition。每个topic至少有一个partition。每个partition中的数据使用多个segment文件存储。partition中的数据是有序的，不同partition间的数据丢失了数据的顺序。如果topic有多个partition，消费数据时就不能保证数据的顺序。其实就是一个文件夹，文件夹的命名规则为topic名称-序号。</li>
+<li>Producer：生产者即数据的发布者，该角色将消息发布到Kafka的topic中。broker接收到生产者发送的消息后，broker将该消息追加到当前用于追加数据的segment文件中。生产者发送的消息，存储到一个partition中，生产者也可以指定数据存储的partition。</li>
+<li>Consumer：消费者可以从broker中读取数据。消费者可以消费多个topic中的数据。</li>
+<li>Consumer Group：简称（CG），每个Consumer属于一个特定的Consumer Group（可为每个Consumer指定group name，若不指定group name则属于默认的group）。这是kafka用来实现一个topic消息的广播（发给所有的consumer）和单播（发给任意一个consumer）的手段。一个topic可以有多个CG。topic的消息会复制-给consumer。如果需要实现广播，只要每个consumer有一个独立的CG就可以了。要实现单播只要所有的consumer在同一个CG。用CG还可以将consumer进行自由的分组而不需要多次发送消息到不同的topic。</li>
+<li>Leader：每个partition有多个副本，其中有且仅有一个作为Leader，Leader是当前负责数据的读写的partition。</li>
+<li>Follower：Follower跟随Leader，所有写请求都通过Leader路由，数据变更会广播给所有Follower，Follower与Leader保持数据同步。如果Leader失效，则从Follower中选举出一个新的Leader。当Follower与Leader挂掉、卡住或者同步太慢，leader会把这个follower从“in sync replicas”（ISR）列表中删除，重新创建一个Follower。</li>
+<li>Offset：某个或某组consumer读取某个partition的偏移量。 同一个partition不同的consumer有不同的offset。同时consumer有个组的概念，使用同一个group id，也就是同属于某个组的consumer，共用offset。</li>
+</ul>
+<h3 id="2-Kafka-集群部署"><a href="#2-Kafka-集群部署" class="headerlink" title="2. Kafka 集群部署"></a>2. Kafka 集群部署</h3><ul>
+<li>本次部署是以CDH5.16.2为基准。</li>
+<li>本次部署是在一个机器上面不是三个broker的Kafka。</li>
+</ul>
+<h4 id="2-1-部署前提"><a href="#2-1-部署前提" class="headerlink" title="2.1 部署前提"></a>2.1 部署前提</h4><ul>
+<li>需要部署Zookeeper，之前文章已经完成Zookeeper集群部署了。</li>
+</ul>
+<h4 id="2-2-部署Kfaka"><a href="#2-2-部署Kfaka" class="headerlink" title="2.2 部署Kfaka"></a>2.2 部署Kfaka</h4><p><a target="_blank" rel="noopener" href="http://archive.cloudera.com/kafka/kafka/4/kafka-2.2.1-kafka4.1.0.tar.gz">下载</a></p>
+<h5 id="2-2-1-开启Zookeeper-集群"><a href="#2-2-1-开启Zookeeper-集群" class="headerlink" title="2.2.1 开启Zookeeper 集群"></a>2.2.1 开启Zookeeper 集群</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 ~]# cd app&#x2F;</span><br><span class="line">[root@bigdatatest01 app]# cd zk1&#x2F;</span><br><span class="line">[root@bigdatatest01 zk1]# bin&#x2F;zkServer.sh start</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: &#x2F;root&#x2F;app&#x2F;zk1&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line">[root@bigdatatest01 zk1]# cd ..&#x2F;zk2&#x2F;</span><br><span class="line">[root@bigdatatest01 zk2]# bin&#x2F;zkServer.sh start</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: &#x2F;root&#x2F;app&#x2F;zk2&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line">[root@bigdatatest01 app]# zk3&#x2F;bin&#x2F;zkServer.sh start</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: &#x2F;root&#x2F;app&#x2F;zk3&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg</span><br><span class="line">Starting zookeeper ... STARTED</span><br><span class="line">[root@bigdatatest01 app]# zk1&#x2F;bin&#x2F;zkServer.sh status</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: &#x2F;root&#x2F;app&#x2F;zk1&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg</span><br><span class="line">Mode: follower</span><br><span class="line">[root@bigdatatest01 app]# zk2&#x2F;bin&#x2F;zkServer.sh status</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: &#x2F;root&#x2F;app&#x2F;zk2&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg</span><br><span class="line">Mode: leader</span><br><span class="line">[root@bigdatatest01 app]# zk3&#x2F;bin&#x2F;zkServer.sh status</span><br><span class="line">JMX enabled by default</span><br><span class="line">Using config: &#x2F;root&#x2F;app&#x2F;zk3&#x2F;bin&#x2F;..&#x2F;conf&#x2F;zoo.cfg</span><br><span class="line">Mode: follower</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2-2-下载文件并解压"><a href="#2-2-2-下载文件并解压" class="headerlink" title="2.2.2 下载文件并解压"></a>2.2.2 下载文件并解压</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 app]# cd ~&#x2F;software&#x2F;</span><br><span class="line">[root@bigdatatest01 software]# wget http:&#x2F;&#x2F;archive.cloudera.com&#x2F;kafka&#x2F;kafka&#x2F;4&#x2F;kafka-2.2.1-kafka4.1.0.tar.gz</span><br><span class="line">[root@bigdatatest01 software]# tar -xzvf kafka-2.2.1-kafka4.1.0.tar.gz -C ~&#x2F;app&#x2F;</span><br><span class="line">[root@bigdatatest01 software]# cd ~&#x2F;app&#x2F;</span><br><span class="line">[root@bigdatatest01 app]# cp -r kafka_2.11-2.2.1-kafka-4.1.0 kafka01</span><br><span class="line">[root@bigdatatest01 app]# cp -r kafka_2.11-2.2.1-kafka-4.1.0 kafka02</span><br><span class="line">[root@bigdatatest01 app]# cp -r kafka_2.11-2.2.1-kafka-4.1.0 kafka03</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-2-3-修改配置文件"><a href="#2-2-3-修改配置文件" class="headerlink" title="2.2.3 修改配置文件"></a>2.2.3 修改配置文件</h6><ul>
+<li>创建Kafka日志存储文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 ~]# cd tmp&#x2F;</span><br><span class="line">[root@bigdatatest01 tmp]# mkdir kafka01</span><br><span class="line">[root@bigdatatest01 tmp]# mkdir kafka02</span><br><span class="line">[root@bigdatatest01 tmp]# mkdir kafka03</span><br><span class="line">[root@bigdatatest01 tmp]# cd kafka01</span><br><span class="line">[root@bigdatatest01 kafka01]# pwd</span><br><span class="line">&#x2F;root&#x2F;tmp&#x2F;kafka01</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 app]# vim kafka01&#x2F;config&#x2F;server.properties </span><br><span class="line">broker.id&#x3D;0</span><br><span class="line">host.name&#x3D;localhost</span><br><span class="line">port&#x3D;9092</span><br><span class="line">log.dirs&#x3D;&#x2F;root&#x2F;tmp&#x2F;kafka01</span><br><span class="line">zookeeper.connect&#x3D;bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka</span><br><span class="line"></span><br><span class="line">[root@bigdatatest01 app]# vim kafka02&#x2F;config&#x2F;server.properties</span><br><span class="line">broker.id&#x3D;1</span><br><span class="line">host.name&#x3D;localhost</span><br><span class="line">port&#x3D;9093</span><br><span class="line">log.dirs&#x3D;&#x2F;root&#x2F;tmp&#x2F;kafka02</span><br><span class="line">zookeeper.connect&#x3D;bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka</span><br><span class="line"></span><br><span class="line">[root@bigdatatest01 app]# vim kafka03&#x2F;config&#x2F;server.properties</span><br><span class="line">broker.id&#x3D;2</span><br><span class="line">host.name&#x3D;localhost</span><br><span class="line">port&#x3D;9094</span><br><span class="line">log.dirs&#x3D;&#x2F;root&#x2F;tmp&#x2F;kafka03</span><br><span class="line">zookeeper.connect&#x3D;bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-2-4-启动Kafka"><a href="#2-2-4-启动Kafka" class="headerlink" title="2.2.4 启动Kafka"></a>2.2.4 启动Kafka</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 app]# cd kafka01</span><br><span class="line">[root@bigdatatest01 kafka01]# nohup bin&#x2F;kafka-server-start.sh config&#x2F;server.properties &amp;</span><br><span class="line">[root@bigdatatest01 kafka01]# cd ..&#x2F;kafka02</span><br><span class="line">[root@bigdatatest01 kafka02]# nohup bin&#x2F;kafka-server-start.sh config&#x2F;server.properties &amp;</span><br><span class="line">[root@bigdatatest01 kafka02]# cd ..&#x2F;kafka03&#x2F;</span><br><span class="line">[root@bigdatatest01 kafka03]# nohup bin&#x2F;kafka-server-start.sh config&#x2F;server.properties &amp;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Zookeeper 中的 Kafka 数据是否存储 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# cd ~</span><br><span class="line">[root@bigdatatest01 ~]# cd app&#x2F;zk1&#x2F;bin&#x2F;</span><br><span class="line">[root@bigdatatest01 bin]# .&#x2F;zkCli.sh </span><br><span class="line">[zk: localhost:2181(CONNECTED) 1] ls &#x2F;kafka</span><br><span class="line">[cluster, controller_epoch, controller, brokers, admin, isr_change_notification, consumers, log_dir_event_notification, latest_producer_id_block, config]</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Kafka-常用命令"><a href="#3-Kafka-常用命令" class="headerlink" title="3. Kafka 常用命令"></a>3. Kafka 常用命令</h3><h4 id="3-1-创建-Topic"><a href="#3-1-创建-Topic" class="headerlink" title="3.1 创建 Topic"></a>3.1 创建 Topic</h4><ul>
+<li>partitions ：==分区数据量和 broker 节点数没有关系==</li>
+<li>replication-factor：==副本数必须小于等于 broker 节点数==</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 ~]# cd ~</span><br><span class="line">[root@bigdatatest01 ~]# cd app&#x2F;kafka01&#x2F;bin</span><br><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --create \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183 \</span><br><span class="line">&gt; --partitions 3 \</span><br><span class="line">&gt; --replication-factor 1 \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">Error while executing topic command : Replication factor: 1 larger than available brokers: 0.</span><br><span class="line">[2021-01-27 15:46:33,919] ERROR org.apache.kafka.common.errors.InvalidReplicationFactorException: Replication factor: 1 larger than available brokers: 0.</span><br><span class="line"> (kafka.admin.TopicCommand$)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>问题出错原因：配置文件名一样，改下配置文件名并启动</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# cd ~</span><br><span class="line">[root@bigdatatest01 ~]# cd app&#x2F;kafka01&#x2F;config&#x2F;</span><br><span class="line">[root@bigdatatest01 config]# cp server.properties server-0.properties </span><br><span class="line">[root@bigdatatest01 kafka01]# nohup bin&#x2F;kafka-server-start.sh config&#x2F;server-0.properties &amp;</span><br><span class="line"></span><br><span class="line">[root@bigdatatest01 kafka01]# cd ..&#x2F;kafka02&#x2F;config&#x2F;</span><br><span class="line">[root@bigdatatest01 config]# cp server.properties server-1.properties </span><br><span class="line">[root@bigdatatest01 config]# cd ..&#x2F;</span><br><span class="line">[root@bigdatatest01 kafka02]# nohup bin&#x2F;kafka-server-start.sh config&#x2F;server-1.properties &amp;</span><br><span class="line"></span><br><span class="line">[root@bigdatatest01 kafka02]# cd ..&#x2F;kafka03&#x2F;config&#x2F;</span><br><span class="line">[root@bigdatatest01 config]# cp server.properties server-2.properties </span><br><span class="line">[root@bigdatatest01 config]# cd ..&#x2F;</span><br><span class="line">[root@bigdatatest01 kafka03]# nohup bin&#x2F;kafka-server-start.sh config&#x2F;server-2.properties &amp;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>发现继续报错</li>
+<li>命令有问题，修改命令。</li>
+<li>问题原因是因为 Kafka 保存在 ZK上面元数据目录是：/kafka，所以在 –zookeeper 这个参数后面需要添加 /kafka </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-topics.sh --create \</span><br><span class="line">--zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">--partitions 3 \</span><br><span class="line">--replication-factor 3 \</span><br><span class="line">--topic bigdata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 kafka03]# cd bin</span><br><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --create \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">&gt; --partitions 3 \</span><br><span class="line">&gt; --replication-factor 3 \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">Created topic bigdata.</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-查看创建的-Topic"><a href="#3-2-查看创建的-Topic" class="headerlink" title="3.2 查看创建的 Topic"></a>3.2 查看创建的 Topic</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-topics.sh --list \</span><br><span class="line">--zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --list \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka</span><br><span class="line">bigdata</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-查看-Topic-具体描述"><a href="#3-3-查看-Topic-具体描述" class="headerlink" title="3.3 查看 Topic 具体描述"></a>3.3 查看 Topic 具体描述</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-topics.sh --describe \</span><br><span class="line">--zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">--topic bigdata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --describe \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">Topic:bigdata	PartitionCount:3	ReplicationFactor:3	Configs:</span><br><span class="line">	Topic: bigdata	Partition: 0	Leader: 1	Replicas: 1,2,0	Isr: 1,2,0</span><br><span class="line">	Topic: bigdata	Partition: 1	Leader: 2	Replicas: 2,0,1	Isr: 2,0,1</span><br><span class="line">	Topic: bigdata	Partition: 2	Leader: 0	Replicas: 0,1,2	Isr: 0,1,2</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>描述信息详解：<ul>
+<li>第一行 ：topic的名称  分区数量 副本数量</li>
+<li>第二行开始 ： 每一行列出每一个分区的信息，是第几个分区，leader是在哪个broker上，副本是位于哪些broker上，有哪些副本处理同步状态的。</li>
+<li>Leader: 负责该分区的读写节点  另外两个同步数据的。</li>
+<li>Isr：以第一条详细信息为例（Topic: bigdata    Partition: 0    Leader: 1    Replicas: 1,2,0    Isr: 1,2,0），此条信息中 Leader 为 1，Isr 代表几个 broker 的优先级，如果 1 挂了，则 Leader 由 2 顶上，如果 2 也挂了，才可以排到 0 作为 Leader。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-4-删除-Topic"><a href="#3-4-删除-Topic" class="headerlink" title="3.4 删除 Topic"></a>3.4 删除 Topic</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-topics.sh --delete \</span><br><span class="line">--zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">--topic bigdata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --delete \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">Topic bigdata is marked for deletion.</span><br><span class="line">Note: This will have no impact if delete.topic.enable is not set to true.</span><br><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --list \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>生产上尽量不要删除 Topic，如果逼不得已需要删除，则需要删除：</li>
+<li>Linux 磁盘文件夹 （log.dirs 这个参数配置），把对应的 Topic 文件夹给删除</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 kafka01]# pwd</span><br><span class="line">&#x2F;root&#x2F;tmp&#x2F;kafka01</span><br><span class="line">[root@bigdatatest01 kafka01]# ll</span><br><span class="line">total 20</span><br><span class="line">drwxr-xr-x 2 root root 141 Jan 27 17:31 bigdata-0</span><br><span class="line">drwxr-xr-x 2 root root 141 Jan 27 17:31 bigdata-1</span><br><span class="line">drwxr-xr-x 2 root root 141 Jan 27 17:31 bigdata-2</span><br><span class="line">-rw-r--r-- 1 root root   4 Jan 27 17:28 cleaner-offset-checkpoint</span><br><span class="line">-rw-r--r-- 1 root root   4 Jan 27 17:32 log-start-offset-checkpoint</span><br><span class="line">-rw-r--r-- 1 root root  54 Jan 27 16:35 meta.properties</span><br><span class="line">-rw-r--r-- 1 root root  40 Jan 27 17:32 recovery-point-offset-checkpoint</span><br><span class="line">-rw-r--r-- 1 root root  40 Jan 27 17:32 replication-offset-checkpoint</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ZK的元数据中对应的 Topic 数据也需要删除<ul>
+<li> /kafka/brokers/topics</li>
+<li> /kafka/config/topics</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[zk: localhost:2181(CONNECTED) 0] ls &#x2F;kafka&#x2F;brokers&#x2F;topics</span><br><span class="line">[bigdata]           </span><br><span class="line">[zk: localhost:2181(CONNECTED) 1] ls &#x2F;kafka&#x2F;config&#x2F;topics</span><br><span class="line">[bigdata]</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-5-修改-Topic-信息"><a href="#3-5-修改-Topic-信息" class="headerlink" title="3.5 修改 Topic 信息"></a>3.5 修改 Topic 信息</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-topics.sh --alter \</span><br><span class="line">--zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">--partitions 4 \</span><br><span class="line">--topic bigdata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --alter \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">&gt; --partitions 4 \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">WARNING: If partitions are increased for a topic that has a key, the partition logic or ordering of the messages will be affected</span><br><span class="line">Adding partitions succeeded!</span><br><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-topics.sh --describe \</span><br><span class="line">&gt; --zookeeper  bigdatatest01:2181,bigdatatest01:2182,bigdatatest01:2183&#x2F;kafka \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">Topic:bigdata	PartitionCount:4	ReplicationFactor:3	Configs:</span><br><span class="line">	Topic: bigdata	Partition: 0	Leader: 0	Replicas: 0,1,2	Isr: 0,1,2</span><br><span class="line">	Topic: bigdata	Partition: 1	Leader: 1	Replicas: 1,2,0	Isr: 1,2,0</span><br><span class="line">	Topic: bigdata	Partition: 2	Leader: 2	Replicas: 2,0,1	Isr: 2,0,1</span><br><span class="line">	Topic: bigdata	Partition: 3	Leader: 0	Replicas: 0,2,1	Isr: 0,2,1</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-6-自动迁移数据到新的节点"><a href="#3-6-自动迁移数据到新的节点" class="headerlink" title="3.6 自动迁移数据到新的节点"></a>3.6 自动迁移数据到新的节点</h4><p><a target="_blank" rel="noopener" href="http://kafka.apache.org/22/documentation.html#basic_ops_automigrate">自动迁移数据到新的节点（官方提供）</a></p>
+<h4 id="3-7-启动一个生产者"><a href="#3-7-启动一个生产者" class="headerlink" title="3.7 启动一个生产者"></a>3.7 启动一个生产者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-console-producer.sh \</span><br><span class="line">--broker-list bigdatatest01:9092,bigdatatest01:9093,bigdatatest01:9094 \</span><br><span class="line">--topic bigdata</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-console-producer.sh \</span><br><span class="line">&gt; --broker-list bigdatatest01:9092,bigdatatest01:9093,bigdatatest01:9094 \</span><br><span class="line">&gt; --topic bigdata</span><br><span class="line">&gt;1</span><br><span class="line">&gt;2</span><br><span class="line">&gt;3</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-8-启动一个消费者"><a href="#3-8-启动一个消费者" class="headerlink" title="3.8 启动一个消费者"></a>3.8 启动一个消费者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;kafka-console-consumer.sh \</span><br><span class="line">--bootstrap-server bigdatatest01:9092,bigdatatest01:9093,bigdatatest01:9094 \</span><br><span class="line">--topic bigdata \</span><br><span class="line">--from-beginning</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdatatest01 bin]# .&#x2F;kafka-console-consumer.sh \</span><br><span class="line">&gt; --bootstrap-server bigdatatest01:9092,bigdatatest01:9093,bigdatatest01:9094 \</span><br><span class="line">&gt; --topic bigdata \</span><br><span class="line">&gt; --from-beginning</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Ray
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://rayxk94.github.io/2018/08/15/Kafka简介以及部署/" title="Kafka简介以及部署" target="_blank">https://rayxk94.github.io/2018/08/15/Kafka简介以及部署/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://rayxk94.github.io/2018/08/15/Kafka%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2018-06-05T14:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2018/08/23/Kafka--API%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Kafka--API使用以及优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/03/%E5%88%9D%E8%AF%86Scalikejdbc/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初识Scalikejdbc</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/" target="_blank">Hive--参数优化、Map、Reduce Task个数优化</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/30/Hive--HiveServer2%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%BF%9E%E6%8E%A5%E3%80%81Hive%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89UDF%E5%87%BD%E6%95%B0%E3%80%81%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-        <time datetime="2018-05-30T13:16:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/30/Hive--HiveServer2%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%BF%9E%E6%8E%A5%E3%80%81Hive%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89UDF%E5%87%BD%E6%95%B0%E3%80%81%E6%8E%92%E5%BA%8F/" target="_blank">Hive--HiveServer2 命令行代码连接、Hive常用命令、自定义UDF函数、排序</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/25/MapReduce--Shuffle%20%E8%AF%A6%E8%A7%A3%E3%80%81%E5%8E%8B%E7%BC%A9%E4%BD%BF%E7%94%A8%E3%80%81%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%81%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/" class="archive-article-date">
-        <time datetime="2018-05-25T12:46:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/25/MapReduce--Shuffle%20%E8%AF%A6%E8%A7%A3%E3%80%81%E5%8E%8B%E7%BC%A9%E4%BD%BF%E7%94%A8%E3%80%81%E6%95%B0%E6%8D%AE%E5%80%BE%E6%96%9C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E3%80%81%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98/" target="_blank">MapReduce--Shuffle 详解、压缩使用、数据倾斜解决方案、参数调优</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/23/Hadoop%20HA%20%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2018-05-23T14:12:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/23/Hadoop%20HA%20%E8%AF%A6%E8%A7%A3/" target="_blank">Hadoop HA 详解</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/20/Shell%20%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2018-05-20T13:17:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/20/Shell%20%E7%BC%96%E7%A8%8B/" target="_blank">Shell 编程</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/18/Socket%20%E7%BC%96%E7%A8%8B/" class="archive-article-date">
-        <time datetime="2018-05-18T11:22:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/18/Socket%20%E7%BC%96%E7%A8%8B/" target="_blank">Socket 编程</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/16/MapReduce--%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80Sort%E3%80%81%E5%88%86%E5%8C%BASort/" class="archive-article-date">
-        <time datetime="2018-05-16T10:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/16/MapReduce--%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%A8%E5%B1%80Sort%E3%80%81%E5%88%86%E5%8C%BASort/" target="_blank">MapReduce--自定义全局Sort、分区Sort</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/15/MapReduce--MapJoin%E3%80%81ReduceJoin%E3%80%81TopN/" class="archive-article-date">
-        <time datetime="2018-05-15T04:45:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/15/MapReduce--MapJoin%E3%80%81ReduceJoin%E3%80%81TopN/" target="_blank">MapReduce--MapJoin、ReduceJoin、TopN</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2018/05/13/Java%20SE%20IO%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2018-05-13T14:23:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2018/05/13/Java%20SE%20IO%E8%AF%A6%E8%A7%A3/" target="_blank">Java SE IO详解</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">javaSE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><a class="extend next" rel="next" href="/archives/2018/page/3/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -673,8 +580,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
