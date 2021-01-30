@@ -6,21 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://rayxk94.github.io">
-  <title>Hive--参数优化、Map、Reduce Task个数优化 | xkBigData</title>
+  <title>Tag: zookeeper | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Hive–参数优化、Map、Reduce Task个数优化 Hive中的执行引擎目前支持：MapReduce、Spark、Tez 本文设定的执行引擎为MapReduce  1 Hive–参数优化Hive官网–参数 1.1 hive.fetch.task.conversion123456789101112Default Value: minimal in Hive 0.10.0 through 0.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hive--参数优化、Map、Reduce Task个数优化">
-<meta property="og:url" content="https://rayxk94.github.io/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/index.html">
+  <meta name="description" content="xkBigData">
+<meta property="og:type" content="website">
+<meta property="og:title" content="xkBigData">
+<meta property="og:url" content="https://rayxk94.github.io/tags/zookeeper/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="Hive–参数优化、Map、Reduce Task个数优化 Hive中的执行引擎目前支持：MapReduce、Spark、Tez 本文设定的执行引擎为MapReduce  1 Hive–参数优化Hive官网–参数 1.1 hive.fetch.task.conversion123456789101112Default Value: minimal in Hive 0.10.0 through 0.">
+<meta property="og:description" content="xkBigData">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-06-05T14:14:21.000Z">
-<meta property="article:modified_time" content="2020-12-18T13:35:34.922Z">
 <meta property="article:author" content="Ray">
-<meta property="article:tag" content="hive">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
@@ -170,352 +167,65 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hive--参数优化、Map、Reduce Task个数优化" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2018/07/02/Zookeeper%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" class="archive-article-date">
+        <time datetime="2018-07-02T14:16:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-02</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2018/07/02/Zookeeper%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" target="_blank">Zookeeper简介以及部署</a>
   
-    <h1 class="article-title" itemprop="name">
-      Hive--参数优化、Map、Reduce Task个数优化
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2018-06-05T14:14:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">3.8k字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">21分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="Hive–参数优化、Map、Reduce-Task个数优化"><a href="#Hive–参数优化、Map、Reduce-Task个数优化" class="headerlink" title="Hive–参数优化、Map、Reduce Task个数优化"></a><center>Hive–参数优化、Map、Reduce Task个数优化</center></h2><ul>
-<li>Hive中的执行引擎目前支持：MapReduce、Spark、Tez</li>
-<li>本文设定的执行引擎为MapReduce</li>
-</ul>
-<h3 id="1-Hive–参数优化"><a href="#1-Hive–参数优化" class="headerlink" title="1 Hive–参数优化"></a>1 Hive–参数优化</h3><p><a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties">Hive官网–参数</a></p>
-<h4 id="1-1-hive-fetch-task-conversion"><a href="#1-1-hive-fetch-task-conversion" class="headerlink" title="1.1 hive.fetch.task.conversion"></a>1.1 hive.fetch.task.conversion</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Default Value: minimal <span class="keyword">in</span> Hive 0.10.0 through 0.13.1, more <span class="keyword">in</span> Hive 0.14.0 and later</span><br><span class="line">Added In: Hive 0.10.0 with HIVE-2925; default changed <span class="keyword">in</span> Hive 0.14.0 with HIVE-7397</span><br><span class="line">Some select queries can be converted to a single FETCH task, minimizing latency. Currently the query should be single sourced not having any subquery and should not have any aggregations or distincts (<span class="built_in">which</span> incur RS – ReduceSinkOperator, requiring a MapReduce task), lateral views and joins.</span><br><span class="line"></span><br><span class="line">Supported values are none, minimal and more.</span><br><span class="line"></span><br><span class="line">0. none:  Disable hive.fetch.task.conversion (value added <span class="keyword">in</span> Hive 0.14.0 with HIVE-8389)</span><br><span class="line">1. minimal:  SELECT *, FILTER on partition columns (WHERE and HAVING clauses), LIMIT only</span><br><span class="line">2. more:  SELECT, FILTER, LIMIT only (including TABLESAMPLE, virtual columns)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;more&quot;</span> can take any kind of expressions <span class="keyword">in</span> the SELECT clause, including UDFs.</span><br><span class="line">(UDTFs and lateral views are not yet supported – see HIVE-5718.)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>建议使用more模式，增加SQL执行速度</li>
-</ul>
-<h5 id="1-1-1-none模式"><a href="#1-1-1-none模式" class="headerlink" title="1.1.1 none模式"></a>1.1.1 none模式</h5><ul>
-<li>none:禁用这个参数，SQL无论什么样子都会走MapReduce</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.fetch.task.conversion;</span><br><span class="line">hive.fetch.task.conversion=none</span><br><span class="line"></span><br><span class="line">hive&gt; select * from bigdata.emp;</span><br><span class="line">Query ID = work_20201216094245_d44ea4d3-0a5b-4302-93dd-4ef9a5252517</span><br><span class="line">Total <span class="built_in">jobs</span> = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks is <span class="built_in">set</span> to 0 since there<span class="string">&#x27;s no reduce operator</span></span><br><span class="line"><span class="string">Starting Job = job_1608016084001_0020, Tracking URL = http://bigdatatest02:8088/proxy/application_1608016084001_0020/</span></span><br><span class="line"><span class="string">Kill Command = /opt/cloudera/parcels/CDH/lib/hadoop/bin/hadoop job  -kill job_1608016084001_0020</span></span><br><span class="line"><span class="string">Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0</span></span><br><span class="line"><span class="string">2020-12-16 09:43:02,342 Stage-1 map = 0%,  reduce = 0%</span></span><br><span class="line"><span class="string">2020-12-16 09:43:10,641 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 2.28 sec</span></span><br><span class="line"><span class="string">MapReduce Total cumulative CPU time: 2 seconds 280 msec</span></span><br><span class="line"><span class="string">Ended Job = job_1608016084001_0020</span></span><br><span class="line"><span class="string">MapReduce Jobs Launched: </span></span><br><span class="line"><span class="string">Stage-Stage-1: Map: 1   Cumulative CPU: 2.28 sec   HDFS Read: 4413 HDFS Write: 451 HDFS EC Read: 0 SUCCESS</span></span><br><span class="line"><span class="string">Total MapReduce CPU Time Spent: 2 seconds 280 msec</span></span><br><span class="line"><span class="string">OK</span></span><br><span class="line"><span class="string">7369	SMITH	20</span></span><br><span class="line"><span class="string">7499	ALLEN	30</span></span><br><span class="line"><span class="string">7521	WARD	30</span></span><br><span class="line"><span class="string">7566	JONES	20</span></span><br><span class="line"><span class="string">7654	MARTIN	30</span></span><br><span class="line"><span class="string">7698	BLAKE	30</span></span><br><span class="line"><span class="string">7782	CLARK	10</span></span><br><span class="line"><span class="string">7788	SCOTT	20</span></span><br><span class="line"><span class="string">7839	KING	10</span></span><br><span class="line"><span class="string">7844	TURNER	30</span></span><br><span class="line"><span class="string">7876	ADAMS	20</span></span><br><span class="line"><span class="string">7900	JAMES	30</span></span><br><span class="line"><span class="string">7902	FORD	20</span></span><br><span class="line"><span class="string">7934	MILLER	10</span></span><br><span class="line"><span class="string">Time taken: 27.002 seconds, Fetched: 14 row(s)</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="1-1-2-minimal模式"><a href="#1-1-2-minimal模式" class="headerlink" title="1.1.2 minimal模式"></a>1.1.2 minimal模式</h5><ul>
-<li>minimal:正常扫描全表，不会触发MapReduce,如果进行FILTER会触发MapRedcue</li>
-<li>分区表的分区字段FILTER不会触发MapReduce</li>
-<li>正常表</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.fetch.task.conversion;</span><br><span class="line">hive.fetch.task.conversion=minimal</span><br><span class="line"></span><br><span class="line">hive&gt; select * from bigdata.emp <span class="built_in">where</span> dept_no = <span class="string">&#x27;20&#x27;</span>;</span><br><span class="line">Query ID = work_20201216094750_3df492b8-bbd8-4e41-b378-bba5fe1b3dc7</span><br><span class="line">Total <span class="built_in">jobs</span> = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks is <span class="built_in">set</span> to 0 since there<span class="string">&#x27;s no reduce operator</span></span><br><span class="line"><span class="string">Starting Job = job_1608016084001_0022, Tracking URL = http://bigdatatest02:8088/proxy/application_1608016084001_0022/</span></span><br><span class="line"><span class="string">Kill Command = /opt/cloudera/parcels/CDH/lib/hadoop/bin/hadoop job  -kill job_1608016084001_0022</span></span><br><span class="line"><span class="string">Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 0</span></span><br><span class="line"><span class="string">2020-12-16 09:48:07,799 Stage-1 map = 0%,  reduce = 0%</span></span><br><span class="line"><span class="string">2020-12-16 09:48:17,119 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 4.33 sec</span></span><br><span class="line"><span class="string">MapReduce Total cumulative CPU time: 4 seconds 330 msec</span></span><br><span class="line"><span class="string">Ended Job = job_1608016084001_0022</span></span><br><span class="line"><span class="string">MapReduce Jobs Launched: </span></span><br><span class="line"><span class="string">Stage-Stage-1: Map: 1   Cumulative CPU: 4.33 sec   HDFS Read: 4952 HDFS Write: 216 HDFS EC Read: 0 SUCCESS</span></span><br><span class="line"><span class="string">Total MapReduce CPU Time Spent: 4 seconds 330 msec</span></span><br><span class="line"><span class="string">OK</span></span><br><span class="line"><span class="string">7369	SMITH	20</span></span><br><span class="line"><span class="string">7566	JONES	20</span></span><br><span class="line"><span class="string">7788	SCOTT	20</span></span><br><span class="line"><span class="string">7876	ADAMS	20</span></span><br><span class="line"><span class="string">7902	FORD	20</span></span><br><span class="line"><span class="string">Time taken: 27.728 seconds, Fetched: 5 row(s)</span></span><br><span class="line"><span class="string">hive&gt; select * from bigdata.emp;</span></span><br><span class="line"><span class="string">OK</span></span><br><span class="line"><span class="string">7369	SMITH	20</span></span><br><span class="line"><span class="string">7499	ALLEN	30</span></span><br><span class="line"><span class="string">7521	WARD	30</span></span><br><span class="line"><span class="string">7566	JONES	20</span></span><br><span class="line"><span class="string">7654	MARTIN	30</span></span><br><span class="line"><span class="string">7698	BLAKE	30</span></span><br><span class="line"><span class="string">7782	CLARK	10</span></span><br><span class="line"><span class="string">7788	SCOTT	20</span></span><br><span class="line"><span class="string">7839	KING	10</span></span><br><span class="line"><span class="string">7844	TURNER	30</span></span><br><span class="line"><span class="string">7876	ADAMS	20</span></span><br><span class="line"><span class="string">7900	JAMES	30</span></span><br><span class="line"><span class="string">7902	FORD	20</span></span><br><span class="line"><span class="string">7934	MILLER	10</span></span><br><span class="line"><span class="string">Time taken: 0.144 seconds, Fetched: 14 row(s)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>分区表</li>
-<li>创建分区表并加载数据</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE IF NOT EXISTS bigdata.emp_partition(</span><br><span class="line">emp_no String,</span><br><span class="line">emp_name String</span><br><span class="line">)</span><br><span class="line">PARTITIONED BY (dept_no String)</span><br><span class="line">ROW FORMAT </span><br><span class="line">DELIMITED FIELDS TERMINATED BY <span class="string">&#x27;\t&#x27;</span></span><br><span class="line">LINES TERMINATED BY <span class="string">&#x27;\n&#x27;</span></span><br><span class="line">STORED AS TEXTFILE;</span><br><span class="line">-- 开启动态分区</span><br><span class="line"><span class="built_in">set</span> hive.exec.dynamic.partition=<span class="literal">true</span>; </span><br><span class="line">-- 这个属性默认是strict，即限制模式，strict是避免全分区字段是动态的，必须至少一个分区字段是指定有值即静态的，且必</span><br><span class="line">-- 须放在最前面。设置为nonstrict之后所有的分区都可以是动态的了。</span><br><span class="line"><span class="built_in">set</span> hive.exec.dynamic.partition.mode=nonstrict;</span><br><span class="line">hive&gt; load data <span class="built_in">local</span> inpath <span class="string">&#x27;/home/work/data/hive/emp.txt&#x27;</span> overwrite into table bigdata.emp_partition;</span><br><span class="line">hive&gt; select * from bigdata.emp_partition;</span><br><span class="line">OK</span><br><span class="line">7782	CLARK	10</span><br><span class="line">7839	KING	10</span><br><span class="line">7934	MILLER	10</span><br><span class="line">7369	SMITH	20</span><br><span class="line">7566	JONES	20</span><br><span class="line">7788	SCOTT	20</span><br><span class="line">7876	ADAMS	20</span><br><span class="line">7902	FORD	20</span><br><span class="line">7499	ALLEN	30</span><br><span class="line">7521	WARD	30</span><br><span class="line">7654	MARTIN	30</span><br><span class="line">7698	BLAKE	30</span><br><span class="line">7844	TURNER	30</span><br><span class="line">7900	JAMES	30</span><br><span class="line">Time taken: 0.204 seconds, Fetched: 14 row(s)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>分区表测试分区字段FILTER是否走了MapReduce</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.fetch.task.conversion;</span><br><span class="line">hive.fetch.task.conversion=minimal</span><br><span class="line">hive&gt; select * from bigdata.emp_partition <span class="built_in">where</span> dept_no = <span class="string">&#x27;20&#x27;</span>;</span><br><span class="line">OK</span><br><span class="line">7369	SMITH	20</span><br><span class="line">7566	JONES	20</span><br><span class="line">7788	SCOTT	20</span><br><span class="line">7876	ADAMS	20</span><br><span class="line">7902	FORD	20</span><br><span class="line">Time taken: 0.172 seconds, Fetched: 5 row(s)</span><br></pre></td></tr></table></figure>
-
-<h5 id="1-1-3-more-模式"><a href="#1-1-3-more-模式" class="headerlink" title="1.1.3 more 模式"></a>1.1.3 more 模式</h5><ul>
-<li>在more模式下面，无论是否是分区表FILTER都不会走MapReduce</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.fetch.task.conversion=more;</span><br><span class="line">hive&gt; select * from bigdata.emp <span class="built_in">where</span> dept_no = <span class="string">&#x27;20&#x27;</span>;</span><br><span class="line">OK</span><br><span class="line">7369	SMITH	20</span><br><span class="line">7566	JONES	20</span><br><span class="line">7788	SCOTT	20</span><br><span class="line">7876	ADAMS	20</span><br><span class="line">7902	FORD	20</span><br><span class="line">Time taken: 0.153 seconds, Fetched: 5 row(s)</span><br><span class="line">hive&gt; select * from bigdata.emp_partition <span class="built_in">where</span> dept_no = <span class="string">&#x27;20&#x27;</span>;</span><br><span class="line">OK</span><br><span class="line">7369	SMITH	20</span><br><span class="line">7566	JONES	20</span><br><span class="line">7788	SCOTT	20</span><br><span class="line">7876	ADAMS	20</span><br><span class="line">7902	FORD	20</span><br><span class="line">Time taken: 0.224 seconds, Fetched: 5 row(s)</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-2-hive-exec-mode-local-auto"><a href="#1-2-hive-exec-mode-local-auto" class="headerlink" title="1.2 hive.exec.mode.local.auto"></a>1.2 hive.exec.mode.local.auto</h4><ul>
-<li>默认的是false,即关闭本地模式</li>
-<li>线上建议关闭本地模式,开发或者测试建议开启本地模式</li>
-<li>有时候在数据量比较小的时候，或者本地测试的，没有必要把作业提交到Yarn再走MapReduce，直接使用本地模式就好了，可以增加查询速度，加快开发的速度</li>
-<li>在开启本地模式之后，还需要设定以下几个参数</li>
-<li>hive.exec.mode.local.auto.inputbytes.max：在本地模式下可以处理的最大的数据量，默认是128M</li>
-<li>hive.exec.mode.local.auto.tasks.max：在本地模式下，最大的task数量，默认是4</li>
-<li>hive.exec.mode.local.auto.input.files.max：在本地模式下，最大的文件数，默认是4</li>
-<li>下面就以count(1) 来对比是否开启本地模式的查询速度</li>
-<li>没有打开本地模式</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.exec.mode.local.auto;</span><br><span class="line">hive.exec.mode.local.auto=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">hive&gt; select count(1) from bigdata.emp;</span><br><span class="line">Query ID = work_20201216102827_ff3113d0-5c91-4a4f-a330-f9ce782d0e62</span><br><span class="line">Total <span class="built_in">jobs</span> = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks determined at compile time: 1</span><br><span class="line">In order to change the average load <span class="keyword">for</span> a reducer (<span class="keyword">in</span> bytes):</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.bytes.per.reducer=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">limit</span> the maximum number of reducers:</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.max=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">set</span> a constant number of reducers:</span><br><span class="line">  <span class="built_in">set</span> mapreduce.job.reduces=&lt;number&gt;</span><br><span class="line">Starting Job = job_1608016084001_0024, Tracking URL = http://bigdatatest02:8088/proxy/application_1608016084001_0024/</span><br><span class="line">Kill Command = /opt/cloudera/parcels/CDH/lib/hadoop/bin/hadoop job  -<span class="built_in">kill</span> job_1608016084001_0024</span><br><span class="line">Hadoop job information <span class="keyword">for</span> Stage-1: number of mappers: 1; number of reducers: 1</span><br><span class="line">2020-12-16 10:28:43,829 Stage-1 map = 0%,  reduce = 0%</span><br><span class="line">2020-12-16 10:28:54,149 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.28 sec</span><br><span class="line">2020-12-16 10:29:00,337 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 6.24 sec</span><br><span class="line">MapReduce Total cumulative CPU time: 6 seconds 240 msec</span><br><span class="line">Ended Job = job_1608016084001_0024</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Stage-Stage-1: Map: 1  Reduce: 1   Cumulative CPU: 6.24 sec   HDFS Read: 8334 HDFS Write: 102 HDFS EC Read: 0 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 6 seconds 240 msec</span><br><span class="line">OK</span><br><span class="line">14</span><br><span class="line">Time taken: 34.122 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>开启本地模式</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.exec.mode.local.auto=<span class="literal">true</span>;</span><br><span class="line">hive&gt; <span class="built_in">set</span> hive.exec.mode.local.auto;</span><br><span class="line">hive.exec.mode.local.auto=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">hive&gt; select count(1) from bigdata.emp;</span><br><span class="line">Automatically selecting <span class="built_in">local</span> only mode <span class="keyword">for</span> query</span><br><span class="line">Query ID = work_20201216103030_6c88b989-8348-4521-aa41-c23dee70931e</span><br><span class="line">Total <span class="built_in">jobs</span> = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks determined at compile time: 1</span><br><span class="line">In order to change the average load <span class="keyword">for</span> a reducer (<span class="keyword">in</span> bytes):</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.bytes.per.reducer=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">limit</span> the maximum number of reducers:</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.max=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">set</span> a constant number of reducers:</span><br><span class="line">  <span class="built_in">set</span> mapreduce.job.reduces=&lt;number&gt;</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalDistributedCacheManager: Creating symlink: /tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608085830754/3.0.0-cdh6.2.0-mr-framework.tar.gz &lt;- /home/work/mr-framework</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalDistributedCacheManager: Localized hdfs://nameservice1/user/yarn/mapreduce/mr-framework/3.0.0-cdh6.2.0-mr-framework.tar.gz as file:/tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608085830754/3.0.0-cdh6.2.0-mr-framework.tar.gz</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalDistributedCacheManager: Creating symlink: /tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608085830755/libjars &lt;- /home/work/libjars/*</span><br><span class="line">20/12/16 10:30:33 WARN mapred.LocalDistributedCacheManager: Failed to create symlink: /tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608085830755/libjars &lt;- /home/work/libjars/*</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalDistributedCacheManager: Localized file:/tmp/hadoop/mapred/staging/work558758749/.staging/job_local558758749_0001/libjars as file:/tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608085830755/libjars</span><br><span class="line">Job running in-process (<span class="built_in">local</span> Hadoop)</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: OutputCommitter <span class="built_in">set</span> <span class="keyword">in</span> config org.apache.hadoop.hive.ql.io.HiveFileFormatUtils<span class="variable">$NullOutputCommitter</span></span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.hive.ql.io.HiveFileFormatUtils<span class="variable">$NullOutputCommitter</span></span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: Waiting <span class="keyword">for</span> map tasks</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: Starting task: attempt_local558758749_0001_m_000000_0</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: </span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: hdfs://nameservice1/user/hive/warehouse/bigdata.db/emp/emp.txt:0+195</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: Finishing task: attempt_local558758749_0001_m_000000_0</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: map task executor complete.</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: Waiting <span class="keyword">for</span> reduce tasks</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: Starting task: attempt_local558758749_0001_r_000000_0</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: 1 / 1 copied.</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: 1 / 1 copied.</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: reduce &gt; reduce</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: Finishing task: attempt_local558758749_0001_r_000000_0</span><br><span class="line">20/12/16 10:30:33 INFO mapred.LocalJobRunner: reduce task executor complete.</span><br><span class="line">2020-12-16 10:30:34,084 Stage-1 map = 100%,  reduce = 100%</span><br><span class="line">Ended Job = job_local558758749_0001</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Stage-Stage-1:  HDFS Read: 464136294 HDFS Write: 848647374 HDFS EC Read: 0 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 0 msec</span><br><span class="line">OK</span><br><span class="line">14</span><br><span class="line">Time taken: 3.85 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-3-hive-mapred-mode"><a href="#1-3-hive-mapred-mode" class="headerlink" title="1.3 hive.mapred.mode"></a>1.3 hive.mapred.mode</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Default Value: </span><br><span class="line">Hive 0.x: nonstrict</span><br><span class="line">Hive 1.x: nonstrict</span><br><span class="line">Hive 2.x: strict (HIVE-12413)</span><br><span class="line">Added In: Hive 0.3.0</span><br><span class="line">The mode <span class="keyword">in</span> <span class="built_in">which</span> the Hive operations are being performed. In strict mode, some risky queries are not allowed to run. For example, full table scans are prevented (see HIVE-10454) and ORDER BY requires a LIMIT clause.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>在非严格模式下，SQL不会增加任何显示</li>
-<li>在严格模式下，Order By后面要增加Limit,分区表FILTER必须要加上分区字段，无法使用笛卡尔积语法</li>
-<li>绝大部分场景建议使用严格模式，可以有效保护数据平台，有一些特殊的场景可以开启非严格模式</li>
-<li>以下在非严格模式下面测试</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.mapred.mode;</span><br><span class="line">hive.mapred.mode=nonstrict</span><br><span class="line">-- 正常表使用Order by</span><br><span class="line">hive&gt; select * from bigdata.emp order by emp_no;</span><br><span class="line">Automatically selecting <span class="built_in">local</span> only mode <span class="keyword">for</span> query</span><br><span class="line">Query ID = work_20201216104456_5f7b9b48-11d8-4268-9101-0e93e77d9e28</span><br><span class="line">Total <span class="built_in">jobs</span> = 1</span><br><span class="line">Launching Job 1 out of 1</span><br><span class="line">Number of reduce tasks determined at compile time: 1</span><br><span class="line">In order to change the average load <span class="keyword">for</span> a reducer (<span class="keyword">in</span> bytes):</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.bytes.per.reducer=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">limit</span> the maximum number of reducers:</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.max=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">set</span> a constant number of reducers:</span><br><span class="line">  <span class="built_in">set</span> mapreduce.job.reduces=&lt;number&gt;</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalDistributedCacheManager: Creating symlink: /tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608086696446/3.0.0-cdh6.2.0-mr-framework.tar.gz &lt;- /home/work/mr-framework</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalDistributedCacheManager: Localized hdfs://nameservice1/user/yarn/mapreduce/mr-framework/3.0.0-cdh6.2.0-mr-framework.tar.gz as file:/tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608086696446/3.0.0-cdh6.2.0-mr-framework.tar.gz</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalDistributedCacheManager: Creating symlink: /tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608086696447/libjars &lt;- /home/work/libjars/*</span><br><span class="line">20/12/16 10:44:58 WARN mapred.LocalDistributedCacheManager: Failed to create symlink: /tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608086696447/libjars &lt;- /home/work/libjars/*</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalDistributedCacheManager: Localized file:/tmp/hadoop/mapred/staging/work1994370039/.staging/job_local1994370039_0002/libjars as file:/tmp/hadoop-work/mapred/<span class="built_in">local</span>/1608086696447/libjars</span><br><span class="line">Job running in-process (<span class="built_in">local</span> Hadoop)</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: OutputCommitter <span class="built_in">set</span> <span class="keyword">in</span> config org.apache.hadoop.hive.ql.io.HiveFileFormatUtils<span class="variable">$NullOutputCommitter</span></span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.hive.ql.io.HiveFileFormatUtils<span class="variable">$NullOutputCommitter</span></span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: Waiting <span class="keyword">for</span> map tasks</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: Starting task: attempt_local1994370039_0002_m_000000_0</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: </span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: hdfs://nameservice1/user/hive/warehouse/bigdata.db/emp/emp.txt:0+195</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: Finishing task: attempt_local1994370039_0002_m_000000_0</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: map task executor complete.</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: Waiting <span class="keyword">for</span> reduce tasks</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: Starting task: attempt_local1994370039_0002_r_000000_0</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: 1 / 1 copied.</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: 1 / 1 copied.</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: reduce &gt; reduce</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: Finishing task: attempt_local1994370039_0002_r_000000_0</span><br><span class="line">20/12/16 10:44:58 INFO mapred.LocalJobRunner: reduce task executor complete.</span><br><span class="line">2020-12-16 10:44:59,685 Stage-1 map = 100%,  reduce = 100%</span><br><span class="line">Ended Job = job_local1994370039_0002</span><br><span class="line">MapReduce Jobs Launched: </span><br><span class="line">Stage-Stage-1:  HDFS Read: 928267738 HDFS Write: 848647927 HDFS EC Read: 0 SUCCESS</span><br><span class="line">Total MapReduce CPU Time Spent: 0 msec</span><br><span class="line">OK</span><br><span class="line">7369	SMITH	20</span><br><span class="line">7499	ALLEN	30</span><br><span class="line">7521	WARD	30</span><br><span class="line">7566	JONES	20</span><br><span class="line">7654	MARTIN	30</span><br><span class="line">7698	BLAKE	30</span><br><span class="line">7782	CLARK	10</span><br><span class="line">7788	SCOTT	20</span><br><span class="line">7839	KING	10</span><br><span class="line">7844	TURNER	30</span><br><span class="line">7876	ADAMS	20</span><br><span class="line">7900	JAMES	30</span><br><span class="line">7902	FORD	20</span><br><span class="line">7934	MILLER	10</span><br><span class="line">Time taken: 3.617 seconds, Fetched: 14 row(s)</span><br><span class="line">-- 分区表不使用分区字段</span><br><span class="line">hive&gt; select * from bigdata.emp_partition <span class="built_in">where</span> emp_no=<span class="string">&#x27;7782&#x27;</span>;</span><br><span class="line">OK</span><br><span class="line">7782	CLARK	10</span><br><span class="line">Time taken: 0.154 seconds, Fetched: 1 row(s)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>下面在严格模式下面测试</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> hive.mapred.mode;</span><br><span class="line">hive.mapred.mode=strict</span><br><span class="line">-- 正常表使用orderby </span><br><span class="line">hive&gt; select * from bigdata.emp order by emp_no;</span><br><span class="line">FAILED: SemanticException 1:35 Order by-s without <span class="built_in">limit</span> are disabled <span class="keyword">for</span> safety reasons. If you know what you are doing, please <span class="built_in">set</span> hive.strict.checks.orderby.no.limit to <span class="literal">false</span> and make sure that hive.mapred.mode is not <span class="built_in">set</span> to <span class="string">&#x27;strict&#x27;</span> to proceed. Note that you may get errors or incorrect results <span class="keyword">if</span> you make a mistake <span class="keyword">while</span> using some of the unsafe features.. Error encountered near token <span class="string">&#x27;emp_no&#x27;</span></span><br><span class="line">-- 分区表FILTER不使用分区字段</span><br><span class="line">hive&gt; select * from bigdata.emp_partition <span class="built_in">where</span> emp_no=<span class="string">&#x27;20&#x27;</span>;</span><br><span class="line">FAILED: SemanticException [Error 10056]: Queries against partitioned tables without a partition filter are disabled <span class="keyword">for</span> safety reasons. If you know what you are doing, please <span class="built_in">set</span> hive.strict.checks.no.partition.filter to <span class="literal">false</span> and make sure that hive.mapred.mode is not <span class="built_in">set</span> to <span class="string">&#x27;strict&#x27;</span> to proceed. Note that you may get errors or incorrect results <span class="keyword">if</span> you make a mistake <span class="keyword">while</span> using some of the unsafe features. No partition predicate <span class="keyword">for</span> Alias <span class="string">&quot;emp_partition&quot;</span> Table <span class="string">&quot;emp_partition&quot;</span></span><br><span class="line">-- 笛卡尔积测试</span><br><span class="line">hive&gt; select * from bigdata.emp a join bigdata.emp b;</span><br><span class="line">FAILED: SemanticException Cartesian products are disabled <span class="keyword">for</span> safety reasons. If you know what you are doing, please <span class="built_in">set</span> hive.strict.checks.cartesian.product to <span class="literal">false</span> and make sure that hive.mapred.mode is not <span class="built_in">set</span> to <span class="string">&#x27;strict&#x27;</span> to proceed. Note that you may get errors or incorrect results <span class="keyword">if</span> you make a mistake <span class="keyword">while</span> using some of the unsafe features.</span><br></pre></td></tr></table></figure>
-
-<h4 id="1-4-hive-mapred-reduce-tasks-speculative-execution"><a href="#1-4-hive-mapred-reduce-tasks-speculative-execution" class="headerlink" title="1.4 hive.mapred.reduce.tasks.speculative.execution"></a>1.4 hive.mapred.reduce.tasks.speculative.execution</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Default Value: <span class="literal">true</span></span><br><span class="line">Added In: Hive 0.5.0</span><br><span class="line">Whether speculative execution <span class="keyword">for</span> reducers should be turned on.</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>推测式执行，默认是true,开启推测式执行，如果出现长尾作业，会在另一台机器上面重新开启一个Task执行，两个Task哪个先执行完就用哪个结果</li>
-</ul>
-<h4 id="1-5-hive-optimize-cp"><a href="#1-5-hive-optimize-cp" class="headerlink" title="1.5 hive.optimize.cp"></a>1.5 hive.optimize.cp</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Default Value: <span class="literal">true</span></span><br><span class="line">Added In: Hive 0.4.0 with HIVE-626</span><br><span class="line">Removed In: Hive 0.13.0 with HIVE-4113</span><br><span class="line">Whether to <span class="built_in">enable</span> column pruner. (This configuration property was removed <span class="keyword">in</span> release 0.13.0.)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>列裁剪，默认是开启</li>
-<li>在select 查询的时候尽量只拿取需要的字段，而不要select *，拿取所有的字段，这样可以有效的减少IO</li>
-<li>对应的还有分区裁剪，如果是一个分区表，过滤的时候优先过滤分区字段，可以减少扫描的文件，以此来减少IO操作</li>
-</ul>
-<h4 id="1-6-hive-optimize-ppd"><a href="#1-6-hive-optimize-ppd" class="headerlink" title="1.6 hive.optimize.ppd"></a>1.6 hive.optimize.ppd</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Default Value: <span class="literal">true</span></span><br><span class="line">Added In: Hive 0.4.0 with HIVE-279, default changed to <span class="literal">true</span> <span class="keyword">in</span> Hive 0.4.0 with HIVE-626</span><br><span class="line">Whether to <span class="built_in">enable</span> predicate pushdown (PPD). </span><br><span class="line"></span><br><span class="line">Note: Turn on Configuration Properties<span class="comment">#hive.optimize.index.filter as well to use file format specific indexes with PPD.</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>谓词下压，默认是开启，如果两个表做Join操作的时候，优先先把两个表的过滤条件筛选一部分数据，以此来减少scan的数据量，来减少IO</li>
-</ul>
-<h3 id="2-MapReduce-阶段Map、Reduce-Task个数优化"><a href="#2-MapReduce-阶段Map、Reduce-Task个数优化" class="headerlink" title="2 MapReduce 阶段Map、Reduce Task个数优化"></a>2 MapReduce 阶段Map、Reduce Task个数优化</h3><h4 id="2-1-Map-Task-个数优化"><a href="#2-1-Map-Task-个数优化" class="headerlink" title="2.1 Map Task 个数优化"></a>2.1 Map Task 个数优化</h4><ul>
-<li>Map Task 个数一般不需要优化，查看MapReduce Inputformat 找到 Map Task 是由这个参数决定的mapreduce.input.fileinputformat.split.maxsize</li>
-<li>mapreduce.input.fileinputformat.split.maxsize指的是InputFormat切割文件的时候最大的size，当这个参数越大，Map阶段的Task数量越小</li>
-<li>查看mapreduce.input.fileinputformat.split.maxsize默认大小</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hive&gt; <span class="built_in">set</span> mapreduce.input.fileinputformat.split.maxsize;</span><br><span class="line">mapreduce.input.fileinputformat.split.maxsize=256000000</span><br></pre></td></tr></table></figure>
-
-<h4 id="2-2-Reduce-Task-个数优化"><a href="#2-2-Reduce-Task-个数优化" class="headerlink" title="2.2 Reduce Task 个数优化"></a>2.2 Reduce Task 个数优化</h4><ul>
-<li>查看Hive 控制台日志输出，发现这些参数和Reduce Task个数有关系</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Number of reduce tasks determined at compile time: 1</span><br><span class="line">In order to change the average load <span class="keyword">for</span> a reducer (<span class="keyword">in</span> bytes):</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.bytes.per.reducer=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">limit</span> the maximum number of reducers:</span><br><span class="line">  <span class="built_in">set</span> hive.exec.reducers.max=&lt;number&gt;</span><br><span class="line">In order to <span class="built_in">set</span> a constant number of reducers:</span><br><span class="line">  <span class="built_in">set</span> mapreduce.job.reduces=&lt;number&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看源代码计算Reduce 个数是在org.apache.hadoop.hive.ql.exec.mr.MapRedTask这个类里面 setNumberOfReducers 函数计算的</li>
-<li>首先寻找mapred.reduce.tasks 是否设定Reduce Task 个数，如果设定会读取mapred.reduce.tasks参数设定的值作为最终的Reduce Task 的个数，mapred.reduce.tasks默认是-1，通过计算的到Reduce个数</li>
-<li>计算Reduce 公式</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> reducers = Utilities.estimateNumberOfReducers(conf, inputSummary, work.getMapWork(),</span><br><span class="line">    work.isFinalMapRed())&#123;</span><br><span class="line">	<span class="keyword">long</span> bytesPerReducer = conf.getLongVar(HiveConf.ConfVars.BYTESPERREDUCER);</span><br><span class="line">	<span class="keyword">int</span> maxReducers = conf.getIntVar(HiveConf.ConfVars.MAXREDUCERS);</span><br><span class="line">	estimateReducers(totalInputFileSize, bytesPerReducer, maxReducers, powersOfTwo)&#123;</span><br><span class="line">		<span class="comment">// bytesPerReducer 数据就是通过这个参数设定的 hive.exec.reducers.bytes.per.reducer 默认是256000000L</span></span><br><span class="line">		<span class="comment">// maxReducers 是通过hive.exec.reducers.max这个参数设定的，默认是1009</span></span><br><span class="line">		<span class="comment">// bytes 是这批数据的总的字节大小</span></span><br><span class="line">		<span class="keyword">double</span> bytes = Math.max(totalInputFileSize, bytesPerReducer);</span><br><span class="line">		<span class="keyword">int</span> reducers = (<span class="keyword">int</span>) Math.ceil(bytes / bytesPerReducer);</span><br><span class="line">		reducers = Math.max(<span class="number">1</span>, reducers);</span><br><span class="line">		reducers = Math.min(maxReducers, reducers);</span><br><span class="line">		<span class="comment">// 总的来说，可以把Redcue Task 计算公式 = min((总的数据字节大小/hive.exec.reducers.bytes.per.reducer参数设定的数据),hive.exec.reducers.max设定的数据大小)</span></span><br><span class="line">	&#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>所以需要修改Reduce Task个数，需要修改hive.exec.reducers.bytes.per.reducer即可，如果需要增加Reduce Task个数，则减少hive.exec.reducers.bytes.per.reducer大小</li>
-</ul>
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/alipay.jpg">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="/img/weixin.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          Ray
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://rayxk94.github.io/2018/06/05/Hive--参数优化、Map、Reduce Task个数优化/" title="Hive--参数优化、Map、Reduce Task个数优化" target="_blank">https://rayxk94.github.io/2018/06/05/Hive--参数优化、Map、Reduce Task个数优化/</a>
-        </li>
-        
-        <li>
-          <strong>版权声明： </strong>
+        <div class="article-info info-on-right">
           
-          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
-        </li>
-        
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hive</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
         		</li>
       		
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a> -->
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://rayxk94.github.io/2018/06/05/Hive--%E5%8F%82%E6%95%B0%E4%BC%98%E5%8C%96%E3%80%81Map%E3%80%81Reduce%20Task%E4%B8%AA%E6%95%B0%E4%BC%98%E5%8C%96/" alt="微信分享二维码"> -->
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-    
-    <div class="clearfix"></div>
-  </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
-  
-    <a href="/2018/06/10/Hive--%E5%87%BD%E6%95%B0%E3%80%81%E7%AA%97%E5%8F%A3%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hive--函数、窗口函数
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/30/Hive--HiveServer2%20%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BB%A3%E7%A0%81%E8%BF%9E%E6%8E%A5%E3%80%81Hive%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89UDF%E5%87%BD%E6%95%B0%E3%80%81%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hive--HiveServer2 命令行代码连接、Hive常用命令、自定义UDF函数、排序</div>
-      <i class="icon-circle-right"></i>
-    </a>
+    </div></section>
   
-</nav>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -556,9 +266,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
