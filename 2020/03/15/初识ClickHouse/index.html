@@ -6,18 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://rayxk94.github.io">
-  <title>Tag: kafka | xkBigData</title>
+  <title>初识ClickHouse | xkBigData</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="xkBigData">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xkBigData">
-<meta property="og:url" content="https://rayxk94.github.io/tags/kafka/index.html">
+  <meta name="description" content="初识ClickHouseClickHouse 官网 1. ClickHouse 介绍 ClickHouse 是一个采用列式存储，用于联机分析（OLAP）的数据库管理系统（DBMS）。 优点： 列式存储 实时的数据更新 支持近似计算 支持数据复制和数据完整性   缺点： 没有完整的事务支持 缺少高频率、低延迟的修改或删除已存在数据的能力，仅能用于批量删除或修改数据    2. 部署 ClickHou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识ClickHouse">
+<meta property="og:url" content="https://rayxk94.github.io/2020/03/15/%E5%88%9D%E8%AF%86ClickHouse/index.html">
 <meta property="og:site_name" content="xkBigData">
-<meta property="og:description" content="xkBigData">
+<meta property="og:description" content="初识ClickHouseClickHouse 官网 1. ClickHouse 介绍 ClickHouse 是一个采用列式存储，用于联机分析（OLAP）的数据库管理系统（DBMS）。 优点： 列式存储 实时的数据更新 支持近似计算 支持数据复制和数据完整性   缺点： 没有完整的事务支持 缺少高频率、低延迟的修改或删除已存在数据的能力，仅能用于批量删除或修改数据    2. 部署 ClickHou">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-15T13:09:16.000Z">
+<meta property="article:modified_time" content="2021-02-17T08:32:38.774Z">
 <meta property="article:author" content="Ray">
+<meta property="article:tag" content="clickhouse">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="xkBigData" type="application/atom+xml">
@@ -167,108 +170,405 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-初识ClickHouse" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/12/23/Kafka--API%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96/" class="archive-article-date">
-        <time datetime="2019-12-23T14:20:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-23</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2019/12/23/Kafka--API%E4%BD%BF%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_blank">Kafka--API使用以及优化</a>
   
+    <h1 class="article-title" itemprop="name">
+      初识ClickHouse
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2020/03/15/%E5%88%9D%E8%AF%86ClickHouse/" class="archive-article-date">
+        <time datetime="2020-03-15T13:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-15</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">2.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">14分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="初识ClickHouse"><a href="#初识ClickHouse" class="headerlink" title="初识ClickHouse"></a><center>初识ClickHouse</center></h2><p><a target="_blank" rel="noopener" href="https://clickhouse.tech/">ClickHouse 官网</a></p>
+<h3 id="1-ClickHouse-介绍"><a href="#1-ClickHouse-介绍" class="headerlink" title="1. ClickHouse 介绍"></a>1. ClickHouse 介绍</h3><ul>
+<li>ClickHouse 是一个采用列式存储，用于联机分析（OLAP）的数据库管理系统（DBMS）。</li>
+<li>优点：<ul>
+<li>列式存储</li>
+<li>实时的数据更新</li>
+<li>支持近似计算</li>
+<li>支持数据复制和数据完整性</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>没有完整的事务支持</li>
+<li>缺少高频率、低延迟的修改或删除已存在数据的能力，仅能用于批量删除或修改数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-部署-ClickHouse"><a href="#2-部署-ClickHouse" class="headerlink" title="2. 部署 ClickHouse"></a>2. 部署 ClickHouse</h3><p><a target="_blank" rel="noopener" href="https://clickhouse.tech/docs/en/getting-started/install/">部署文档（官方）</a></p>
+<ul>
+<li>本次部署采用的是单点部署</li>
+</ul>
+<h4 id="2-1-检查机器环境是否可以部署-ClickHouse"><a href="#2-1-检查机器环境是否可以部署-ClickHouse" class="headerlink" title="2.1 检查机器环境是否可以部署 ClickHouse"></a>2.1 检查机器环境是否可以部署 ClickHouse</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ grep -q sse4_2 &#x2F;proc&#x2F;cpuinfo &amp;&amp; echo &quot;SSE 4.2 supported&quot; || echo &quot;SSE 4.2 not supported&quot;</span><br><span class="line">SSE 4.2 supported</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2-部署-ClickHouse"><a href="#2-2-部署-ClickHouse" class="headerlink" title="2.2 部署 ClickHouse"></a>2.2 部署 ClickHouse</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ sudo yum install yum-utils</span><br><span class="line">[hadoop@bigdata ~]$ sudo rpm --import https:&#x2F;&#x2F;repo.clickhouse.tech&#x2F;CLICKHOUSE-KEY.GPG</span><br><span class="line">[hadoop@bigdata ~]$ sudo yum-config-manager --add-repo https:&#x2F;&#x2F;repo.clickhouse.tech&#x2F;rpm&#x2F;stable&#x2F;x86_64</span><br><span class="line">[hadoop@bigdata ~]$ sudo yum install clickhouse-server clickhouse-client</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3-启动-ClickHouse"><a href="#2-3-启动-ClickHouse" class="headerlink" title="2.3 启动 ClickHouse"></a>2.3 启动 ClickHouse</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ sudo systemctl start clickhouse-server</span><br><span class="line">[hadoop@bigdata ~]$ sudo systemctl status clickhouse-server</span><br><span class="line">● clickhouse-server.service - ClickHouse Server (analytic DBMS for big data)</span><br><span class="line">   Loaded: loaded (&#x2F;etc&#x2F;systemd&#x2F;system&#x2F;clickhouse-server.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since 日 2021-02-14 14:08:45 CST; 6s ago</span><br><span class="line"> Main PID: 10498 (clckhouse-watch)</span><br><span class="line">   CGroup: &#x2F;system.slice&#x2F;clickhouse-server.service</span><br><span class="line">           ├─10498 clickhouse-watchdog --config&#x3D;&#x2F;etc&#x2F;clickhouse-server&#x2F;config.xml --pid-file&#x3D;&#x2F;run&#x2F;clickhouse-server&#x2F;clickhouse-server.pid</span><br><span class="line">           └─10499 &#x2F;usr&#x2F;bin&#x2F;clickhouse-server --config&#x3D;&#x2F;etc&#x2F;clickhouse-server&#x2F;config.xml --pid-file&#x3D;&#x2F;run&#x2F;clickhouse-server&#x2F;clickhouse-server.pid</span><br><span class="line"></span><br><span class="line">2月 14 14:08:45 bigdata systemd[1]: Started ClickHouse Server (analytic DBMS for big data).</span><br><span class="line">2月 14 14:08:45 bigdata clickhouse-server[10498]: Processing configuration file &#39;&#x2F;etc&#x2F;clickhouse-server&#x2F;config.xml&#39;.</span><br><span class="line">2月 14 14:08:45 bigdata clickhouse-server[10498]: Logging trace to &#x2F;var&#x2F;log&#x2F;clickhouse-server&#x2F;clickhouse-server.log</span><br><span class="line">2月 14 14:08:45 bigdata clickhouse-server[10498]: Logging errors to &#x2F;var&#x2F;log&#x2F;clickhouse-server&#x2F;clickhouse-server.err.log</span><br><span class="line">2月 14 14:08:45 bigdata clickhouse-server[10498]: Processing configuration file &#39;&#x2F;etc&#x2F;clickhouse-server&#x2F;users.xml&#39;.</span><br><span class="line">2月 14 14:08:45 bigdata clickhouse-server[10498]: Saved preprocessed configuration to &#39;&#x2F;var&#x2F;lib&#x2F;clickhouse&#x2F;preprocessed_configs&#x2F;users.xml&#39;.</span><br><span class="line">2月 14 14:08:47 bigdata clickhouse-server[10498]: Processing configuration file &#39;&#x2F;etc&#x2F;clickhouse-server&#x2F;config.xml&#39;.</span><br><span class="line">2月 14 14:08:47 bigdata clickhouse-server[10498]: Saved preprocessed configuration to &#39;&#x2F;var&#x2F;lib&#x2F;clickhouse&#x2F;preprocessed_configs&#x2F;config.xml&#39;.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进入到 ClickHouse 客户端</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ clickhouse-client</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-修改-ClickHouse-配置文件"><a href="#3-修改-ClickHouse-配置文件" class="headerlink" title="3. 修改 ClickHouse 配置文件"></a>3. 修改 ClickHouse 配置文件</h3><ul>
+<li>修改配置文件：/etc/clickhouse-server/config.xml</li>
+<li>ClickHouse JDBC 端口号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;tcp_port&gt;9000&lt;&#x2F;tcp_port&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ClickHouse 修改监听的 HostName</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;listen_host&gt;::&lt;&#x2F;listen_host&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重启 ClickHouse</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ sudo systemctl start clickhouse-server</span><br><span class="line">[hadoop@bigdata ~]$ clickhouse-client --host&#x3D;bigdata --port&#x3D;9000</span><br><span class="line">bigdata :) show databases;</span><br><span class="line"></span><br><span class="line">SHOW DATABASES</span><br><span class="line"></span><br><span class="line">Query id: 478c40aa-9367-4322-a66a-61c61f906138</span><br><span class="line"></span><br><span class="line">┌─name────┐</span><br><span class="line">│ default │</span><br><span class="line">│ system  │</span><br><span class="line">└─────────┘</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.004 sec. </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>客户端执行的 SQL 语句如果需要换行操作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ clickhouse-client --host&#x3D;bigdata --port&#x3D;9000 -m</span><br><span class="line">bigdata :) show</span><br><span class="line">:-] databases;</span><br><span class="line"></span><br><span class="line">SHOW DATABASES</span><br><span class="line"></span><br><span class="line">Query id: 66526349-6668-4e89-b53c-dd70b5aeb99f</span><br><span class="line"></span><br><span class="line">┌─name────┐</span><br><span class="line">│ default │</span><br><span class="line">│ system  │</span><br><span class="line">└─────────┘</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.006 sec. </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改 users.xml</li>
+<li>增加一个用户</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@bigdata clickhouse-server]# pwd</span><br><span class="line">&#x2F;etc&#x2F;clickhouse-server</span><br><span class="line">[root@bigdata clickhouse-server]# vim users.xml </span><br><span class="line">&lt;bigdata&gt;</span><br><span class="line">	&lt;password&gt;123456&lt;&#x2F;password&gt;</span><br><span class="line">	&lt;networks&gt;</span><br><span class="line">		&lt;ip&gt;::&#x2F;0&lt;&#x2F;ip&gt;</span><br><span class="line">	&lt;&#x2F;networks&gt;</span><br><span class="line">	&lt;profile&gt;default&lt;&#x2F;profile&gt;</span><br><span class="line">	&lt;quota&gt;default&lt;&#x2F;quota&gt;</span><br><span class="line">&lt;&#x2F;bigdata&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;$username&gt;</span><br><span class="line">	&lt;password&gt;$password&lt;&#x2F;password&gt;</span><br><span class="line">	&lt;networks&gt;</span><br><span class="line">		&lt;ip&gt;::&#x2F;0&lt;&#x2F;ip&gt;</span><br><span class="line">	&lt;&#x2F;networks&gt;</span><br><span class="line">	&lt;profile&gt;default&lt;&#x2F;profile&gt;</span><br><span class="line">	&lt;quota&gt;default&lt;&#x2F;quota&gt;</span><br><span class="line">&lt;&#x2F;$username&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重启服务并登录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[hadoop@bigdata ~]$ sudo systemctl start clickhouse-server</span><br><span class="line">[hadoop@bigdata ~]$ clickhouse-client --host&#x3D;bigdata --port&#x3D;9000 -m --user&#x3D;bigdata --password&#x3D;123456</span><br><span class="line"></span><br><span class="line">bigdata :) show databases;</span><br><span class="line"></span><br><span class="line">SHOW DATABASES</span><br><span class="line"></span><br><span class="line">Query id: aad8f902-2908-447f-8683-8df1c58ee47c</span><br><span class="line"></span><br><span class="line">┌─name────┐</span><br><span class="line">│ default │</span><br><span class="line">│ system  │</span><br><span class="line">└─────────┘</span><br><span class="line"></span><br><span class="line">3 rows in set. Elapsed: 0.004 sec. </span><br></pre></td></tr></table></figure>
+
+<h3 id="4-ClickHouse-默认重要的路径"><a href="#4-ClickHouse-默认重要的路径" class="headerlink" title="4. ClickHouse 默认重要的路径"></a>4. ClickHouse 默认重要的路径</h3><ul>
+<li>配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;etc&#x2F;clickhouse-server</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>数据路径</li>
+<li>一个 database 一个文件夹</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;lib&#x2F;clickhouse&#x2F;data</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>元数据路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;lib&#x2F;clickhouse&#x2F;metadata</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>命令行路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;bin&#x2F;clickhouse-server</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;clickhouse-client</span><br><span class="line">&#x2F;usr&#x2F;bin&#x2F;clickhouse-benchmark</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-ClickHouse-基本操作"><a href="#5-ClickHouse-基本操作" class="headerlink" title="5. ClickHouse 基本操作"></a>5. ClickHouse 基本操作</h3><h4 id="5-1-创建一个数据库"><a href="#5-1-创建一个数据库" class="headerlink" title="5.1 创建一个数据库"></a>5.1 创建一个数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE [IF NOT EXISTS] db_name [ON CLUSTER cluster] [ENGINE &#x3D; engine(...)]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) create database bigdata;</span><br><span class="line"></span><br><span class="line">CREATE DATABASE bigdata</span><br><span class="line"></span><br><span class="line">Query id: aebd4d34-7af4-4c15-92d3-7b777476fd08</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.005 sec. </span><br><span class="line">bigdata :) use bigdata;</span><br><span class="line"></span><br><span class="line">USE bigdata</span><br><span class="line"></span><br><span class="line">Query id: 31543b31-ddf2-4fa4-a617-6c8a21303afe</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.002 sec. </span><br><span class="line">bigdata :) select currentDatabase()　;</span><br><span class="line"></span><br><span class="line">SELECT currentDatabase()</span><br><span class="line"></span><br><span class="line">Query id: 2cd2d043-1966-43a9-9e2c-2f5e02d50803</span><br><span class="line"></span><br><span class="line">┌─currentDatabase()─┐</span><br><span class="line">│ bigdata           │</span><br><span class="line">└───────────────────┘</span><br><span class="line"></span><br><span class="line">1 rows in set. Elapsed: 0.004 sec. </span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-创建一张表"><a href="#5-2-创建一张表" class="headerlink" title="5.2 创建一张表"></a>5.2 创建一张表</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE [IF NOT EXISTS] [db.]table_name [ON CLUSTER cluster]</span><br><span class="line">(</span><br><span class="line">    name1 [type1] [NULL|NOT NULL] [DEFAULT|MATERIALIZED|ALIAS expr1] [compression_codec] [TTL expr1],</span><br><span class="line">    name2 [type2] [NULL|NOT NULL] [DEFAULT|MATERIALIZED|ALIAS expr2] [compression_codec] [TTL expr2],</span><br><span class="line">    ...</span><br><span class="line">) ENGINE &#x3D; engine</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) CREATE TABLE test</span><br><span class="line">:-] (</span><br><span class="line">:-]     id Int32,</span><br><span class="line">:-]     name String</span><br><span class="line">:-] ) ENGINE &#x3D; Memory;</span><br><span class="line"></span><br><span class="line">CREATE TABLE test</span><br><span class="line">(</span><br><span class="line">    &#96;id&#96; Int32,</span><br><span class="line">    &#96;name&#96; String</span><br><span class="line">)</span><br><span class="line">ENGINE &#x3D; Memory</span><br><span class="line"></span><br><span class="line">Query id: 7adb3381-57f1-4c6b-847a-f82590888cc9</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.020 sec. </span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-插入一笔数据"><a href="#5-3-插入一笔数据" class="headerlink" title="5.3 插入一笔数据"></a>5.3 插入一笔数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) insert into test values(1,&#39;hadoop&#39;),(2,&#39;spark&#39;);</span><br><span class="line"></span><br><span class="line">INSERT INTO test VALUES</span><br><span class="line"></span><br><span class="line">Query id: 50160821-b508-42b7-a344-05087d6932a9</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.005 sec.</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-4-查询数据"><a href="#5-4-查询数据" class="headerlink" title="5.4 查询数据"></a>5.4 查询数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) select * from test;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM test</span><br><span class="line"></span><br><span class="line">Query id: 51dba55f-39df-4c66-832a-20ecb3117c51</span><br><span class="line"></span><br><span class="line">┌─id─┬─name───┐</span><br><span class="line">│  1 │ hadoop │</span><br><span class="line">│  2 │ spark  │</span><br><span class="line">└────┴────────┘</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.005 sec. </span><br></pre></td></tr></table></figure>
+
+<h4 id="5-5-修改数据"><a href="#5-5-修改数据" class="headerlink" title="5.5 修改数据"></a>5.5 修改数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) ALTER TABLE test UPDATE name &#x3D; &#39;spark1&#39; where id &#x3D; 2; </span><br><span class="line"></span><br><span class="line">ALTER TABLE test</span><br><span class="line">    UPDATE name &#x3D; &#39;spark1&#39; WHERE id &#x3D; 2</span><br><span class="line"></span><br><span class="line">Query id: 3ede61c5-72b9-4af1-b75b-33882da9288e</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.003 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) select * from test;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM test</span><br><span class="line"></span><br><span class="line">Query id: d9045117-ec85-4146-82c8-6b11109adf69</span><br><span class="line"></span><br><span class="line">┌─id─┬─name───┐</span><br><span class="line">│  1 │ hadoop │</span><br><span class="line">│  2 │ spark1 │</span><br><span class="line">└────┴────────┘</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.005 sec. </span><br></pre></td></tr></table></figure>
+
+<h4 id="5-6-删除数据"><a href="#5-6-删除数据" class="headerlink" title="5.6 删除数据"></a>5.6 删除数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) ALTER TABLE test delete where id &#x3D; 2;</span><br><span class="line"></span><br><span class="line">ALTER TABLE test</span><br><span class="line">    DELETE WHERE id &#x3D; 2</span><br><span class="line"></span><br><span class="line">Query id: 9cecf262-aa88-4ba2-81b8-5db27046e1d2</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.005 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) select * from test;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM test</span><br><span class="line"></span><br><span class="line">Query id: 931e9a24-3f86-48ec-9df0-e8f4c7b3d603</span><br><span class="line"></span><br><span class="line">┌─id─┬─name───┐</span><br><span class="line">│  1 │ hadoop │</span><br><span class="line">└────┴────────┘</span><br><span class="line"></span><br><span class="line">1 rows in set. Elapsed: 0.006 sec. </span><br></pre></td></tr></table></figure>
+
+<h3 id="6-ClickHouse-常用数据类型"><a href="#6-ClickHouse-常用数据类型" class="headerlink" title="6. ClickHouse 常用数据类型"></a>6. ClickHouse 常用数据类型</h3><ul>
+<li>ClickHouse 数据类型中区分大小写</li>
+<li>查看本版本中有哪些数据类型：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) select * from system.data_type_families;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM system.data_type_families</span><br><span class="line"></span><br><span class="line">Query id: e5b07c0c-b7a5-42c5-9040-c69a04bf7e67</span><br><span class="line"></span><br><span class="line">┌─name────────────────────────────┬─case_insensitive─┬─alias_to────┐</span><br><span class="line">│ Polygon                         │                0 │             │</span><br><span class="line">│ Ring                            │                0 │             │</span><br><span class="line">│ MultiPolygon                    │                0 │             │</span><br><span class="line">│ IPv6                            │                0 │             │</span><br><span class="line">│ IntervalSecond                  │                0 │             │</span><br><span class="line">│ IPv4                            │                0 │             │</span><br><span class="line">│ UInt32                          │                0 │             │</span><br><span class="line">│ IntervalYear                    │                0 │             │</span><br><span class="line">│ IntervalQuarter                 │                0 │             │</span><br><span class="line">│ IntervalMonth                   │                0 │             │</span><br><span class="line">│ Int64                           │                0 │             │</span><br><span class="line">│ IntervalDay                     │                0 │             │</span><br><span class="line">│ IntervalHour                    │                0 │             │</span><br><span class="line">│ UInt256                         │                0 │             │</span><br><span class="line">│ Int16                           │                0 │             │</span><br><span class="line">│ LowCardinality                  │                0 │             │</span><br><span class="line">│ AggregateFunction               │                0 │             │</span><br><span class="line">│ Nothing                         │                0 │             │</span><br><span class="line">│ Decimal256                      │                1 │             │</span><br><span class="line">│ Tuple                           │                0 │             │</span><br><span class="line">│ Array                           │                0 │             │</span><br><span class="line">│ Enum16                          │                0 │             │</span><br><span class="line">│ IntervalMinute                  │                0 │             │</span><br><span class="line">│ FixedString                     │                0 │             │</span><br><span class="line">│ String                          │                0 │             │</span><br><span class="line">│ DateTime                        │                1 │             │</span><br><span class="line">│ Map                             │                0 │             │</span><br><span class="line">│ UUID                            │                0 │             │</span><br><span class="line">│ Decimal64                       │                1 │             │</span><br><span class="line">│ Nullable                        │                0 │             │</span><br><span class="line">│ Enum                            │                0 │             │</span><br><span class="line">│ Int32                           │                0 │             │</span><br><span class="line">│ UInt8                           │                0 │             │</span><br><span class="line">│ Date                            │                1 │             │</span><br><span class="line">│ Decimal32                       │                1 │             │</span><br><span class="line">│ Point                           │                0 │             │</span><br><span class="line">│ Float64                         │                0 │             │</span><br><span class="line">│ DateTime64                      │                1 │             │</span><br><span class="line">│ Int128                          │                0 │             │</span><br><span class="line">│ Decimal128                      │                1 │             │</span><br><span class="line">│ Int8                            │                0 │             │</span><br><span class="line">│ SimpleAggregateFunction         │                0 │             │</span><br><span class="line">│ Nested                          │                0 │             │</span><br><span class="line">│ Decimal                         │                1 │             │</span><br><span class="line">│ Int256                          │                0 │             │</span><br><span class="line">│ IntervalWeek                    │                0 │             │</span><br><span class="line">│ UInt64                          │                0 │             │</span><br><span class="line">│ Enum8                           │                0 │             │</span><br><span class="line">│ DateTime32                      │                1 │             │</span><br><span class="line">│ UInt16                          │                0 │             │</span><br><span class="line">│ Float32                         │                0 │             │</span><br><span class="line">│ INET6                           │                1 │ IPv6        │</span><br><span class="line">│ INET4                           │                1 │ IPv4        │</span><br><span class="line">│ BINARY                          │                1 │ FixedString │</span><br><span class="line">│ NATIONAL CHAR VARYING           │                1 │ String      │</span><br><span class="line">│ BINARY VARYING                  │                1 │ String      │</span><br><span class="line">│ NCHAR LARGE OBJECT              │                1 │ String      │</span><br><span class="line">│ NATIONAL CHARACTER VARYING      │                1 │ String      │</span><br><span class="line">│ NATIONAL CHARACTER LARGE OBJECT │                1 │ String      │</span><br><span class="line">│ NATIONAL CHARACTER              │                1 │ String      │</span><br><span class="line">│ NATIONAL CHAR                   │                1 │ String      │</span><br><span class="line">│ CHARACTER VARYING               │                1 │ String      │</span><br><span class="line">│ LONGBLOB                        │                1 │ String      │</span><br><span class="line">│ MEDIUMTEXT                      │                1 │ String      │</span><br><span class="line">│ TEXT                            │                1 │ String      │</span><br><span class="line">│ TINYBLOB                        │                1 │ String      │</span><br><span class="line">│ VARCHAR2                        │                1 │ String      │</span><br><span class="line">│ CHARACTER LARGE OBJECT          │                1 │ String      │</span><br><span class="line">│ DOUBLE PRECISION                │                1 │ Float64     │</span><br><span class="line">│ LONGTEXT                        │                1 │ String      │</span><br><span class="line">│ NVARCHAR                        │                1 │ String      │</span><br><span class="line">│ INT1 UNSIGNED                   │                1 │ UInt8       │</span><br><span class="line">│ VARCHAR                         │                1 │ String      │</span><br><span class="line">│ CHAR VARYING                    │                1 │ String      │</span><br><span class="line">│ MEDIUMBLOB                      │                1 │ String      │</span><br><span class="line">│ NCHAR                           │                1 │ String      │</span><br><span class="line">│ CHAR                            │                1 │ String      │</span><br><span class="line">│ SMALLINT UNSIGNED               │                1 │ UInt16      │</span><br><span class="line">│ TIMESTAMP                       │                1 │ DateTime    │</span><br><span class="line">│ FIXED                           │                1 │ Decimal     │</span><br><span class="line">│ TINYTEXT                        │                1 │ String      │</span><br><span class="line">│ NUMERIC                         │                1 │ Decimal     │</span><br><span class="line">│ DEC                             │                1 │ Decimal     │</span><br><span class="line">│ TINYINT UNSIGNED                │                1 │ UInt8       │</span><br><span class="line">│ INTEGER UNSIGNED                │                1 │ UInt32      │</span><br><span class="line">│ INT UNSIGNED                    │                1 │ UInt32      │</span><br><span class="line">│ CLOB                            │                1 │ String      │</span><br><span class="line">│ MEDIUMINT UNSIGNED              │                1 │ UInt32      │</span><br><span class="line">│ BOOL                            │                1 │ Int8        │</span><br><span class="line">│ SMALLINT                        │                1 │ Int16       │</span><br><span class="line">│ INTEGER SIGNED                  │                1 │ Int32       │</span><br><span class="line">│ NCHAR VARYING                   │                1 │ String      │</span><br><span class="line">│ INT SIGNED                      │                1 │ Int32       │</span><br><span class="line">│ TINYINT SIGNED                  │                1 │ Int8        │</span><br><span class="line">│ BIGINT SIGNED                   │                1 │ Int64       │</span><br><span class="line">│ BINARY LARGE OBJECT             │                1 │ String      │</span><br><span class="line">│ SMALLINT SIGNED                 │                1 │ Int16       │</span><br><span class="line">│ MEDIUMINT                       │                1 │ Int32       │</span><br><span class="line">│ INTEGER                         │                1 │ Int32       │</span><br><span class="line">│ INT1 SIGNED                     │                1 │ Int8        │</span><br><span class="line">│ BIGINT UNSIGNED                 │                1 │ UInt64      │</span><br><span class="line">│ BYTEA                           │                1 │ String      │</span><br><span class="line">│ INT                             │                1 │ Int32       │</span><br><span class="line">│ SINGLE                          │                1 │ Float32     │</span><br><span class="line">│ FLOAT                           │                1 │ Float32     │</span><br><span class="line">│ MEDIUMINT SIGNED                │                1 │ Int32       │</span><br><span class="line">│ BOOLEAN                         │                1 │ Int8        │</span><br><span class="line">│ DOUBLE                          │                1 │ Float64     │</span><br><span class="line">│ INT1                            │                1 │ Int8        │</span><br><span class="line">│ CHAR LARGE OBJECT               │                1 │ String      │</span><br><span class="line">│ TINYINT                         │                1 │ Int8        │</span><br><span class="line">│ BIGINT                          │                1 │ Int64       │</span><br><span class="line">│ CHARACTER                       │                1 │ String      │</span><br><span class="line">│ BYTE                            │                1 │ Int8        │</span><br><span class="line">│ BLOB                            │                1 │ String      │</span><br><span class="line">│ REAL                            │                1 │ Float32     │</span><br><span class="line">└─────────────────────────────────┴──────────────────┴─────────────┘</span><br><span class="line"></span><br><span class="line">116 rows in set. Elapsed: 0.006 sec.</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-1-Int-类型"><a href="#6-1-Int-类型" class="headerlink" title="6.1 Int 类型"></a>6.1 Int 类型</h4><ul>
+<li>Int 类型有以下这些：</li>
+<li>UInt8, UInt16, UInt32, UInt64, UInt256, Int8, Int16, Int32, Int64, Int128, Int256</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Int Ranges </span><br><span class="line">Int8 — [-128 : 127]</span><br><span class="line">Int16 — [-32768 : 32767]</span><br><span class="line">Int32 — [-2147483648 : 2147483647]</span><br><span class="line">Int64 — [-9223372036854775808 : 9223372036854775807]</span><br><span class="line">Int128 — [-170141183460469231731687303715884105728 : 170141183460469231731687303715884105727]</span><br><span class="line">Int256 — [-57896044618658097711785492504343953926634992332820282019728792003956564819968 : 57896044618658097711785492504343953926634992332820282019728792003956564819967]</span><br><span class="line"></span><br><span class="line">Uint Ranges </span><br><span class="line">UInt8 — [0 : 255]</span><br><span class="line">UInt16 — [0 : 65535]</span><br><span class="line">UInt32 — [0 : 4294967295]</span><br><span class="line">UInt64 — [0 : 18446744073709551615]</span><br><span class="line">UInt256 — [0 : 115792089237316195423570985008687907853269984665640564039457584007913129639935]</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-Float-类型"><a href="#6-2-Float-类型" class="headerlink" title="6.2 Float 类型"></a>6.2 Float 类型</h4><ul>
+<li>Float32 — float</li>
+<li>Float64 — double</li>
+<li>NaN and Inf<ul>
+<li>Inf : 无穷</li>
+<li>NaN : 不是一个数字</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) SELECT 0.5 &#x2F; 0</span><br><span class="line">:-] ;</span><br><span class="line"></span><br><span class="line">SELECT 0.5 &#x2F; 0</span><br><span class="line"></span><br><span class="line">Query id: 0af32c1e-100c-40e1-8f1c-469390d545be</span><br><span class="line"></span><br><span class="line">┌─divide(0.5, 0)─┐</span><br><span class="line">│            inf │</span><br><span class="line">└────────────────┘</span><br><span class="line"></span><br><span class="line">1 rows in set. Elapsed: 0.004 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) SELECT -0.5 &#x2F; 0;</span><br><span class="line"></span><br><span class="line">SELECT -0.5 &#x2F; 0</span><br><span class="line"></span><br><span class="line">Query id: 60f4d58c-c969-4453-bd3b-7531ef309861</span><br><span class="line"></span><br><span class="line">┌─divide(-0.5, 0)─┐</span><br><span class="line">│            -inf │</span><br><span class="line">└─────────────────┘</span><br><span class="line"></span><br><span class="line">1 rows in set. Elapsed: 0.006 sec. </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) SELECT 0 &#x2F; 0</span><br><span class="line">:-] ;</span><br><span class="line"></span><br><span class="line">SELECT 0 &#x2F; 0</span><br><span class="line"></span><br><span class="line">Query id: b9275b88-d23e-44b7-80df-4d2d78e7ccbb</span><br><span class="line"></span><br><span class="line">┌─divide(0, 0)─┐</span><br><span class="line">│          nan │</span><br><span class="line">└──────────────┘</span><br><span class="line"></span><br><span class="line">1 rows in set. Elapsed: 0.004 sec. </span><br></pre></td></tr></table></figure>
+
+<h4 id="6-3-Decimal-类型"><a href="#6-3-Decimal-类型" class="headerlink" title="6.3 Decimal 类型"></a>6.3 Decimal 类型</h4><ul>
+<li>Decimal(P, S), Decimal32(S), Decimal64(S), Decimal128(S), Decimal256(S)<ul>
+<li>P - precision. Valid range: [ 1 : 76 ]. 代表数字可以有多少个小数位数（包括分数）。</li>
+<li>S - scale. Valid range: [ 0 : P ]. 小数部分可以有多少个小数位数。</li>
+</ul>
+</li>
+<li>加减乘除运算：<ul>
+<li>add, subtract: S = max(S1, S2)：加、减</li>
+<li>multuply: S = S1 + S2：乘法</li>
+<li>divide: S = S1：除法</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-4-Boolean-类型"><a href="#6-4-Boolean-类型" class="headerlink" title="6.4 Boolean 类型"></a>6.4 Boolean 类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">There is no separate type for boolean values. Use UInt8 type, restricted to the values 0 or 1.</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以使用 UInt8 中 0、1来表示</li>
+</ul>
+<h4 id="6-5-String-类型"><a href="#6-5-String-类型" class="headerlink" title="6.5 String 类型"></a>6.5 String 类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Strings of an arbitrary length. The length is not limited. The value can contain an arbitrary set of bytes, including null bytes.</span><br><span class="line">The String type replaces the types VARCHAR, BLOB, CLOB, and others from other DBMSs.</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-6-Fixedstring-类型"><a href="#6-6-Fixedstring-类型" class="headerlink" title="6.6 Fixedstring 类型"></a>6.6 Fixedstring 类型</h4><ul>
+<li>固定长度的 String 类型</li>
+<li>FixedString(N)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) CREATE TABLE test_fixedstring</span><br><span class="line">:-] (</span><br><span class="line">:-]     id Int32,</span><br><span class="line">:-]     name FixedString(5)</span><br><span class="line">:-] ) ENGINE &#x3D; Memory;</span><br><span class="line"></span><br><span class="line">CREATE TABLE test_fixedstring</span><br><span class="line">(</span><br><span class="line">    &#96;id&#96; Int32,</span><br><span class="line">    &#96;name&#96; FixedString(5)</span><br><span class="line">)</span><br><span class="line">ENGINE &#x3D; Memory</span><br><span class="line"></span><br><span class="line">Query id: a7394848-4af2-4cb5-acd6-230188b035b0</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.008 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) insert into test_fixedstring values(1,&#39;spark&#39;);</span><br><span class="line"></span><br><span class="line">INSERT INTO test_fixedstring VALUES</span><br><span class="line"></span><br><span class="line">Query id: 3811b8f1-d68c-4457-bc57-b45be5c719b6</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">1 rows in set. Elapsed: 0.005 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) insert into test_fixedstring values(2,&#39;hadoop&#39;);</span><br><span class="line"></span><br><span class="line">INSERT INTO test_fixedstring VALUES</span><br><span class="line"></span><br><span class="line">Query id: 8aeb2b97-b44f-40ab-bdee-ff6106a75606</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Exception on client:</span><br><span class="line">Code: 131. DB::Exception: String too long for type FixedString(5): while executing &#39;FUNCTION CAST(assumeNotNull(_dummy_0) :: 2, &#39;FixedString(5)&#39; :: 1) -&gt; cast(assumeNotNull(_dummy_0), &#39;FixedString(5)&#39;) FixedString(5) : 4&#39;: data for INSERT was parsed from query</span><br><span class="line"></span><br><span class="line">Connecting to database bigdata at bigdata:9000 as user default.</span><br><span class="line">Connected to ClickHouse server version 21.2.2 revision 54447.</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-7-UUID-类型"><a href="#6-7-UUID-类型" class="headerlink" title="6.7 UUID 类型"></a>6.7 UUID 类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A universally unique identifier (UUID) is a 16-byte number used to identify records</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一般是配合 generateUUIDv4 函数一起使用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO t_uuid SELECT generateUUIDv4(), &#39;Example 1&#39;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">bigdata :) CREATE TABLE test_uuid</span><br><span class="line">:-] (</span><br><span class="line">:-]     id UUID,</span><br><span class="line">:-]     name String</span><br><span class="line">:-] ) ENGINE &#x3D; Memory;</span><br><span class="line"></span><br><span class="line">CREATE TABLE test_uuid</span><br><span class="line">(</span><br><span class="line">    &#96;id&#96; UUID,</span><br><span class="line">    &#96;name&#96; String</span><br><span class="line">)</span><br><span class="line">ENGINE &#x3D; Memory</span><br><span class="line"></span><br><span class="line">Query id: d3fde3cd-609f-497c-b662-4f75d252b076</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">0 rows in set. Elapsed: 0.004 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) insert into test_uuid(name) values(&#39;spark&#39;),(&#39;hadoop&#39;);</span><br><span class="line"></span><br><span class="line">INSERT INTO test_uuid (name) VALUES</span><br><span class="line"></span><br><span class="line">Query id: a513ba06-55a5-4dfd-accf-acfa03636969</span><br><span class="line"></span><br><span class="line">Ok.</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.005 sec. </span><br><span class="line"></span><br><span class="line">bigdata :) select * from test_uuid;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM test_uuid</span><br><span class="line"></span><br><span class="line">Query id: 69a9a816-1308-41aa-8d1d-64759557795b</span><br><span class="line"></span><br><span class="line">┌───────────────────────────────────id─┬─name───┐</span><br><span class="line">│ 00000000-0000-0000-0000-000000000000 │ spark  │</span><br><span class="line">│ 00000000-0000-0000-0000-000000000000 │ hadoop │</span><br><span class="line">└──────────────────────────────────────┴────────┘</span><br><span class="line"></span><br><span class="line">2 rows in set. Elapsed: 0.007 sec. </span><br></pre></td></tr></table></figure>
+
+<h4 id="6-8-Date-类型"><a href="#6-8-Date-类型" class="headerlink" title="6.8 Date 类型"></a>6.8 Date 类型</h4><ul>
+<li>Date : 精确到日期</li>
+<li>Datetime ：精确到秒，可以自己选择时区：DateTime([timezone])</li>
+<li>Datetime64 ：自定义精确到哪里，最多可以精确到亚秒：DateTime64(precision, [timezone])：Tick size (precision): 10-precision seconds</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE dt</span><br><span class="line">(</span><br><span class="line">    &#96;timestamp&#96; Date,</span><br><span class="line">    &#96;event_id&#96; UInt8</span><br><span class="line">)</span><br><span class="line">ENGINE &#x3D; TinyLog;</span><br><span class="line">INSERT INTO dt Values (1546300800, 1), (&#39;2019-01-01&#39;, 2);</span><br><span class="line">SELECT * FROM dt;</span><br><span class="line">┌──timestamp─┬─event_id─┐</span><br><span class="line">│ 2019-01-01 │        1 │</span><br><span class="line">│ 2019-01-01 │        2 │</span><br><span class="line">└────────────┴──────────┘</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE dt</span><br><span class="line">(</span><br><span class="line">    &#96;timestamp&#96; DateTime(&#39;Europe&#x2F;Moscow&#39;),</span><br><span class="line">    &#96;event_id&#96; UInt8</span><br><span class="line">)</span><br><span class="line">ENGINE &#x3D; TinyLog;</span><br><span class="line">INSERT INTO dt Values (1546300800, 1), (&#39;2019-01-01 00:00:00&#39;, 2);</span><br><span class="line">SELECT * FROM dt;</span><br><span class="line">┌───────────timestamp─┬─event_id─┐</span><br><span class="line">│ 2019-01-01 03:00:00 │        1 │</span><br><span class="line">│ 2019-01-01 00:00:00 │        2 │</span><br><span class="line">└─────────────────────┴──────────┘</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE dt</span><br><span class="line">(</span><br><span class="line">    &#96;timestamp&#96; DateTime64(3, &#39;Europe&#x2F;Moscow&#39;),</span><br><span class="line">    &#96;event_id&#96; UInt8</span><br><span class="line">)</span><br><span class="line">ENGINE &#x3D; TinyLog</span><br><span class="line">INSERT INTO dt Values (1546300800000, 1), (&#39;2019-01-01 00:00:00&#39;, 2)</span><br><span class="line">SELECT * FROM dt</span><br><span class="line">┌───────────────timestamp─┬─event_id─┐</span><br><span class="line">│ 2019-01-01 03:00:00.000 │        1 │</span><br><span class="line">│ 2019-01-01 00:00:00.000 │        2 │</span><br><span class="line">└─────────────────────────┴──────────┘</span><br></pre></td></tr></table></figure>
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          Ray
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://rayxk94.github.io/2020/03/15/初识ClickHouse/" title="初识ClickHouse" target="_blank">https://rayxk94.github.io/2020/03/15/初识ClickHouse/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">clickhouse</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://rayxk94.github.io/2020/03/15/%E5%88%9D%E8%AF%86ClickHouse/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/12/15/Kafka%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" class="archive-article-date">
-        <time datetime="2019-12-15T12:19:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-15</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/10/CDH%20%E5%8A%A8%E6%80%81%E8%B5%84%E6%BA%90%E6%B1%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CDH 动态资源池</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2019/12/15/Kafka%E7%AE%80%E4%BB%8B%E4%BB%A5%E5%8F%8A%E9%83%A8%E7%BD%B2/" target="_blank">Kafka简介以及部署</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">kafka</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+
+
+
 
 
           </div>
@@ -309,9 +609,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
